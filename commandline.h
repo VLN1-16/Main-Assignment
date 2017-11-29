@@ -1,6 +1,5 @@
 #ifndef COMMANDLINE_H
 #define COMMANDLINE_H
-
 #include <iostream> 
 /*
 * An user communication class,
@@ -20,14 +19,15 @@ class CommandLine{
     public:
         CommandLine();
         ~CommandLine();
-        void printmainmenu();
+        void printMainMenu();
         // A sales person needs to select an order (new or old)
         // And proceed to edit that order
 
         // All paid orders are marked as completed and
         // are not available for sales people 
-        void saleseditorder();
+
+        // Gives options to the sales person and returns their choice
+        void SalesEditor();
     private:
-        
 };
 #endif
