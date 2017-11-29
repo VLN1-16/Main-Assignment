@@ -1,28 +1,26 @@
 #ifndef PRODUCT_H
 #define PRODUCT_H
 #define sizeOfName 50
-#define sizeOfDesc 150
 #include <iostream>
 class Product{
     public:
         Product();
-        Product(int p, char n[sizeOfName], char desc[sizeOfDesc]);
-        ~Product();
-        int GetPrice() const;
-        char* GetName();
-        char* GetDescription();
+        Product(int p, char n[sizeOfName]);
+        virtual ~Product();
+        virtual int GetPrice() const;
+        virtual char* GetName();
 
-        void SetPrice(int p);
-        void SetName(char n[sizeOfName]);
-        void SetDescription(char desc[sizeOfDesc]);
+        virtual void SetPrice(int p);
+        virtual void SetName(char n[sizeOfName]);
 
         friend std::ostream& operator<<(std::ostream &os, Product& prod);
         // friend std::istream& operator>>(std::istream &is, Product &prod);
 
-    private:
+    protected:
         char name[sizeOfName];
-        char description[sizeOfDesc];
         int price;
+
+    private:
 
 };
 #endif
