@@ -26,9 +26,21 @@ void Product::SetName(char n[sizeOfName]){
         name[i] = n[i];
     }
 }
-
-std::ostream& operator<<(std::ostream &os,Product& prod){
+std::ostream& operator<<(std::ostream &os, Product& prod){
     os << prod.GetName() << " ";
     os << prod.GetPrice() << std::endl;
     return os;
+}
+std::istream& operator>>(std::istream &is, Product &prod){
+    is >> prod.name >> prod.price;
+    return is;
+}
+void Product::WriteBin(std::ostream& binaryOut){
+    // Write out the int and the name
+    binaryOut.write((char*)(&price), sizeof(int));
+    binaryOut.write((char*)(name), sizeof(char) * sizeOfName);
+}
+void Product::readBin (std::istream& binaryIn){
+    binaryIn.read((char*)(&price), sizeof(int));
+    binaryIn.read((char*)(name), sizeof(char) * sizeOfName);
 }
