@@ -10,6 +10,6 @@ testcostumer:
 	rm *.o
 
 toppingDatabase:
-	g++ -Wall -c -std=c++11 toppings.cpp topping.cpp product.cpp testToppings.cpp
-	g++ toppings.o topping.o product.cpp testToppings.o 
+	g++ -Wall -c -std=c++11 topping.cpp product.cpp testToppings.cpp
+	g++ topping.o product.o testToppings.o
 	rm *.o

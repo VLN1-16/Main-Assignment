@@ -1,11 +1,12 @@
 #include <iostream>
-#include "toppings.h"
+#include "filehandler.h"
 #include "topping.h"
+
 
 using namespace std;
 
 int main(){
-    Toppings list;
+    FileHandler<Topping> list("pizzatoppings.obj");
     int n;
      cout << list << endl;
 
@@ -17,7 +18,22 @@ int main(){
         Topping tp;
         cout << "Topping(name price): " <<endl;
         cin >> tp;
-        list.AddTopping(tp);
+        list.AddProduct(tp);
+    }
+    // product
+    FileHandler<Product> list2("products.obj");
+
+     cout << list2 << endl;
+
+    cout << "enter number of products" <<endl;
+    cin >> n;
+
+    for(int i=0; i<n; i++)
+    {
+        Product tp;
+        cout << "Product(name price): " <<endl;
+        cin >> tp;
+        list2.AddProduct(tp);
     }
 
     return 0;
