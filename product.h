@@ -17,7 +17,7 @@ class Product{
         friend std::istream& operator>>(std::istream &is, Product &prod);
 
         void WriteBin(std::ostream& binaryOut);
-        void readBin (std::istream& binaryIn);
+        void ReadBin (std::istream& binaryIn);
 
     protected:
         char name[sizeOfName];
