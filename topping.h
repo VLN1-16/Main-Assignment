@@ -5,7 +5,7 @@
 class Topping : public Product {
     public:
         Topping();
-        Topping(char n[sizeOfName]);
+        Topping(char n[sizeOfName], int Price = 200);
         virtual ~Topping();
 
 
