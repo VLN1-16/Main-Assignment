@@ -40,7 +40,7 @@ void Product::WriteBin(std::ostream& binaryOut){
     binaryOut.write((char*)(&price), sizeof(int));
     binaryOut.write((char*)(name), sizeof(char) * sizeOfName);
 }
-void Product::readBin (std::istream& binaryIn){
+void Product::ReadBin (std::istream& binaryIn){
     binaryIn.read((char*)(&price), sizeof(int));
     binaryIn.read((char*)(name), sizeof(char) * sizeOfName);
 }
