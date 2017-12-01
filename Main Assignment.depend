@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1512135376 source:c:\users\iriso\documents\github\main-assignment\main.cpp
+	<iostream>
+	"commandline.h"
+
+1512038002 c:\users\iriso\documents\github\main-assignment\product.h
+	<iostream>
+
+1512038002 c:\users\iriso\documents\github\main-assignment\pizza.h
+	<iostream>
+	"product.h"
+	"topping.h"
+
+1512038002 c:\users\iriso\documents\github\main-assignment\topping.h
+	"product.h"
+
+1512139375 c:\users\iriso\documents\github\main-assignment\commandline.h
+	<iostream>
+	<stdlib.h>
+	<cctype>
+
+1512136817 source:c:\users\iriso\documents\github\main-assignment\commandline.cpp
+	"commandline.h"
+
+1512038002 source:c:\users\iriso\documents\github\main-assignment\costumer.cpp
+	"costumer.h"
+
+1512038002 c:\users\iriso\documents\github\main-assignment\costumer.h
+	<iostream>
+
