@@ -1,13 +1,17 @@
 #include <iostream>
 #include "filehandler.h"
 #include "topping.h"
+#include "place.h"
 
 
 using namespace std;
 
 int main(){
-    FileHandler<Topping> list("pizzatoppings.obj");
+
     int n;
+/*
+    FileHandler<Topping> list("pizzatoppings.obj");
+
      cout << list << endl;
 
     cout << "enter number of toppings" <<endl;
@@ -20,6 +24,8 @@ int main(){
         cin >> tp;
         list.AddProduct(tp);
     }
+    list.RemoveProduct(3);
+    cout << list << endl;
     // product
     FileHandler<Product> list2("products.obj");
 
@@ -35,6 +41,23 @@ int main(){
         cin >> tp;
         list2.AddProduct(tp);
     }
+*/
+    FileHandler<Place> list3("Pizzaplaces.obj");
 
+     cout << list3 << endl;
+
+    cout << "enter number of places" <<endl;
+    cin >> n;
+
+    for(int i=0; i<n; i++)
+    {
+        Place p;
+        cout << "Pizzaplace(name address phone): " <<endl;
+        cin >> p;
+        list3.AddProduct(p);
+    }
+     cout << list3 << endl;
+    //list3.RemoveProduct(3);
+     cout << list3 << endl;
     return 0;
 }

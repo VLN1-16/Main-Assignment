@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <fstream>
 #include <string>
+class IndexOutOfRangeException{};
 template <typename T> class FileHandler {
     public:
         FileHandler(std::string DataFile){
@@ -43,6 +44,34 @@ template <typename T> class FileHandler {
                 fout.close();
             }
         }
+        void RemoveProduct(int index){
+            if(index <0 || index >= numberOfProds){
+                throw IndexOutOfRangeException();
+            }
+            for (int i=index; i<numberOfProds-1; i++){
+                prodList[i] = prodList[i+1];
+            }
+            numberOfProds--;
+            std::ofstream fout(dataFile , std::ios::binary);
+            for(int i=0;i<numberOfProds; i++){
+                prodList[i].WriteBin(fout);
+            }
+            fout.close();
+
+        }
+/*     Skoða þetta rugl seinna
+        void RemoveProduct<Place>(int index){
+            if(index <0 || index >= numberOfProds){
+                throw IndexOutOfRangeException();
+            }
+            prodList[index].active = false;
+            // using both in and out to owerwrite the value at the index given
+            std::fstream fout(dataFile , std::ios::binary | std::ios::out | std::ios::in);
+            fout.seekp(prodList[index].GetByteSize()*index);
+            prodList[index].WriteBin(fout);
+            fout.close();
+        }
+        */
         int GetSize(){
             return numberOfProds;
         }
