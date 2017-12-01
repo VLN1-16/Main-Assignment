@@ -5,4 +5,3 @@ Topping::Topping(char n[sizeOfName], int Price) {
     price = Price;
     SetName(n);
 }
-Topping::~Topping() {}

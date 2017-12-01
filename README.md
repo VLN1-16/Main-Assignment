@@ -23,4 +23,5 @@ All operations from the command line controler should have a corosponding
 function in controller f.e. createOrder can be done as a sales person
 and should .
 
-
+# The extra mile
+- Diffrent toppings on sections of the pizza

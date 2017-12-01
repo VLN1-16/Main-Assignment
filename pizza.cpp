@@ -19,9 +19,10 @@ Pizza::Pizza(char n[sizeOfName], int topping, int Price, double Offset, int Size
     size   = Size;;
 }
 Pizza::~Pizza() {
-    if (toppings != 0){
-        delete[] toppings;
-        toppings = 0;
+    if (toppings != NULL){
+        std::cout << "this is being called" << std::endl;
+        delete [] toppings;
+        toppings = NULL;
     }
 }
 
@@ -41,6 +42,7 @@ void Pizza::resize(){
     }
     delete [] toppings;
     toppings = ntopping;
+    ntopping = NULL;
     numberOfToppings *= 2;
 }
 void Pizza::AddTopping(Topping topping, bool calcOffset){
