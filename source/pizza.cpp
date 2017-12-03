@@ -2,7 +2,7 @@
 
 Pizza::Pizza() : Product(){
     numberOfToppings = 2;
-    toppings = new Topping[numberOfToppings];
+    toppings = NULL;
     currTopping = 0;
     price  = 1000; // base price, this will be replaced.
     offset = 1.4;  // base offset, this will be replaced
@@ -19,10 +19,9 @@ Pizza::Pizza(char n[sizeOfName], int topping, int Price, double Offset, int Size
     size   = Size;;
 }
 Pizza::~Pizza() {
-    if (toppings != NULL){
-        std::cout << "this is being called" << std::endl;
+    if(toppings != NULL){
         delete [] toppings;
-        toppings = NULL;
+        std::cout << "pizza killing toppings" << std::endl;
     }
 }
 
@@ -45,7 +44,9 @@ void Pizza::resize(){
     ntopping = NULL;
     numberOfToppings *= 2;
 }
-void Pizza::AddTopping(Topping topping, bool calcOffset){
+void Pizza::AddTopping(Topping topping, bool calcOffset, bool free){
+    if(toppings ==  NULL)
+        toppings = new Topping[numberOfToppings];
     if (currTopping == numberOfToppings){
         resize();
     }
@@ -53,7 +54,8 @@ void Pizza::AddTopping(Topping topping, bool calcOffset){
         topping.SetPrice(std::ceil(topping.GetPrice() * offset));
     toppings[currTopping] = topping;
     currTopping++;
-    price += topping.GetPrice(); // costumer always looses part of a krona
+    if(!free)
+        price += topping.GetPrice(); // costumer always looses part of a krona
 }
 std::ostream& operator<<(std::ostream &os,Pizza& pizza){
     os << pizza.GetName() << std::endl;
@@ -82,6 +84,6 @@ void Pizza::ReadBin(std::istream& BinaryIn){
     for(int i = 0; i < tempcurr; i++){
         Topping newtopping;
         newtopping.ReadBin(BinaryIn);
-        AddTopping(newtopping, false);
+        AddTopping(newtopping, false, true);
     }
 }

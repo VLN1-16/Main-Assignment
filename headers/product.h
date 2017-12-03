@@ -2,6 +2,7 @@
 #define PRODUCT_H
 #define sizeOfName 50
 #include <iostream>
+#include <cstring>
 class Product{
     public:
         Product();
@@ -18,6 +19,8 @@ class Product{
 
         virtual void WriteBin(std::ostream& binaryOut);
         virtual void ReadBin (std::istream& binaryIn);
+
+        bool operator ==(Product& prod1);
     protected:
         char name[sizeOfName];
         int price;

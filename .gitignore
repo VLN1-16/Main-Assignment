@@ -33,3 +33,6 @@
 
 #vim swp files
 *.swp
+
+# valgrind
+vgcore.*

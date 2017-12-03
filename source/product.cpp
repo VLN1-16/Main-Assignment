@@ -42,5 +42,20 @@ void Product::WriteBin(std::ostream& binaryOut){
 }
 void Product::ReadBin (std::istream& binaryIn){
     binaryIn.read((char*)(&price), sizeof(int));
+    // Valgrind generates errors if the memory is read into straight without value
+    // memset for now to zero before reading
+    memset(name,'\0',sizeof(char) * sizeOfName);
     binaryIn.read((char*)(name), sizeof(char) * sizeOfName);
+}
+bool Product::operator ==(Product& prod1){
+    bool NameTheSame = true;
+    for(int i = 0; i < sizeOfName; i++){
+        if(prod1.name[i] == name[i]){
+            if(name[i] == '\0') break; 
+        }
+        else{
+            return false;
+        }
+    }
+    return prod1.GetPrice() == price && NameTheSame;
 }
