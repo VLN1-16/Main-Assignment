@@ -28,6 +28,8 @@ testall:
 	make testproduct 
 	make testcostumer
 	make testtopping
+	make testpizza
+	make testorder
 testproduct:
 	g++ -Wall -c -std=c++17 -Iheaders source/product.cpp tests/productTest.cpp 
 	g++ product.o productTest.o -o bin/productTest.out
@@ -48,4 +50,8 @@ testpizza:
 	g++ pizza.o pizzaTest.o topping.o product.o -o bin/pizzaTest.out
 	rm *.o
 	valgrind -q --leak-check=full ./bin/pizzaTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good 
-
+testorder:
+	g++ -Wall -c -Iheaders -std=c++17 source/product.cpp source/topping.cpp source/pizza.cpp source/order.cpp source/costumer.cpp tests/orderTest.cpp
+	g++ product.o topping.o pizza.o order.o costumer.o orderTest.o -o bin/orderTest.out
+	rm *.o
+	valgrind -q --leak-check=full ./bin/orderTest.out

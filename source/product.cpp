@@ -8,6 +8,8 @@ Product::Product(int p, char n[sizeOfName]){
     price = p;
     SetName(n);
 }
+Product::Product(char n[sizeOfName], int p) : Product(p, n) {
+}
 Product::~Product(){
 
 }
@@ -18,10 +20,10 @@ char* Product::GetName(){
     return name;
 }
 
-void Product::SetPrice(int p){
+void Product::SetPrice(const int& p){
     price = p;
 }
-void Product::SetName(char n[sizeOfName]){
+void Product::SetName(const char n[sizeOfName]){
     for(int i = 0; i < sizeOfName;i++){
         name[i] = n[i];
     }
@@ -42,9 +44,6 @@ void Product::WriteBin(std::ostream& binaryOut){
 }
 void Product::ReadBin (std::istream& binaryIn){
     binaryIn.read((char*)(&price), sizeof(int));
-    // Valgrind generates errors if the memory is read into straight without value
-    // memset for now to zero before reading
-    memset(name,'\0',sizeof(char) * sizeOfName);
     binaryIn.read((char*)(name), sizeof(char) * sizeOfName);
 }
 bool Product::operator ==(Product& prod1){

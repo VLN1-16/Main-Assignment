@@ -24,6 +24,7 @@ int main(){
 
     Product pr3;
     pr3.ReadBin(ss2);
+
     assert(pr2 == pr3); 
 
     // Done, if no memory leaks occured the code should be ok

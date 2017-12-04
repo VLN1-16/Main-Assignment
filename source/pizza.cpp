@@ -2,7 +2,7 @@
 
 Pizza::Pizza() : Product(){
     numberOfToppings = 2;
-    toppings = NULL;
+    toppings = nullptr;
     currTopping = 0;
     price  = 1000;
     offset = 1.4;
@@ -12,16 +12,15 @@ Pizza::Pizza() : Product(){
 Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     SetName(n);
     numberOfToppings = 2;
-    toppings = new Topping[numberOfToppings];
+    toppings = nullptr;
     currTopping = 0;
     price  = Price; 
     offset = Offset;
     size   = Size;;
 }
 Pizza::~Pizza() {
-    if(toppings != NULL){
+    if(toppings != nullptr)
         delete [] toppings;
-    }
 }
 
 int Pizza::GetNumberOfToppings() const {
@@ -40,40 +39,51 @@ void Pizza::resize(){
     }
     delete [] toppings;
     toppings = ntopping;
-    ntopping = NULL;
+    ntopping = nullptr;
     numberOfToppings *= 2;
 }
-void Pizza::AddTopping(Topping topping, bool calcOffset, bool free){
-    if(toppings ==  NULL)
+void Pizza::AddTopping(const Topping &topping, const bool calcOffset, const bool free){
+    if(toppings ==  nullptr)
         toppings = new Topping[numberOfToppings];
     if (currTopping == numberOfToppings){
         resize();
     }
-    if(calcOffset)
-        topping.SetPrice(std::ceil(topping.GetPrice() * offset));
     toppings[currTopping] = topping;
+    if(calcOffset)
+        toppings[currTopping].SetPrice(std::ceil(toppings[currTopping].GetPrice() * offset));
     currTopping++;
     if(!free)
         price += topping.GetPrice(); // costumer always looses part of a krona
 }
 std::ostream& operator<<(std::ostream &os,Pizza& pizza){
-    os << pizza.GetName() << std::endl;
     os << pizza.GetPrice() << std::endl;
-    os << pizza.GetNumberOfToppings()<< std::endl;
-    for (int i=0; i< pizza.GetNumberOfToppings(); i++){
+    os << pizza.GetNumberOfToppings() << std::endl;
+    for (int i = 0; i < pizza.GetNumberOfToppings(); i++){
         os << pizza.toppings[i];
     }
+    os << pizza.GetName() << std::endl;
     return os;
 }
 std::istream& operator>>(std::istream &is, Pizza& pizza){
     int number = 0;
-    is >> pizza.name >> pizza.price >> number;
+    is >> pizza.price >> number;
     for(int i = 0; i < number; i++){
         Topping newtopping;
         is >> newtopping;
-        pizza.AddTopping(newtopping);
+        pizza.AddTopping(newtopping, false, true);
     }
+    is >> pizza.name;
     return is;
+}
+Pizza& Pizza::operator=(const Pizza& from){
+    SetName(from.name);
+    price = from.price;
+    size  = from.size;
+    offset = from.offset;
+    for(int i = 0; i < from.currTopping; i++){
+        AddTopping(from.toppings[i], false, true);
+    }
+    return *this;
 }
 void Pizza::WriteBin(std::ostream& BinaryOut){
     // Write inherited information on this pizza
@@ -81,7 +91,7 @@ void Pizza::WriteBin(std::ostream& BinaryOut){
     // number of toppings 
     BinaryOut.write((char*)(&currTopping), sizeof(int));
     for(int i = 0; i < currTopping; i++){
-         // Write each of the topping to the stream
+        // Write each of the topping to the stream
         toppings[i].WriteBin(BinaryOut);
     }
 }

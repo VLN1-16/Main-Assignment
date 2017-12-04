@@ -10,7 +10,7 @@ class Pizza : public Product {
         Pizza();
         Pizza(char n[sizeOfName], int Price = 1000, double Offset = 1.4, int Size = 16) ;
         virtual ~Pizza();
-        void AddTopping(Topping topping, bool calcOffset = true, bool free = false);
+        void AddTopping(const Topping& topping, const bool calcOffset = true, const bool free = false);
 
         int GetPrice() const;
         int GetSize() const;
@@ -18,6 +18,7 @@ class Pizza : public Product {
         int GetNumberOfToppings() const;
 
         bool operator ==(const Pizza& pizza);
+        Pizza& operator=(const Pizza& from);
         friend std::ostream& operator<<(std::ostream &os, Pizza& pizza);
         friend std::istream& operator>>(std::istream &is, Pizza& pizza);
 

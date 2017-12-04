@@ -2,25 +2,31 @@
 #define ORDER_H
 
 #include <iostream>
+#include <ctime> // for the unix timestamp
 #include "costumer.h"
 #include "pizza.h"
 #include "product.h"
 #include "topping.h"
-/*
-* Each order has some products, maybe a costumer name 
-* A delivery place, if it is delivered or picked up
-* A timestamp on when they were created ( unixtime stamp ?, good enough).
-*/
+
 class Order{
     public:
         Order();
         Order(Costumer cost);
         ~Order();
         int GetPrice(); 
-        void AddProduct(Product newproduct);
-        void AddPizza(Pizza newpizza);
 
-        template <class T>
+        void AddProduct(Product newproduct);
+        void AddPizza(const Pizza& newpizza);
+
+        friend std::istream& operator >>(std::istream& is, Order& order);
+        friend std::ostream& operator <<(std::ostream& out, Order& order);
+        bool operator ==(Order& cmp);
+
+        void WriteBin(std::ostream& out);
+        void ReadBin(std::istream& is);
+
+    private:
+        template <typename T>
         T* resize(T* oldarray, int& cap){
             T* newarray = new T[cap * 2];
             for(int i = 0; i < cap; i++){
@@ -29,28 +35,24 @@ class Order{
             delete [] oldarray;
             oldarray = newarray;
             cap *= 2;
-            newarray = NULL;
+            newarray = nullptr;
             return oldarray;
         }
-
-        friend std::ostream& operator <<(std::ostream& out, Order& order);
-
-        void WriteBin(std::ostream& out);
-        void ReadBin(std::istream& is);
-
-    private:
-
-        int price;
-        Costumer costumer;
         bool pickup;
         long timestamp;
+        bool ready;
+
+        int price;
         int discount;
-        int numberOfProducts;
+
+        Pizza* pizzas;
         int numberOfPizzas;
         int pizzacap;
-        int productcap;
-        bool ready;
-        Pizza* pizzas;
+
         Product* products;
+        int productcap;
+        int numberOfProducts;
+
+        Costumer costumer;
 };
 #endif

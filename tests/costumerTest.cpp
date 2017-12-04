@@ -18,6 +18,18 @@ int main(){
     Costumer cost2;
     ss >> cost2;
     assert (cost2 == cost);
+    try{
+        Costumer cost1("Alfreð","Jónsson","581234");
+        assert ( 1 == 2 ); // This should never run
+    } catch(badnumber){
+        // ok
+    }
+    try{
+        Costumer cost1("Alfreð","Jónsson","asdf");
+        assert ( 1 == 2 ); // This should never run
+    } catch(badnumber){
+        // ok
+    }
     // compare readBin And WriteBin
     stringstream ss2;
 

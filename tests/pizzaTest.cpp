@@ -9,7 +9,7 @@ int main(){
     // test constructor ageinst getters and setters 
     Pizza pizza;
     // pizza implements a dynamically resizing array of toppings, insert a weird amount of toppings and delete to check ageinst memory leaks
-    for(int i = 0; i < 10000; i++)
+    for(int i = 0; i < 10; i++)
         pizza.AddTopping(toppings[i % 5]);
     
     // test binary write ageinst binary read
@@ -17,13 +17,15 @@ int main(){
     pizza.WriteBin(ss2);
     Pizza pizza2;
     pizza2.ReadBin(ss2);
-    cout << pizza2 << endl;
+    //cout << pizza2 << endl;
     assert(pizza2 == pizza);
     // test iostream ageins outstream
     stringstream ss;
     ss << pizza;
     Pizza pizza3;
     ss >> pizza3;
+    cout << pizza;
+    cout << pizza3;
     assert(pizza3 == pizza);
     cout << "============================================================================== Class Pizza looks Ok ==============================================================================" << endl;
 }
