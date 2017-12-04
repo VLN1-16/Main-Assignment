@@ -7,12 +7,13 @@ class Product{
     public:
         Product();
         Product(int p, char n[sizeOfName]);
+        Product(char n[sizeOfName], int p);
         virtual ~Product();
         virtual int GetPrice() const;
         virtual char* GetName();
 
-        virtual void SetPrice(int p);
-        virtual void SetName(char n[sizeOfName]);
+        virtual void SetPrice(const int& p);
+        virtual void SetName(const char n[sizeOfName]);
 
         friend std::ostream& operator<<(std::ostream &os, Product& prod);
         friend std::istream& operator>>(std::istream &is, Product &prod);

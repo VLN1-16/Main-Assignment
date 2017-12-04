@@ -8,23 +8,25 @@ class NoSizes{};
 class Pizza : public Product {
     public:
         Pizza();
-        Pizza(char n[sizeOfName], int topping, int Price = 1000, double Offset = 1.4, int Size = 16) ;
+        Pizza(char n[sizeOfName], int Price = 1000, double Offset = 1.4, int Size = 16) ;
         virtual ~Pizza();
-        virtual int GetNumberOfToppings() const;
-        void AddTopping(Topping topping, bool calcOffset = true, bool free = false);
+        void AddTopping(const Topping& topping, const bool calcOffset = true, const bool free = false);
 
-        void resize();
         int GetPrice() const;
         int GetSize() const;
-        int SetSize();
+        int SetSize(const int& newsize);
+        int GetNumberOfToppings() const;
 
+        bool operator ==(const Pizza& pizza);
+        Pizza& operator=(const Pizza& from);
         friend std::ostream& operator<<(std::ostream &os, Pizza& pizza);
-        // friend std::istream& operator>>(std::istream &is, Product &prod);
+        friend std::istream& operator>>(std::istream &is, Pizza& pizza);
 
         virtual void WriteBin(std::ostream& BinaryOut);
         virtual void ReadBin (std::istream& BinaryIn);
 
     private:
+        void resize();
         int numberOfToppings;
         int currTopping;
         int size;
