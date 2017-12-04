@@ -4,24 +4,23 @@ Pizza::Pizza() : Product(){
     numberOfToppings = 2;
     toppings = NULL;
     currTopping = 0;
-    price  = 1000; // base price, this will be replaced.
-    offset = 1.4;  // base offset, this will be replaced
-    size   = 16;   // base offset, this will be replaced
+    price  = 1000;
+    offset = 1.4;
+    size   = 16;
 }
 
-Pizza::Pizza(char n[sizeOfName], int topping, int Price, double Offset, int Size) {
+Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     SetName(n);
-    numberOfToppings = topping;
+    numberOfToppings = 2;
     toppings = new Topping[numberOfToppings];
     currTopping = 0;
-    price = Price; 
+    price  = Price; 
     offset = Offset;
     size   = Size;;
 }
 Pizza::~Pizza() {
     if(toppings != NULL){
         delete [] toppings;
-        std::cout << "pizza killing toppings" << std::endl;
     }
 }
 
@@ -62,12 +61,22 @@ std::ostream& operator<<(std::ostream &os,Pizza& pizza){
     os << pizza.GetPrice() << std::endl;
     os << pizza.GetNumberOfToppings()<< std::endl;
     for (int i=0; i< pizza.GetNumberOfToppings(); i++){
-        os << "\t" << pizza.toppings[i];
+        os << pizza.toppings[i];
     }
     return os;
 }
+std::istream& operator>>(std::istream &is, Pizza& pizza){
+    int number = 0;
+    is >> pizza.name >> pizza.price >> number;
+    for(int i = 0; i < number; i++){
+        Topping newtopping;
+        is >> newtopping;
+        pizza.AddTopping(newtopping);
+    }
+    return is;
+}
 void Pizza::WriteBin(std::ostream& BinaryOut){
-    // Write information on this pizza
+    // Write inherited information on this pizza
     Product::WriteBin(BinaryOut); 
     // number of toppings 
     BinaryOut.write((char*)(&currTopping), sizeof(int));
@@ -77,8 +86,8 @@ void Pizza::WriteBin(std::ostream& BinaryOut){
     }
 }
 void Pizza::ReadBin(std::istream& BinaryIn){
-    // Read the information on this pizza
-    Product::ReadBin(BinaryIn); // this reads the name and price.
+    // Read inherited information on this pizza
+    Product::ReadBin(BinaryIn);
     int tempcurr = 0;
     BinaryIn.read((char*)(&tempcurr), sizeof(int));
     for(int i = 0; i < tempcurr; i++){
@@ -86,4 +95,14 @@ void Pizza::ReadBin(std::istream& BinaryIn){
         newtopping.ReadBin(BinaryIn);
         AddTopping(newtopping, false, true);
     }
+}
+bool Pizza::operator ==(const Pizza& pizza){
+    if(pizza.size != size) return false;
+    if(pizza.offset != offset) return false;
+    if(pizza.price != price) return false;
+    if(pizza.numberOfToppings != numberOfToppings) return false;
+    for(int i = 0; i < numberOfToppings; i++){
+        if(!(pizza.toppings[i] == toppings[i])) return false;
+    } 
+    return true;
 }
