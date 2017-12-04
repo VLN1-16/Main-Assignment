@@ -3,6 +3,8 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cctype>
+#include "management.h"
+
 
 /*
 * A user communication class,
@@ -38,7 +40,9 @@ class CommandLine{
         char salesEditor(char userAns);
         void salesPerson();
         void preparation();
+        void CreatePizza();
+        void EditSizes();
     private:
-
+        
 };
 #endif

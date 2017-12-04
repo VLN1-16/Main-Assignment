@@ -62,6 +62,7 @@ void CommandLine::managementView(){
     switch(tolower(userAns)){
         case 's':
             cout << "Options for editing pizza type/size..";
+            EditSizes();
             break;
         case 't':
             cout << "Options for editing pizza toppings..";
@@ -99,7 +100,14 @@ void CommandLine::managementView(){
             break;
     }
 }
-
+void CommandLine::EditSizes(){
+    int s;
+    Management manager;
+    cout << "enter size ";
+    cin >> s;
+    manager.AddPizzaSize(s);
+    manager.GetPizzaSizes(cout);
+}
 void CommandLine::editPrices(){
     cout << "p: Edit prices for pizzas" << endl;
     cout << "t: Edit prices for toppings" << endl;
@@ -110,10 +118,15 @@ void CommandLine::editPrices(){
     char userAns = 0;
     cin >> userAns;
     cout << endl;
-
+    int newprice = 0;
     switch(tolower(userAns)){
         case 'p':
             cout << "Editing pizza prices..." << endl;
+            /*FileHandler<Pizza> list("pizzamenu.obj");
+            cout << list << endl;
+            cout << "Enter ID of pizza to edit and the new price" << endl;
+            cin >> id >> newprice;
+            management.ChangePrice(id,newprice); */
             break;
         case 't':
             cout << "Editing topping prices..." << endl;
@@ -257,6 +270,7 @@ char CommandLine::salesEditor(char user){
     cout << "Invalid input!" << endl;
     cout << "Please enter one of the following: " << endl;
     return SalesEditor();*/
+    return 'a';
 }
 
 /*void CommandLine::Preparation(){
@@ -274,8 +288,24 @@ char CommandLine::salesEditor(char user){
 
 }
 */
-    CommandLine::CommandLine(){};
-    CommandLine::~CommandLine(){};
+void CommandLine::CreatePizza(){
+    int toppings;
+    int size;
+    char name[sizeOfName];
+    cout <<"What is the name of the pizza?" <<endl;
+    cin >> name;
+    cout <<"what size? (16, 12 or 9)" <<endl;
+    cin >> size;
+    cout <<"How many toppings?" <<endl;
+    cin >> toppings;
+    // Pizza pizza(name,size);
+    //pizza = AddToppings(toppings,pizza);
+    //Management.AddPizza(pizza);
+
+}
+CommandLine::CommandLine(){
+}
+CommandLine::~CommandLine(){}
 
     //     cout << " " << endl;
 //     cout << " " << endl;

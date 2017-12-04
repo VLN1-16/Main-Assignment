@@ -1,19 +1,33 @@
-Management(){}
-~Management(){}
-void AddTopping(Topping topping){
+#include "management.h"
+
+Management::Management(){}
+Management::~Management(){}
+void Management::AddTopping(Topping topping){
     FileHandler<Topping> list("pizzatoppings.obj");
     list.AddProduct(topping);
 }
-void AddPizza(Pizza pizza){
+void Management::AddPizza(Pizza pizza){
     FileHandler<Pizza> list("pizzamenu.obj");
     list.AddProduct(pizza);
 }
-void AddProduct(Product product){
-    FileHandler<Pizza> list("pizzamenu.obj");
-    list.AddProduct(pizza);
+void Management::AddProduct(Product product){
+    FileHandler<Product> list("products.obj");
+    list.AddProduct(product);
 }
-<template typename T>
-void ChangePrice(T product, int newPrice){}
-<template typename T>
-void ListProducts(T product){}
-void AddDeliveryPlace(char name[sizeOfplace],char address[sizeOfplace],char phone[7], bool = true){}
+void Management::AddPizzaSize(Pizzasize s){
+    Pizzasize size(s);
+    FileHandler<Pizzasize> list("pizzasizes.obj");
+    list.AddProduct(size);
+}
+void Management::GetPizzaSizes(std::ostream &os){
+    FileHandler<Pizzasize> list("pizzasizes.obj");
+    os << list;
+}
+void Management::ChangePrice(int newPrice){
+    
+}
+
+//void ListProducts(T product){}
+void AddDeliveryPlace(Place place){
+
+}

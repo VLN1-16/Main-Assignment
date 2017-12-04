@@ -18,34 +18,39 @@ places:
 	g++ place.o testToppings.o -o bin/places.out
 	rm *.o
 
+commandline:
+	g++ -Wall -c -Iheaders -std=c++11 source/main.cpp source/commandline.cpp source/management.cpp source/topping.cpp source/product.cpp source/pizzasize.cpp source/pizza.cpp
+	g++ main.o commandline.o management.o topping.o product.o pizzasize.o pizza.o -o bin/commandline.out
+	rm *.o
+
+
 testorder:
 	g++ -c -Wall -Iheaders -std=c++17 main4.cpp order.cpp topping.cpp pizza.cpp costumer.cpp product.cpp
 	g++ main4.o order.o topping.o pizza.o costumer.o product.o -o bin/testorder.out
-	rm *.o 
+	rm *.o
 
 
-testall: 
-	make testproduct 
+testall:
+	make testproduct
 	make testcostumer
 	make testtopping
 testproduct:
-	g++ -Wall -c -std=c++17 -Iheaders source/product.cpp tests/productTest.cpp 
+	g++ -Wall -c -std=c++17 -Iheaders source/product.cpp tests/productTest.cpp
 	g++ product.o productTest.o -o bin/productTest.out
 	rm *.o
-	valgrind -q --leak-check=full ./bin/productTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good 
+	valgrind -q --leak-check=full ./bin/productTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good
 testcostumer:
 	g++ -Wall -c -Iheaders -std=c++17 source/costumer.cpp tests/costumerTest.cpp
-	g++ costumer.o costumerTest.o -o bin/costumerTest.out 
+	g++ costumer.o costumerTest.o -o bin/costumerTest.out
 	rm *.o
-	valgrind -q --leak-check=full ./bin/costumerTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good 
+	valgrind -q --leak-check=full ./bin/costumerTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good
 testtopping:
 	g++ -Wall -c -Iheaders -std=c++17 tests/toppingTest.cpp source/topping.cpp source/product.cpp
 	g++ toppingTest.o topping.o product.o -o bin/toppingTest.out
 	rm *.o
-	valgrind -q --leak-check=full ./bin/toppingTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good 
+	valgrind -q --leak-check=full ./bin/toppingTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good
 testpizza:
 	g++ -Wall -c -Iheaders -std=c++17 source/pizza.cpp tests/pizzaTest.cpp source/topping.cpp source/product.cpp
 	g++ pizza.o pizzaTest.o topping.o product.o -o bin/pizzaTest.out
 	rm *.o
-	valgrind -q --leak-check=full ./bin/pizzaTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good 
-
+	valgrind -q --leak-check=full ./bin/pizzaTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good

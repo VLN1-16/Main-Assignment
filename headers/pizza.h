@@ -1,7 +1,7 @@
 #ifndef PIZZA_H
 #define PIZZA_H
 #include <iostream>
-#include "math.h"
+#include <cmath>
 #include "product.h"
 #include "topping.h"
 class NoSizes{};

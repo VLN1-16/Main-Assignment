@@ -1,19 +1,28 @@
 #ifndef MANAGEMENT_H
 #define MANAGEMENT_H
 #include <iostream>
+#include "filehandler.h"
+#include "pizza.h"
+#include "topping.h"
+#include "product.h"
+#include "place.h"
+#include "pizzasize.h"
 
-static class Management{
+class Management{
     public:
         Management();
         ~Management();
         void AddTopping(Topping topping);
         void AddPizza(Pizza pizza);
         void AddProduct(Product product);
-        <template typename T>
-        void ChangePrice(T product, int newPrice);
-        <template typename T>
-        void ListProducts(T product);
-        void AddDeliveryPlace(char name[sizeOfplace],char address[sizeOfplace],char phone[7], bool = true);
+        void GetPizzaSizes(std::ostream &os);
+        void AddPizzaSize(Pizzasize s);
+        void ChangePrice(int newPrice);
+
+        // void ChangePrice(T product, int newPrice);
+
+        // void ListProducts(T product);
+        void AddDeliveryPlace(Place place);
     private:
 };
 #endif
