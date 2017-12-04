@@ -16,6 +16,9 @@ class Management{
         void AddPizza(Pizza pizza);
         void AddProduct(Product product);
         void GetPizzaSizes(std::ostream &os);
+        void GetPizzas(std::ostream &os);
+        void GetToppings(std::ostream &os);
+        void GetProducts(std::ostream &os);
         void AddPizzaSize(Pizzasize s);
         void ChangePrice(int newPrice);
 

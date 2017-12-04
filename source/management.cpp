@@ -19,12 +19,24 @@ void Management::AddPizzaSize(Pizzasize s){
     FileHandler<Pizzasize> list("pizzasizes.obj");
     list.AddProduct(size);
 }
+void GetPizzas(std::ostream &os){
+    FileHandler<Pizzasize> list("pizzamenu.obj");
+    os << list;
+}
+void GetToppings(std::ostream &os){
+    FileHandler<Pizzasize> list("pizzatoppings.obj");
+    os << list;
+}
+void GetProducts(std::ostream &os){
+    FileHandler<Pizzasize> list("products.obj");
+    os << list;
+}
 void Management::GetPizzaSizes(std::ostream &os){
     FileHandler<Pizzasize> list("pizzasizes.obj");
     os << list;
 }
 void Management::ChangePrice(int newPrice){
-    
+
 }
 
 //void ListProducts(T product){}
