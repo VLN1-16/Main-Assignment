@@ -5,10 +5,10 @@ Pizzasize::Pizzasize(){
     offset = 0;
     price = 0;
 }
-Pizzasize::Pizzasize(int s){
+Pizzasize::Pizzasize(int s, double Offset, int Price){
     size = s;
-    offset = size / 10.0 ;
-    price = size * 100;
+    offset = Offset;
+    price = Price;
 }
 int Pizzasize::GetPrice(){
     return price;

@@ -5,7 +5,7 @@
 #include <cctype>
 #include "management.h"
 #include "salesUI.h"
-
+#include "managerui.h"
 
 /*
 * A user communication class,

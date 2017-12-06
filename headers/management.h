@@ -16,12 +16,17 @@ class Management{
         void AddPizza(Pizza pizza);
         void AddProduct(Product product);
         void GetPizzaSizes(std::ostream &os);
-        void GetPizzas(std::ostream &os);
+        // void GetPizzas(std::ostream &os);
         void GetToppings(std::ostream &os);
         void GetProducts(std::ostream &os);
+        void RemoveProduct(int index);
         void AddPizzaSize(Pizzasize s);
         void ChangePrice(int newPrice);
-
+        void RemoveTopping(int index);
+        void DeletePizzaSizeat(int index);
+        void AddPlace(Place p);
+        void GetPlaces(std::ostream& os);
+        void RemovePlace(int index);
         // void ChangePrice(T product, int newPrice);
 
         // void ListProducts(T product);

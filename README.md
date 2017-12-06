@@ -25,3 +25,9 @@ and should .
 
 # The extra mile
 - Diffrent toppings on sections of the pizza
+
+
+# TODO
+- make orders aware of the place they are ordered into
+- places needs to validate phone numbers, See costumers.cpp for implementation
+- Add a nice way in filehandler for it to deal with deactivating places

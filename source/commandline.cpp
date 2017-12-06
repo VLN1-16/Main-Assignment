@@ -44,69 +44,8 @@ void CommandLine::printMainMenu(){
 }
 
 void CommandLine::managementView(){
-    cout << "s: Edit pizza type/size" << endl;
-    cout << "t: Edit pizza toppings" << endl;
-    cout << "m: Edit/add pizza on menu" << endl;
-    cout << "p: Edit/add product on menu" << endl;
-    cout << "e: Edit prices" << endl;
-    cout << "l: Edit/add branch locations" << endl;
-    cout << "a: Edit active order" << endl;
-    cout << "b: Go back" << endl;
-    cout << "q: Quit" << endl;
-
-    char userAns = 0;
-    cin >> userAns;
-    cout << endl;
-    char user = 'm';
-
-    switch(tolower(userAns)){
-        case 's':
-            cout << "Options for editing pizza type/size..";
-            EditSizes();
-            break;
-        case 't':
-            cout << "Options for editing pizza toppings..";
-            break;
-        case 'm':
-            cout << "Options for editing pizza menu..";
-            break;
-        case 'p':
-            cout << "Options for editing products..";
-            break;
-        case 'e':
-            editPrices();
-            break;
-        case 'l':
-            cout << "Options for branch locations..";
-            break;
-        case 'a':
-            salesEditor(user);
-            break;
-        case 'b':
-            printMainMenu();
-            break;
-        case 'q':
-            cout << "Are you sure you want to quit?" << endl;
-            cout << "y: yes" << endl << "n: no" << endl;
-            cin >> userAns;
-            if(tolower(userAns) == 'y')
-                exit(EXIT_SUCCESS);
-            else
-                managementView();
-            break;
-        default:
-            cout << "Please enter a valid input!" << endl;
-            managementView();
-            break;
-    }
-}
-void CommandLine::EditSizes(){
-    int s;
-    Management manager;
-    cout << "enter size ";
-    cin >> s;
-    manager.AddPizzaSize(s);
-    manager.GetPizzaSizes(cout);
+    ManagerUI manager;
+    manager.ManagerMenu();
 }
 void CommandLine::editPrices(){
     cout << "p: Edit prices for pizzas" << endl;
@@ -154,111 +93,10 @@ void CommandLine::editPrices(){
 }
 
 void CommandLine::salesPerson(){
-   cout << "e: Edit a order" << endl;
-   cout << "c: Create a order" << endl;
-   cout << "b: Go back" << endl;
-   cout << "q: Quit" << endl;
-
-   char userAns = 0;
-   cin >> userAns;
-   cout << endl;
-   char user = userAns; //lets salesEditor function to detect Management or Salesperson
-
-   switch(tolower(userAns)){
-        case 'e':
-            cout << "Enter costumer name or phone number: " << endl;
-            cout << "When name or phonenumber is found, " << endl;
-            cout << "this should direct salesPerson to salesEditor for this order." << endl;
-            salesEditor(user);
-            break;
-        case 'c':
-            cout << "Select items to add to basket: " << endl;
-            break;
-        case 'b':
-            printMainMenu();
-            break;
-        case 'q':
-            cout << "Are you sure you want to quit?" << endl;
-            cout << "y: yes" << endl << "n: no" << endl;
-            cin >> userAns;
-            if(tolower(userAns) == 'y')
-                exit(EXIT_SUCCESS);
-            else
-                salesPerson();
-            break;
-        default:
-            cout << "Please enter a valid input!" << endl;
-            salesPerson();
-            break;
-   }
+    SalesUI salesperson;
+    salesperson.PrintSalesMenu();
 }
-char CommandLine::salesEditor(char user){
-    cout << "p: Print menu" << endl;
-    cout << "a: Add from menu" << endl;
-    cout << "r: Register order" << endl;
-    cout << "d: Add a pizza" << endl; // this should be an entire process of it self, do it later
-    cout << "s: Show the order in current state" << endl;
-    cout << "m: Mark the order as paid" << endl;
-    cout << "c: Comment" << endl;
-    cout << "h: Toggle pickup" << endl;
-    cout << "l: Set pickup location" << endl;
-    cout << "b: Go back" << endl;
-    cout << "q: Quit (does not save)" << endl;
 
-    char userAns = 0;
-    cin >> userAns;
-    cout << endl;
-     switch(tolower(userAns)){
-        case 'p':
-            cout << "Prints menu-item's order number and name" << endl;
-            break;
-        case 'a':
-            cout << "Write item number to add item to order: " << endl;
-            break;
-        case 'r':
-            cout << "Register order.." << endl;
-            break;
-        case 'd':
-            cout << "This should open the pizza menu for selecting pizzas.. " << endl;
-            break;
-        case 's':
-            cout << "Showing order in current state!" << endl;
-            break;
-        case 'm':
-            cout << "Marking pizza as paid for" << endl;
-            break;
-        case 'c':
-            cout << "Adding a comment to order!" << endl;
-            break;
-        case 'h':
-            cout << "Toggle pickup..." << endl;
-            break;
-        case 'l':
-            cout << "Select a pickup location for this order" << endl;
-            break;
-        case 'b':
-            if(user == 'e')
-                salesPerson();
-            else if(user == 'm')
-                managementView();
-            else
-                cout << "Something went wrong, redirecting to Main Menu..." << endl;
-                printMainMenu();
-            break;
-        case 'q':
-            cout << "Are you sure you want to quit?" << endl;
-            cout << "y: yes" << endl << "n: no" << endl;
-            cin >> userAns;
-            if(tolower(userAns) == 'y')
-                exit(EXIT_SUCCESS);
-            else
-                salesEditor(userAns);
-            break;
-        default:
-            cout << "Please enter a valid input!" << endl;
-            salesEditor(user);
-            break;
-     }
     /*char validInputs[] = {'p','a','r','d','s','m','c','h','q','l'};
     char input;
     cin >> input;
@@ -270,8 +108,6 @@ char CommandLine::salesEditor(char user){
     cout << "Invalid input!" << endl;
     cout << "Please enter one of the following: " << endl;
     return SalesEditor();*/
-    return 'a';
-}
 
 /*void CommandLine::Preparation(){
     cout << "Select location:" << endl;

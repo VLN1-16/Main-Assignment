@@ -11,17 +11,17 @@
 
 class Sales{
     public:
-        Sales();
-        ~Sales();
-        void AddTopping(Topping topping);
+
+
         void AddPizzaToOrder(int oid,int pid);
-        void AddProduct(Product product);
-        void GetPizzaSizes(std::ostream &os);
+
+
+
         void GetPizzas(std::ostream &os);
-        void GetToppings(std::ostream &os);
-        void GetProducts(std::ostream &os);
-        void AddPizzaSize(Pizzasize s);
-        void ChangePrice(int newPrice);
+        Pizza GetPizza(int id);
+        Order GetThisOrder(int orderid);
+
+
 
         void CreatePizza(Order order);
         void GetActiveOrders(std::ostream &os);
@@ -30,7 +30,7 @@ class Sales{
         // void ChangePrice(T product, int newPrice);
 
         // void ListProducts(T product);
-        void AddDeliveryPlace(Place place);
+
     private:
 };
 #endif

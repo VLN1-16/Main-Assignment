@@ -7,7 +7,7 @@
 #include "costumer.h"
 #include "order.h"
 
-
+using namespace std;
 
 /*
 * A user communication class,
@@ -24,6 +24,7 @@ class SalesUI{
         void PrintSalesMenu();
         void OrderEditor();
         void CreateOrder();
+        void EditOrder(Order order);
         // A sales person needs to select an order (new or old)
         // And proceed to edit that order
 

@@ -7,7 +7,7 @@
 class Pizzasize {
     public:
         Pizzasize();
-        Pizzasize(int s);
+        Pizzasize(int s, double Offset, int Price);
         int GetPrice();
         double GetOffset();
         int GetSize();
