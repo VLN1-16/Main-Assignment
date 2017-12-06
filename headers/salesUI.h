@@ -1,10 +1,12 @@
-#ifndef COMMANDLINE_H
-#define COMMANDLINE_H
+#ifndef SALESUI_H
+#define SALESUI_H
 #include <iostream>
 #include <stdlib.h>
 #include <cctype>
-#include "management.h"
-#include "salesUI.h"
+#include "sales.h"
+#include "costumer.h"
+#include "order.h"
+
 
 
 /*
@@ -14,20 +16,14 @@
 * Give a response to the user
 */
 
-/*
-* We have four user types, each has a different interface
-* Management :
-* Sales :
-* Preparation :
-* Delivery :
-*/
-class CommandLine{
+class SalesUI{
     public:
-        CommandLine();
-        ~CommandLine();
+        SalesUI();
 
         //void userInteraction();
-        void printMainMenu();
+        void PrintSalesMenu();
+        void OrderEditor();
+        void CreateOrder();
         // A sales person needs to select an order (new or old)
         // And proceed to edit that order
 
@@ -36,13 +32,8 @@ class CommandLine{
 
         // Gives options to the sales person and returns their choice
 
-        void managementView();
-        void editPrices();
-        char salesEditor(char userAns);
-        void salesPerson();
-        void preparation();
-        void CreatePizza();
-        void EditSizes();
+
+
     private:
 
 };
