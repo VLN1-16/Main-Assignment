@@ -29,7 +29,7 @@ Order::~Order(){
 }
 void Order::AddProduct(Product newproduct){
     if(products == nullptr)
-        products = new Product[productcap]; 
+        products = new Product[productcap];
     if(productcap == numberOfProducts)
         products = resize(products, productcap);
 
@@ -50,10 +50,11 @@ void Order::AddPizza(const Pizza& newpizza){
 
 int Order::GetPrice(){
         return price;
-} 
+}
+
 void Order::WriteBin(std::ostream& out){
     // Dynamic content
-    // How many pizzas 
+    // How many pizzas
     out.write((char*)(&numberOfPizzas), sizeof(int));
     // write each pizza
     for(int i = 0; i < numberOfPizzas; i++) pizzas[i].WriteBin(out);
@@ -72,7 +73,7 @@ void Order::WriteBin(std::ostream& out){
 }
 void Order::ReadBin(std::istream& is){
     // Dynamic content
-    // How many pizzas 
+    // How many pizzas
     int number = 0;
     is.read((char*)(&number), sizeof(int));
     // read each pizza
@@ -110,7 +111,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
         out << order.pizzas[i];
     }
     out << "Discount : " << order.discount << std::endl;
-    out << "Total price : " << order.GetPrice() << std::endl; 
+    out << "Total price : " << order.GetPrice() << std::endl;
 
     return out;
 }
@@ -129,4 +130,23 @@ bool Order::operator ==(Order& cmp){
     for(int i = 0; i < numberOfPizzas; i++)
         if(!(pizzas[i] == cmp.pizzas[i])) return false;
     return true;
+}
+Order& Order::operator=(const Order& order){
+    pickup = order.pickup;
+    timestamp = order.timestamp;
+    ready = order.ready;
+    //price = order.price;
+    discount = order.discount;
+    //numberOfPizzas = order.numberOfPizzas;
+    pizzacap = order.pizzacap;
+    productcap = order.productcap;
+    //numberOfProducts = order.numberOfProducts;
+    costumer = order.costumer;
+    for(int i = 0; i < order.numberOfPizzas; i++){
+        AddPizza(order.pizzas[i]);
+    }
+    for(int i = 0; i < order.numberOfProducts; i++){
+        AddProduct(order.products[i]);
+    }
+    return *this;
 }

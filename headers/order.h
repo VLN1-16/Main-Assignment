@@ -13,7 +13,7 @@ class Order{
         Order();
         Order(Costumer cost);
         ~Order();
-        int GetPrice(); 
+        int GetPrice();
 
         void AddProduct(Product newproduct);
         void AddPizza(const Pizza& newpizza);
@@ -21,6 +21,7 @@ class Order{
         friend std::istream& operator >>(std::istream& is, Order& order);
         friend std::ostream& operator <<(std::ostream& out, Order& order);
         bool operator ==(Order& cmp);
+        Order& operator=(const Order& order);
 
         void WriteBin(std::ostream& out);
         void ReadBin(std::istream& is);

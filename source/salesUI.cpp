@@ -72,8 +72,8 @@ void SalesUI::OrderEditor(){
 }
 void SalesUI::EditOrder(Order order){
     Sales sales;
-    bool again = true;
-    while(again){
+
+    while(true){
 
         cout << "a: Add pizza from menu" << endl;
         cout << "r: Register order" << endl;
@@ -140,13 +140,14 @@ void SalesUI::EditOrder(Order order){
         cout << "Add another item? (y/n)" << endl;
         cin >> userAns;
         if(tolower(userAns) == 'y')
-            break;
+            continue;
         else
-            again = false;
+            break;
     }
+    sales.AddOrder(order);
 }
 void SalesUI::CreateOrder(){
-    
+
     char first[lengthOfName];
     char last[lengthOfName];
     char phone[lengthOfName];

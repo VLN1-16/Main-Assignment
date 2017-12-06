@@ -2,7 +2,7 @@
 
 
 void Sales::GetActiveOrders(std::ostream &os){
-    FileHandler<Order> list("activeOrders.obj");
+    FileHandler<Order> list("orders.obj");
     const std::vector<Order>* orders = list.GetIteratableNonMutableList();
     for(unsigned int i = 0; i < orders->size(); i++){
         os << "Order : " << i + 1 << std::endl;
@@ -50,4 +50,8 @@ Order Sales::GetThisOrder(int orderid){
     const std::vector<Order>* orders = list.GetIteratableNonMutableList();
     Order o = orders->at(orderid);
     return o;
+}
+void Sales::AddOrder(Order &order){
+    FileHandler<Order> list("orders.obj");
+    list.AddProduct(order);
 }

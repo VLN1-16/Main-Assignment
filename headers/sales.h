@@ -20,6 +20,7 @@ class Sales{
         void GetPizzas(std::ostream &os);
         Pizza GetPizza(int id);
         Order GetThisOrder(int orderid);
+        void AddOrder(Order &order);
 
 
 
