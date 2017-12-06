@@ -22,6 +22,7 @@ class Sales{
         void AddPizzaToOrder(int oid,int pid);
         void AddProduct(Product product);
         void GetPizzaSizes(std::ostream &os);
+        
         void GetPizzas(std::ostream &os);
         Pizza GetPizza(int id);
         Order GetThisOrder(int orderid);

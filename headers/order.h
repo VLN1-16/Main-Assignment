@@ -22,7 +22,6 @@ class Order{
         friend std::ostream& operator <<(std::ostream& out, Order& order);
         bool operator ==(Order& cmp);
         Order& operator=(const Order& order);
-        Order& copy(const Order& order);
 
         void WriteBin(std::ostream& out);
         void ReadBin(std::istream& is);
