@@ -77,7 +77,9 @@ template <typename T> class FileHandler {
             if(index < 0 || index >= numberOfProds){
                 throw IndexOutOfRangeException();
             }
-            return prodList[index];
+            T* returnval = new T[1];
+            *returnval = prodList[index];
+            return *returnval;
         }
     private:
         T *prodList;

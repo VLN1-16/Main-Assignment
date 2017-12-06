@@ -24,14 +24,12 @@ Order::Order(Costumer cost) : Order() {
 Order::~Order(){
     if(pizzas != nullptr){
         delete [] pizzas;
-        pizzas = nullptr;
     }
     if(products != nullptr){
         delete [] products;
-        products = nullptr;
     }
 }
-void Order::AddProduct(Product newproduct){
+void Order::AddProduct(Product& newproduct){
     if(products == nullptr)
         products = new Product[productcap];
     if(productcap == numberOfProducts)
@@ -135,7 +133,23 @@ bool Order::operator ==(Order& cmp){
         if(!(pizzas[i] == cmp.pizzas[i])) return false;
     return true;
 }
+Order& Order::copy(const Order& order){
+    std::cout << "Copy got called" << std::endl;
+    pickup = order.pickup;
+    timestamp = order.timestamp;
+    ready = order.ready;
+    discount = order.discount;
+    costumer = order.costumer;
+    for(int i = 0; i < order.numberOfPizzas; i++){
+        AddPizza(order.pizzas[i]);
+    }
+    for(int i = 0; i < order.numberOfProducts; i++){
+        AddProduct(order.products[i]);
+    }
+    return *this;
+}
 Order& Order::operator=(const Order& order){
+    std::cout << "Copy constructor got called" << std::endl;
     pickup = order.pickup;
     timestamp = order.timestamp;
     ready = order.ready;
