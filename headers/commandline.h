@@ -5,6 +5,7 @@
 #include <cctype>
 #include "management.h"
 #include "managerui.h"
+#include "salesUI.h"
 
 /*
 * A user communication class,
@@ -43,6 +44,6 @@ class CommandLine{
         void CreatePizza();
         void EditSizes();
     private:
-        
+
 };
 #endif

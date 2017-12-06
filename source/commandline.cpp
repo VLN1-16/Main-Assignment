@@ -227,21 +227,7 @@ char CommandLine::salesEditor(char user){
 
 }
 */
-void CommandLine::CreatePizza(){
-    int toppings;
-    int size;
-    char name[sizeOfName];
-    cout <<"What is the name of the pizza?" <<endl;
-    cin >> name;
-    cout <<"what size? (16, 12 or 9)" <<endl;
-    cin >> size;
-    cout <<"How many toppings?" <<endl;
-    cin >> toppings;
-    // Pizza pizza(name,size);
-    //pizza = AddToppings(toppings,pizza);
-    //Management.AddPizza(pizza);
 
-}
 CommandLine::CommandLine(){
 }
 CommandLine::~CommandLine(){}
