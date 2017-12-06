@@ -22,10 +22,14 @@ Order::Order(Costumer cost) : Order() {
 }
 
 Order::~Order(){
-    if(pizzas != nullptr)
+    if(pizzas != nullptr){
         delete [] pizzas;
-    if(products != nullptr)
+        pizzas = nullptr;
+    }
+    if(products != nullptr){
         delete [] products;
+        products = nullptr;
+    }
 }
 void Order::AddProduct(Product newproduct){
     if(products == nullptr)

@@ -28,8 +28,8 @@ Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
     size   = Pizzasize.GetSize();
 }
 Pizza::~Pizza() {
-    // if(toppings != nullptr)
-    //     delete [] toppings;
+    if(toppings != nullptr)
+        delete [] toppings;
 }
 
 int Pizza::GetNumberOfToppings() const {

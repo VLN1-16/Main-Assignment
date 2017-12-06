@@ -12,7 +12,7 @@ template <typename T> class FileHandler {
             dataFile = DataFile;
             std::ifstream fin(dataFile, std::ios::binary);
             size = arraySize;
-            prodList = new T[size];
+            prodList = nullptr;
             numberOfProds = 0;
             if ( fin.is_open()){
                 while (true){
@@ -27,8 +27,9 @@ template <typename T> class FileHandler {
             fin.close();
         }
         ~FileHandler(){
-            if(prodList != NULL){
+            if(prodList != nullptr){
                 delete [] prodList;
+                prodList = nullptr;
             }
         }
         const std::vector<T>* GetIteratableNonMutableList() const {
@@ -40,6 +41,8 @@ template <typename T> class FileHandler {
             return returnList;
         }
         void AddProduct(T& product,bool toFile = true){
+            if(prodList == nullptr)
+                prodList = new T[size];
             if (numberOfProds == size){
                 Resize();
             }
@@ -87,17 +90,14 @@ template <typename T> class FileHandler {
     private:
         T *prodList;
         void Resize(){
-            T *tmp = new T[size];
+            T *tmp = new T[size * 2];
             for (int i=0; i< size; i++){
                 tmp[i] = prodList[i];
             }
-            delete[] prodList;
+            delete [] prodList;
+            prodList = tmp;
+            tmp = nullptr;
             size *= 2;
-            prodList = new T[size];
-            for (int i=0; i< size/2; i++){
-                prodList[i] = tmp[i];
-            }
-            delete[] tmp;
         }
         int size;
         int numberOfProds;
