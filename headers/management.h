@@ -1,5 +1,10 @@
 #ifndef MANAGEMENT_H
 #define MANAGEMENT_H
+#define placefile "data/places.dat"
+#define toppingfile "data/toppings.dat"
+#define pizzafile "data/pizzamenu.dat"
+#define productfile "data/products.dat"
+#define pizzasizefile "data/pizzasizes.dat"
 #include <iostream>
 #include "filehandler.h"
 #include "pizza.h"
@@ -34,5 +39,10 @@ class Management{
         // void ListProducts(T product);
         void AddDeliveryPlace(Place place);
     private:
+        FileHandler<Product>* productlist;
+        FileHandler<Pizza>* pizzamenu;
+        FileHandler<Topping>* toppinglist;
+        FileHandler<Place>* placelist;
+        FileHandler<Pizzasize>* pizzasizelist;
 };
 #endif

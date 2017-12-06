@@ -76,6 +76,9 @@ template <typename T> class FileHandler {
             return os;
         }
         T& operator[] (int index){
+            return at(index);
+        }
+        T& at(int index){
             if(index < 0 || index >= numberOfProds){
                 throw IndexOutOfRangeException();
             }
