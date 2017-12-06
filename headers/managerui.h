@@ -6,6 +6,7 @@
 #include "filehandler.h"
 #include "pizzasize.h"
 #include "place.h"
+#include "pizza.h"
 using namespace std;
 
 class ManagerUI{
@@ -16,6 +17,7 @@ class ManagerUI{
         void EditProducts();
         void EditToppings();
         void EditLocations();
+        void EditPizzas();
         // void 
     private:
 };

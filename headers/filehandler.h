@@ -29,18 +29,17 @@ template <typename T> class FileHandler {
         ~FileHandler(){
             if(prodList != NULL){
                 delete [] prodList;
-                prodList = NULL;
-                numberOfProds = 0;
             }
         }
         const std::vector<T>* GetIteratableNonMutableList() const {
             std::vector<T>* returnList = new std::vector<T>;
             for(int i = 0; i < numberOfProds; i++){
-                returnList->push_back(prodList[i]); 
+                T usecopyconstructor = prodList[i];
+                returnList->push_back(usecopyconstructor); 
             }
             return returnList;
         }
-        void AddProduct(T product,bool toFile = true){
+        void AddProduct(T& product,bool toFile = true){
             if (numberOfProds == size){
                 Resize();
             }
@@ -56,12 +55,12 @@ template <typename T> class FileHandler {
             if(index < 0 || index >= numberOfProds){
                 throw IndexOutOfRangeException();
             }
-            for (int i=index; i<numberOfProds-1; i++){
+            for (int i = index; i < numberOfProds-1; i++){
                 prodList[i] = prodList[i+1];
             }
             numberOfProds--;
             std::ofstream fout(dataFile , std::ios::binary);
-            for(int i=0;i<numberOfProds; i++){
+            for(int i = 0; i < numberOfProds; i++){
                 prodList[i].WriteBin(fout);
             }
             fout.close();
@@ -75,6 +74,12 @@ template <typename T> class FileHandler {
                 os << prod.prodList[i];
             }
             return os;
+        }
+        T& operator[] (int index){
+            if(index < 0 || index >= numberOfProds){
+                throw IndexOutOfRangeException();
+            }
+            return prodList[index];
         }
     private:
         T *prodList;

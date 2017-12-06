@@ -4,16 +4,19 @@
 #include <cmath>
 #include "product.h"
 #include "topping.h"
+#include "pizzasize.h"
 class NoSizes{};
 class Pizza : public Product {
     public:
         Pizza();
         Pizza(char n[sizeOfName], int Price = 1000, double Offset = 1.4, int Size = 16) ;
+        Pizza(char n[sizeOfName], Pizzasize& Pizzasize);
         virtual ~Pizza();
         void AddTopping(const Topping& topping, const bool calcOffset = true, const bool free = false);
 
         int GetPrice() const;
         int GetSize() const;
+        int GetOffset() const;
         int SetSize(const int& newsize);
         int GetNumberOfToppings() const;
 

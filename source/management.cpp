@@ -2,7 +2,7 @@
 
 Management::Management(){}
 Management::~Management(){}
-void Management::AddPizza(Pizza pizza){
+void Management::AddPizza(Pizza& pizza){
     FileHandler<Pizza> list("pizzamenu.obj");
     list.AddProduct(pizza);
 }
@@ -36,6 +36,10 @@ void Management::GetPizzaSizes(std::ostream &os){
         os << "\t" << p;
     }
 }
+Pizzasize Management::GetPizzaSizeat(int index){
+    FileHandler<Pizzasize> list("pizzasizes.obj");
+    return list[index];
+}
 void Management::AddTopping(Topping topping){
     FileHandler<Topping> list("pizzatoppings.obj");
     list.AddProduct(topping);
@@ -48,6 +52,10 @@ void Management::GetToppings(std::ostream &os){
         Topping t = toppings->at(i);
         os << "\t" << t;
     }
+}
+Topping Management::GetToppingat(int index){
+    FileHandler<Topping> list("pizzatoppings.obj");
+    return list[index];
 }
 void Management::RemoveTopping(int index){
     FileHandler<Topping> list("pizzatoppings.obj");
@@ -89,4 +97,13 @@ void Management::GetPlaces(std::ostream& os){
 void Management::RemovePlace(int index){
     // this should set the active flag of a single place
     // this has to be implemented cleanly in filehandler 
+}
+void Management::GetPizzas(std::ostream& os){
+    FileHandler<Pizza> list("pizzamenu.obj");
+    const std::vector<Pizza>* pizzas = list.GetIteratableNonMutableList();
+    for(unsigned int i = 0; i < pizzas->size(); i++){
+        os << "Pizza : " << i + 1 << std::endl;
+        Pizza p = pizzas->at(i);
+        os << p;
+    }
 }

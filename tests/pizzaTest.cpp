@@ -27,5 +27,8 @@ int main(){
     cout << pizza;
     cout << pizza3;
     assert(pizza3 == pizza);
+    // test the copy
+    Pizza pizza4 = pizza;
+    assert(pizza4 == pizza);
     cout << "============================================================================== Class Pizza looks Ok ==============================================================================" << endl;
 }
