@@ -18,9 +18,18 @@ Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     offset = Offset;
     size   = Size;;
 }
+Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
+    SetName(n);
+    numberOfToppings = 2;
+    toppings = nullptr;
+    currTopping = 0;
+    price  = Pizzasize.GetPrice(); 
+    offset = Pizzasize.GetOffset();
+    size   = Pizzasize.GetSize();
+}
 Pizza::~Pizza() {
-    if(toppings != nullptr)
-        delete [] toppings;
+    // if(toppings != nullptr)
+        // delete [] toppings;
 }
 
 int Pizza::GetNumberOfToppings() const {
@@ -42,7 +51,7 @@ void Pizza::resize(){
     ntopping = nullptr;
     numberOfToppings *= 2;
 }
-void Pizza::AddTopping(const Topping &topping, const bool calcOffset, const bool free){
+void Pizza::AddTopping(const Topping& topping, const bool calcOffset, const bool free){
     if(toppings ==  nullptr)
         toppings = new Topping[numberOfToppings];
     if (currTopping == numberOfToppings){

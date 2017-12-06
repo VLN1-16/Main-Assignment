@@ -26,7 +26,7 @@ void ManagerUI::ManagerMenu(){
             EditToppings();
             break;
         case 'm':
-            cout << "Options for editing pizza menu..";
+            EditPizzas();
             break;
         case 'p':
             EditProducts();
@@ -264,4 +264,73 @@ void ManagerUI::EditLocations(){
     }
     EditLocations();
 
+}
+void ManagerUI::EditPizzas(){
+    cout << "Editing Ready pizzas : " << endl;
+    cout << "a: Add a pizza" << endl;
+    cout << "d: Delete a pizza" << endl;
+    cout << "l: List all pizzas" << endl;
+    cout << "e: edit a pizza" << endl;
+    cout << "b: Back" << endl;
+    cout << "q: Quit" << endl;
+    char userAns = 0;
+    cin >> userAns;
+    cout << endl;
+    
+    switch(tolower(userAns)){
+        case 'a':{
+            // Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
+            // Pick from one of the pizzasizes and give it a name
+            char name[sizeOfName];
+            cout << "What is the name of the pizza : ";
+            cin >> name;
+            Management management;
+            management.GetPizzaSizes(cout);
+            cout << "What size do you want : ";
+            int index;
+            cin >> index;
+            Pizzasize size = management.GetPizzaSizeat(index - 1);
+            Pizza pizza(name, size);
+            cout << "How many toppings do you want : ";
+            int numberoftoppings;
+            cin >> numberoftoppings;
+            for(int i = 0; i < numberoftoppings; i++){
+                management.GetToppings(cout);
+                cout << "Which topping would you like : ";
+                cin >> index;
+                Topping top = management.GetToppingat(index - 1);
+                pizza.AddTopping(top);
+            }
+            management.AddPizza(pizza);
+            break;
+        }
+        case 'd':{
+            // Management management;
+            // management.GetPlaces(cout);
+            // int index;
+            // cout << "Which place would you like to Deactivate";
+            // cin >> index;
+            // management.RemovePlace(index - 1); 
+            break;
+        }
+        case 'l':{
+            Management management;
+            management.GetPizzas(cout);
+            break;
+        }
+        case 'b':{
+            return;
+            break;
+        }
+        case 'q':{
+            exit(0);
+            break;
+        }
+    }
+    EditPizzas();
+
+}
+Pizza pizzaeditor(Pizza toedit){
+    // Offer the user edits to the pizza
+    return toedit;
 }
