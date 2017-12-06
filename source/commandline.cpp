@@ -44,69 +44,8 @@ void CommandLine::printMainMenu(){
 }
 
 void CommandLine::managementView(){
-    cout << "s: Edit pizza type/size" << endl;
-    cout << "t: Edit pizza toppings" << endl;
-    cout << "m: Edit/add pizza on menu" << endl;
-    cout << "p: Edit/add product on menu" << endl;
-    cout << "e: Edit prices" << endl;
-    cout << "l: Edit/add branch locations" << endl;
-    cout << "a: Edit active order" << endl;
-    cout << "b: Go back" << endl;
-    cout << "q: Quit" << endl;
-
-    char userAns = 0;
-    cin >> userAns;
-    cout << endl;
-    char user = 'm';
-
-    switch(tolower(userAns)){
-        case 's':
-            cout << "Options for editing pizza type/size..";
-            EditSizes();
-            break;
-        case 't':
-            cout << "Options for editing pizza toppings..";
-            break;
-        case 'm':
-            cout << "Options for editing pizza menu..";
-            break;
-        case 'p':
-            cout << "Options for editing products..";
-            break;
-        case 'e':
-            editPrices();
-            break;
-        case 'l':
-            cout << "Options for branch locations..";
-            break;
-        case 'a':
-            salesEditor(user);
-            break;
-        case 'b':
-            printMainMenu();
-            break;
-        case 'q':
-            cout << "Are you sure you want to quit?" << endl;
-            cout << "y: yes" << endl << "n: no" << endl;
-            cin >> userAns;
-            if(tolower(userAns) == 'y')
-                exit(EXIT_SUCCESS);
-            else
-                managementView();
-            break;
-        default:
-            cout << "Please enter a valid input!" << endl;
-            managementView();
-            break;
-    }
-}
-void CommandLine::EditSizes(){
-    int s;
-    Management manager;
-    cout << "enter size ";
-    cin >> s;
-    manager.AddPizzaSize(s);
-    manager.GetPizzaSizes(cout);
+    ManagerUI manager;
+    manager.ManagerMenu();
 }
 void CommandLine::editPrices(){
     cout << "p: Edit prices for pizzas" << endl;

@@ -4,6 +4,7 @@
 #include <stddef.h>
 #include <fstream>
 #include <string>
+#include <vector>
 class IndexOutOfRangeException{};
 template <typename T> class FileHandler {
     public:
@@ -32,6 +33,13 @@ template <typename T> class FileHandler {
                 numberOfProds = 0;
             }
         }
+        const std::vector<T>* GetIteratableNonMutableList() const {
+            std::vector<T>* returnList = new std::vector<T>;
+            for(int i = 0; i < numberOfProds; i++){
+                returnList->push_back(prodList[i]); 
+            }
+            return returnList;
+        }
         void AddProduct(T product,bool toFile = true){
             if (numberOfProds == size){
                 Resize();
@@ -45,7 +53,7 @@ template <typename T> class FileHandler {
             }
         }
         void RemoveProduct(int index){
-            if(index <0 || index >= numberOfProds){
+            if(index < 0 || index >= numberOfProds){
                 throw IndexOutOfRangeException();
             }
             for (int i=index; i<numberOfProds-1; i++){
@@ -59,19 +67,6 @@ template <typename T> class FileHandler {
             fout.close();
 
         }
-/*     Skoða þetta rugl seinna
-        void RemoveProduct<Place>(int index){
-            if(index <0 || index >= numberOfProds){
-                throw IndexOutOfRangeException();
-            }
-            prodList[index].active = false;
-            // using both in and out to owerwrite the value at the index given
-            std::fstream fout(dataFile , std::ios::binary | std::ios::out | std::ios::in);
-            fout.seekp(prodList[index].GetByteSize()*index);
-            prodList[index].WriteBin(fout);
-            fout.close();
-        }
-        */
         int GetSize(){
             return numberOfProds;
         }

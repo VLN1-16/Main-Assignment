@@ -19,8 +19,8 @@ places:
 	rm *.o
 
 commandline:
-	g++ -Wall -c -Iheaders -std=c++11 source/main.cpp source/commandline.cpp source/management.cpp source/topping.cpp source/product.cpp source/pizzasize.cpp source/pizza.cpp
-	g++ main.o commandline.o management.o topping.o product.o pizzasize.o pizza.o -o bin/commandline.out
+	g++ -Wall -c -Iheaders -std=c++11 source/main.cpp source/commandline.cpp source/management.cpp source/topping.cpp source/product.cpp source/pizzasize.cpp source/pizza.cpp source/managerui.cpp source/place.cpp
+	g++ main.o commandline.o management.o topping.o product.o pizzasize.o pizza.o managerui.o place.o -o bin/commandline.out 
 	rm *.o
 
 

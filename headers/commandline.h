@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <cctype>
 #include "management.h"
-
+#include "managerui.h"
 
 /*
 * A user communication class,
