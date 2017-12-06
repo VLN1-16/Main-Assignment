@@ -14,7 +14,7 @@ Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     numberOfToppings = 2;
     toppings = nullptr;
     currTopping = 0;
-    price  = Price; 
+    price  = Price;
     offset = Offset;
     size   = Size;;
 }
@@ -23,13 +23,13 @@ Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
     numberOfToppings = 2;
     toppings = nullptr;
     currTopping = 0;
-    price  = Pizzasize.GetPrice(); 
+    price  = Pizzasize.GetPrice();
     offset = Pizzasize.GetOffset();
     size   = Pizzasize.GetSize();
 }
 Pizza::~Pizza() {
     // if(toppings != nullptr)
-        // delete [] toppings;
+    //     delete [] toppings;
 }
 
 int Pizza::GetNumberOfToppings() const {
@@ -96,8 +96,8 @@ Pizza& Pizza::operator=(const Pizza& from){
 }
 void Pizza::WriteBin(std::ostream& BinaryOut){
     // Write inherited information on this pizza
-    Product::WriteBin(BinaryOut); 
-    // number of toppings 
+    Product::WriteBin(BinaryOut);
+    // number of toppings
     BinaryOut.write((char*)(&currTopping), sizeof(int));
     for(int i = 0; i < currTopping; i++){
         // Write each of the topping to the stream
@@ -122,6 +122,6 @@ bool Pizza::operator ==(const Pizza& pizza){
     if(pizza.numberOfToppings != numberOfToppings) return false;
     for(int i = 0; i < numberOfToppings; i++){
         if(!(pizza.toppings[i] == toppings[i])) return false;
-    } 
+    }
     return true;
 }

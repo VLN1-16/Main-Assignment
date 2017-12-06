@@ -18,10 +18,9 @@ class Sales{
         void AddProduct(Product product);
         void GetPizzaSizes(std::ostream &os);
         void GetPizzas(std::ostream &os);
-        void GetToppings(std::ostream &os);
-        void GetProducts(std::ostream &os);
-        void AddPizzaSize(Pizzasize s);
-        void ChangePrice(int newPrice);
+        Pizza GetPizza(int id);
+        Order GetThisOrder(int orderid);
+        void AddOrder(Order &order);
 
         void CreatePizza(Order order);
         void GetActiveOrders(std::ostream &os);

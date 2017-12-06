@@ -129,7 +129,84 @@ void SalesUI::OrderEditor(){
     return SalesEditor();*/
 
 }
+void SalesUI::EditOrder(Order order){
+    Sales sales;
+
+    while(true){
+
+        cout << "a: Add pizza from menu" << endl;
+        cout << "r: Register order" << endl;
+        cout << "d: Add a pizza" << endl; // this should be an entire process of it self, do it later
+        cout << "s: Show the order in current state" << endl;
+        cout << "m: Mark the order as paid" << endl;
+        cout << "c: Comment" << endl;
+        cout << "h: Toggle pickup" << endl;
+        cout << "l: Set pickup location" << endl;
+        cout << "b: Go back" << endl;
+        cout << "q: Quit (does not save)" << endl;
+
+        char userAns = 0;
+        cin >> userAns;
+        cout << endl;
+        switch(tolower(userAns)){
+            case 'a':
+            int pizzaid;
+                cout << "Select a pizza: " << endl;
+                sales.GetPizzas(cout);
+                cin >> pizzaid;
+                order.AddPizza(sales.GetPizza(pizzaid-1));
+                break;
+            case 'r':
+                cout << "Register order.." << endl;
+                break;
+            case 'd':
+                cout << "This should open the pizza menu for selecting pizzas.. " << endl;
+                //CreatePizza();
+                break;
+            case 's':
+                cout << "Showing order in current state!" << endl;
+                cout << order << endl;
+                break;
+            case 'm':
+                cout << "Marking pizza as paid for" << endl;
+                break;
+            case 'c':
+                cout << "Adding a comment to order!" << endl;
+                break;
+            case 'h':
+                cout << "Toggle pickup..." << endl;
+                break;
+            case 'l':
+                cout << "Select a pickup location for this order" << endl;
+                break;
+            case 'b':
+                PrintSalesMenu();
+                break;
+            case 'q':
+                cout << "Are you sure you want to quit?" << endl;
+                cout << "y: yes" << endl << "n: no" << endl;
+                cin >> userAns;
+                if(tolower(userAns) == 'y')
+                    exit(EXIT_SUCCESS);
+                else
+                    EditOrder(order);
+                break;
+            default:
+                cout << "Please enter a valid input!" << endl;
+                EditOrder(order);
+                break;
+        }
+        cout << "Add another item? (y/n)" << endl;
+        cin >> userAns;
+        if(tolower(userAns) == 'y')
+            continue;
+        else
+            break;
+    }
+    sales.AddOrder(order);
+}
 void SalesUI::CreateOrder(){
+
     char first[lengthOfName];
     char last[lengthOfName];
     char phone[lengthOfName];
