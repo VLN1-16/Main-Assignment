@@ -12,7 +12,7 @@ class Pizza : public Product {
         Pizza(char n[sizeOfName], int Price = 1000, double Offset = 1.4, int Size = 16) ;
         Pizza(char n[sizeOfName], Pizzasize& Pizzasize);
         virtual ~Pizza();
-        void AddTopping(const Topping& topping, const bool calcOffset = true, const bool free = false);
+        void AddTopping(const Topping topping, const bool calcOffset = true, const bool free = false);
 
         int GetPrice() const;
         int GetSize() const;

@@ -51,7 +51,7 @@ void Pizza::resize(){
     ntopping = nullptr;
     numberOfToppings *= 2;
 }
-void Pizza::AddTopping(const Topping& topping, const bool calcOffset, const bool free){
+void Pizza::AddTopping(const Topping topping, const bool calcOffset, const bool free){
     if(toppings ==  nullptr)
         toppings = new Topping[numberOfToppings];
     if (currTopping == numberOfToppings){

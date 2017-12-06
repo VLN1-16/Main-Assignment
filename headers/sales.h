@@ -1,5 +1,10 @@
 #ifndef SALES_H
 #define SALES_H
+
+#define orderfile "data/orderfile.dat"
+#define inActiveOrderListfile "data/inactiveorders.dat"
+#define pizzafile "data/pizzamenu.dat"
+
 #include <iostream>
 #include "filehandler.h"
 #include "pizza.h"
@@ -26,10 +31,11 @@ class Sales{
         void GetActiveOrders(std::ostream &os);
         void GetInActiveOrders(std::ostream &os);
 
-        // void ChangePrice(T product, int newPrice);
-
-        // void ListProducts(T product);
         void AddDeliveryPlace(Place place);
     private:
+        FileHandler<Order>* orderList;
+        FileHandler<Order>* inActiveOrderList;
+        FileHandler<Pizza>* pizzamenu;
+        
 };
 #endif

@@ -32,6 +32,7 @@ class Management{
         void AddPlace(Place p);
         void GetPlaces(std::ostream& os);
         void RemovePlace(int index);
+
         Pizzasize GetPizzaSizeat(int index);
         Topping GetToppingat(int index);
         // void ChangePrice(T product, int newPrice);

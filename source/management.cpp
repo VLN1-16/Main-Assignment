@@ -25,11 +25,9 @@ void Management::AddProduct(Product product){
 void Management::GetProducts(std::ostream &os){
     if(productlist == nullptr)
         productlist = new FileHandler<Product>(productfile);
-    const std::vector<Product>* products = productlist->GetIteratableNonMutableList();
-    for(unsigned int i = 0; i < products->size(); i++){
+    for(int i = 0; i < productlist->GetSize(); i++){
         os << "Product : " << i + 1 << std::endl;
-        Product p = products->at(i);
-        os << p;
+        os << productlist->at(i);
     }
 }
 void Management::RemoveProduct(int index){
@@ -45,11 +43,9 @@ void Management::AddPizzaSize(Pizzasize s){
 void Management::GetPizzaSizes(std::ostream &os){
     if(pizzasizelist == nullptr)
         pizzasizelist = new FileHandler<Pizzasize>(pizzasizefile);
-    const std::vector<Pizzasize>* pizzasizes = pizzasizelist->GetIteratableNonMutableList();
-    for(unsigned int i = 0; i < pizzasizes->size(); i++){
+    for(int i = 0; i < pizzasizelist->GetSize(); i++){
         os << "BASE : " << i + 1 << std::endl;
-        Pizzasize p = pizzasizes->at(i);
-        os  << p;
+        os << pizzasizelist->at(i);
     }
 }
 void Management::DeletePizzaSizeat(int index){
@@ -70,11 +66,9 @@ void Management::AddTopping(Topping topping){
 void Management::GetToppings(std::ostream &os){
     if(toppinglist == nullptr)
         toppinglist = new FileHandler<Topping>(toppingfile);
-    const std::vector<Topping>* toppings = toppinglist->GetIteratableNonMutableList();
-    for(unsigned int i = 0; i < toppings->size(); i++){
+    for(int i = 0; i < toppinglist->GetSize(); i++){
         os << "Topping : " << i + 1 << std::endl;
-        Topping t = toppings->at(i);
-        os << t;
+        os << toppinglist->at(i);
     }
 }
 Topping Management::GetToppingat(int index){
@@ -95,11 +89,9 @@ void Management::AddPlace(Place p){
 void Management::GetPlaces(std::ostream& os){
     if(placelist == nullptr)
         placelist = new FileHandler<Place>(placefile);
-    const std::vector<Place>* places = placelist->GetIteratableNonMutableList();
-    for(unsigned int i = 0; i < places->size(); i++){
+    for(int i = 0; i < placelist->GetSize(); i++){
         os << "Place : " << i + 1 << std::endl;
-        Place p = places->at(i);
-        os << p;
+        os << placelist->at(i);
     }
 }
 void Management::RemovePlace(int index){
@@ -114,10 +106,8 @@ void Management::AddPizza(Pizza& pizza){
 void Management::GetPizzas(std::ostream& os){
     if(pizzamenu == nullptr)
         pizzamenu = new FileHandler<Pizza>(pizzafile);
-    const std::vector<Pizza>* pizzas = pizzamenu->GetIteratableNonMutableList();
-    for(unsigned int i = 0; i < pizzas->size(); i++){
+    for(int i = 0; i < pizzamenu->GetSize() ; i++){
         os << "Pizza : " << i + 1 << std::endl;
-        Pizza p = pizzas->at(i);
-        os << p;
+        os << pizzamenu->at(i);
     }
 }

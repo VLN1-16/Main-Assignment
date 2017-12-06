@@ -139,12 +139,7 @@ Order& Order::operator=(const Order& order){
     pickup = order.pickup;
     timestamp = order.timestamp;
     ready = order.ready;
-    //price = order.price;
     discount = order.discount;
-    //numberOfPizzas = order.numberOfPizzas;
-    pizzacap = order.pizzacap;
-    productcap = order.productcap;
-    //numberOfProducts = order.numberOfProducts;
     costumer = order.costumer;
     for(int i = 0; i < order.numberOfPizzas; i++){
         AddPizza(order.pizzas[i]);

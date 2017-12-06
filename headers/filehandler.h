@@ -32,14 +32,6 @@ template <typename T> class FileHandler {
                 prodList = nullptr;
             }
         }
-        const std::vector<T>* GetIteratableNonMutableList() const {
-            std::vector<T>* returnList = new std::vector<T>;
-            for(int i = 0; i < numberOfProds; i++){
-                T usecopyconstructor = prodList[i];
-                returnList->push_back(usecopyconstructor); 
-            }
-            return returnList;
-        }
         void AddProduct(T& product,bool toFile = true){
             if(prodList == nullptr)
                 prodList = new T[size];
@@ -100,8 +92,8 @@ template <typename T> class FileHandler {
             size *= 2;
         }
         int size;
-        int numberOfProds;
         std::string dataFile;
+        int numberOfProds;
 
 };
 #endif
