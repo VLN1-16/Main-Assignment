@@ -1,15 +1,17 @@
+#include "preperationUI.h"
+
 PreperationUI::PreperationUI(Place Myplace){
     myplace = Myplace;
 }
-PreperationUI::PreperationMenu(){
+void PreperationUI::PreperationMenu(){
     WorkingMode();
 }
-PreperationUI::WorkingMode(){
+void PreperationUI::WorkingMode(){
     int index = 0;
     while(true){
-        Preperator preperator;
+        // Preperator preperator;
         //  Print a single pizza, offer next pizza or previous pizza
-        preperator.GetPizza(cout, index); 
+        // preperator.GetPizza(cout, index); 
         cout << "n: Next pizza" << endl;
         cout << "p: Prev pizza" << endl;
         cout << "c: Mark complete" << endl;
@@ -31,7 +33,7 @@ PreperationUI::WorkingMode(){
             }
             case 'c':{
                 // mark pizza at index complete
-                preperator.MarkDone(index);
+                // preperator.MarkDone(index);
                 break;
             }
             case 'b':{

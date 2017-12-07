@@ -105,10 +105,13 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     out << "Order : " << (!order.ready ? "IN PROGRESS" : "DELIVERED") << std::endl;
     out << "Created stamp : " << order.timestamp << std::endl;
     out << "Costumer : " << order.costumer;
-    out << "Products : " << std::endl;
+    if(order.numberOfProducts > 0)
+        out << "Products(" << order.numberOfProducts << ") : " << std::endl;
     for(int i = 0; i < order.numberOfProducts; i++){
         out << "\t" << order.products[i];
     }
+    if(order.numberOfPizzas > 0)
+        out << "Pizzas(" << order.numberOfPizzas << ") : " << std::endl;
     for(int i = 0; i < order.numberOfPizzas; i++){
         out << order.pizzas[i];
     }

@@ -3,6 +3,9 @@ Sales::Sales(){
     orderList = nullptr;
     inActiveOrderList = nullptr;
     pizzamenu = nullptr;
+    productList = nullptr;
+    toppingList = nullptr;
+    pizzasizes  = nullptr;
 }
 Sales::~Sales(){
     if(orderList != nullptr)
@@ -11,6 +14,10 @@ Sales::~Sales(){
         delete inActiveOrderList;
     if(pizzamenu != nullptr)
         delete pizzamenu;
+    if(toppingList != nullptr)
+        delete toppingList;
+    if(pizzasizes != nullptr)
+        delete pizzasizes;
 }
 void Sales::GetActiveOrders(std::ostream &os){
     if(orderList == nullptr)
@@ -50,4 +57,44 @@ Order Sales::GetThisOrder(int orderid){
     if(orderList == nullptr)
         orderList = new FileHandler<Order>(orderfile);
     return orderList->at(orderid);
+}
+void Sales::GetProducts(std::ostream& os){
+    if(productList == nullptr)
+        productList = new FileHandler<Product>(productfile);
+    for(int i = 0; i < productList->GetSize(); i++){
+        os << "Product : " << i + 1 << std::endl;
+        os << productList->at(i);
+    }
+    
+}
+Product Sales::GetProduct(int index){
+    if(productList == nullptr)
+        productList = new FileHandler<Product>(productfile);
+    return productList->at(index); 
+}
+void Sales::GetToppings(std::ostream& os){
+    if(toppingList == nullptr)
+        toppingList = new FileHandler<Topping>(toppingfile);
+    for(int i = 0; i < toppingList->GetSize(); i++){
+        os << "Topping : " << i + 1 << std::endl;
+        os << toppingList->at(i);
+    }
+}
+Topping Sales::GetTopping(int index){
+    if(toppingList == nullptr)
+        toppingList = new FileHandler<Topping>(toppingfile);
+    return toppingList->at(index);
+}
+Pizzasize Sales::GetPizzaSize(int index){
+    if(pizzasizes == nullptr)
+        pizzasizes = new FileHandler<Pizzasize>(pizzasizefile);
+    return pizzasizes->at(index);
+}
+void Sales::GetPizzaSizes(std::ostream& os){
+    if(pizzasizes == nullptr)
+        pizzasizes = new FileHandler<Pizzasize>(pizzasizefile);
+    for(int i = 0; i < pizzasizes->GetSize(); i++){
+        os << "PizzaSize : " << i + 1 << std::endl;
+        os << pizzasizes->at(i);
+    }
 }

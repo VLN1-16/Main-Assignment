@@ -28,6 +28,7 @@ void CommandLine::printMainMenu(){
             break;
         case 'p':
             cout << "~Preparation~" << endl;
+            preperationView(pickplace());
             break;
         case 'd':
             cout << "~Delivery~" << endl;
@@ -52,4 +53,17 @@ void CommandLine::managementView(){
 void CommandLine::salesPerson(){
     SalesUI sales;
     sales.PrintSalesMenu();
+}
+void CommandLine::preperationView(Place place){
+    PreperationUI prep(place);
+    prep.PreperationMenu();
+}
+Place CommandLine::pickplace(){
+    // User has to pick his location
+    int index;
+    Management manager;
+    manager.GetPlaces(cout);
+    cout << "Which place are you working at : " << endl;
+    cin >> index;
+    return manager.GetPlace(index - 1);
 }

@@ -65,12 +65,12 @@ void Pizza::AddTopping(const Topping topping, const bool calcOffset, const bool 
         price += topping.GetPrice(); // costumer always looses part of a krona
 }
 std::ostream& operator<<(std::ostream &os,Pizza& pizza){
-    os << pizza.GetPrice() << std::endl;
-    os << pizza.GetNumberOfToppings() << std::endl;
-    for (int i = 0; i < pizza.GetNumberOfToppings(); i++){
-        os << pizza.toppings[i];
-    }
     os << pizza.GetName() << std::endl;
+    os << "Number of toppings : " << pizza.GetNumberOfToppings() << std::endl;
+    for (int i = 0; i < pizza.GetNumberOfToppings(); i++){
+        os << "\t" << pizza.toppings[i];
+    }
+    os << pizza.GetPrice() << std::endl;
     return os;
 }
 std::istream& operator>>(std::istream &is, Pizza& pizza){

@@ -94,6 +94,11 @@ void Management::GetPlaces(std::ostream& os){
         os << placelist->at(i);
     }
 }
+Place Management::GetPlace(int index){ 
+    if(placelist == nullptr)
+        placelist = new FileHandler<Place>(placefile);
+    return placelist->at(index);
+}
 void Management::RemovePlace(int index){
     // this should set the active flag of a single place
     // this has to be implemented cleanly in filehandler 

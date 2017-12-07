@@ -3,7 +3,8 @@
 #include <iostream>
 #include "managerui.h"
 #include "salesUI.h"
-
+#include "preperationUI.h"
+#include "place.h"
 using namespace std;
 
 /*
@@ -37,7 +38,8 @@ class CommandLine{
 
         void managementView();
         void salesPerson();
-        void preparation();
+        void preperationView(Place place);
+        Place pickplace();
     private:
 
 };
