@@ -7,6 +7,7 @@ Pizza::Pizza() : Product(){
     price  = 1000;
     offset = 1.4;
     size   = 16;
+    progress = 0;
 }
 
 Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
@@ -17,6 +18,7 @@ Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     price  = Price;
     offset = Offset;
     size   = Size;;
+    progress = 0;
 }
 Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
     SetName(n);
@@ -48,7 +50,6 @@ void Pizza::resize(){
     }
     delete [] toppings;
     toppings = ntopping;
-    ntopping = nullptr;
     numberOfToppings *= 2;
 }
 void Pizza::AddTopping(const Topping topping, const bool calcOffset, const bool free){
@@ -67,6 +68,7 @@ void Pizza::AddTopping(const Topping topping, const bool calcOffset, const bool 
 std::ostream& operator<<(std::ostream &os,Pizza& pizza){
     os << pizza.GetName() << std::endl;
     os << "Number of toppings : " << pizza.GetNumberOfToppings() << std::endl;
+    os << "Pizza size : " << pizza.GetSize() << std::endl;
     for (int i = 0; i < pizza.GetNumberOfToppings(); i++){
         os << "\t" << pizza.toppings[i];
     }
@@ -89,6 +91,7 @@ Pizza& Pizza::operator=(const Pizza& from){
     price = from.price;
     size  = from.size;
     offset = from.offset;
+    progress = from.progress;
     for(int i = 0; i < from.currTopping; i++){
         AddTopping(from.toppings[i], false, true);
     }
@@ -97,6 +100,11 @@ Pizza& Pizza::operator=(const Pizza& from){
 void Pizza::WriteBin(std::ostream& BinaryOut){
     // Write inherited information on this pizza
     Product::WriteBin(BinaryOut);
+    // Static information
+    BinaryOut.write((char*)(&size), sizeof(int));
+    BinaryOut.write((char*)(&offset), sizeof(double));
+    BinaryOut.write((char*)(&progress), sizeof(int));
+
     // number of toppings
     BinaryOut.write((char*)(&currTopping), sizeof(int));
     for(int i = 0; i < currTopping; i++){
@@ -107,6 +115,11 @@ void Pizza::WriteBin(std::ostream& BinaryOut){
 void Pizza::ReadBin(std::istream& BinaryIn){
     // Read inherited information on this pizza
     Product::ReadBin(BinaryIn);
+
+    BinaryIn.read((char*)(&size), sizeof(int));
+    BinaryIn.read((char*)(&offset), sizeof(double));
+    BinaryIn.read((char*)(&progress), sizeof(int));
+
     int tempcurr = 0;
     BinaryIn.read((char*)(&tempcurr), sizeof(int));
     for(int i = 0; i < tempcurr; i++){
