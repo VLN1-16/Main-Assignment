@@ -35,7 +35,7 @@ template <typename T> class FileHandler {
             std::vector<T>* returnList = new std::vector<T>;
             for(int i = 0; i < numberOfProds; i++){
                 T usecopyconstructor = prodList[i];
-                returnList->push_back(usecopyconstructor); 
+                returnList->push_back(usecopyconstructor);
             }
             return returnList;
         }
@@ -84,17 +84,14 @@ template <typename T> class FileHandler {
     private:
         T *prodList;
         void Resize(){
-            T *tmp = new T[size];
+            T *tmp = new T[size*2];
             for (int i=0; i< size; i++){
                 tmp[i] = prodList[i];
             }
             delete[] prodList;
             size *= 2;
-            prodList = new T[size];
-            for (int i=0; i< size/2; i++){
-                prodList[i] = tmp[i];
-            }
-            delete[] tmp;
+            prodList = tmp;
+            tmp = nullptr;
         }
         int size;
         int numberOfProds;
