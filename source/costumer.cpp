@@ -71,7 +71,7 @@ void Costumer::SetLastName(const char newLastName[lengthOfName]){
 }
 void Costumer::SetNumber(const char newNumber[8]){
     if(!NumberIsOk(newNumber)) throw badnumber();
-    for(int i = 0; i < 9; i++){
+    for(int i = 0; i <= 8; i++){
         number[i] = newNumber[i];
     }
 }

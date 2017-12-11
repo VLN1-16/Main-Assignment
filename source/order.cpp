@@ -151,3 +151,18 @@ Order& Order::operator=(const Order& order){
     }
     return *this;
 }
+void Order::SetBranchLoc(Place& newplace){
+    BranchLoc = newplace;
+}
+Place Order::GetBranchLoc(){
+    return BranchLoc;
+}
+Pizza Order::GetPizzaat(int index){
+    if(index >= numberOfPizzas || index < 0)
+        throw IndexOutOfRangeException();
+    Pizza returnval = pizzas[index];
+    return returnval;
+}
+int Order::GetNumberOfPizzas(){
+    return numberOfPizzas;
+}
