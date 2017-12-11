@@ -5,7 +5,8 @@ CommandLine::CommandLine(){
     places = new PlaceRepo();
 }
 CommandLine::~CommandLine(){
-    delete places;
+    if(places != nullptr)
+        delete places;
 }
 
 void CommandLine::printMainMenu(){
@@ -46,7 +47,7 @@ void CommandLine::printMainMenu(){
 
             break;
         case 'q':
-            exit(0);
+            return;
         default:
             cout << "Not a valid input!" << endl;
             printMainMenu();
@@ -68,12 +69,9 @@ void CommandLine::preperationView(Place place){
     prep.PreperationMenu();
 }
 Place CommandLine::pickplace(){
-    // User has to pick his location
     int index;
     places->GetPlaces(cout);
     cout << "Which place are you working at : ";
     cin >> index;
-    Place tobereturned;
-    tobereturned = places->GetPlace(index - 1);
-    return tobereturned;
+    return places->GetPlace(index - 1);
 }
