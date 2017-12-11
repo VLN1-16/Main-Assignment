@@ -33,10 +33,7 @@ void CommandLine::printMainMenu(){
             break;
         case 'd':
             cout << "~Delivery~" << endl;
-            cout << "1. Select branch location" << endl;
-            cout << "2. Get list of active orders for selected location" << endl;
-            cout << "3. Get list of ready orders for selected location" << endl;
-            cout << "4. Search/select desired order" << endl;
+            deliveryView(pickplace());
 
             break;
         case 'q':
@@ -60,6 +57,10 @@ void CommandLine::salesPerson(){
 void CommandLine::preperationView(Place place){
     PreperationUI prep(place);
     prep.PreperationMenu();
+}
+void CommandLine::deliveryView(Place place){
+    DeliveryUI dev(place);
+    dev.DeliveryMenu();
 }
 Place CommandLine::pickplace(){
     // User has to pick his location

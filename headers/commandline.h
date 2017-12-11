@@ -39,6 +39,7 @@ class CommandLine{
         void managementView();
         void salesPerson();
         void preperationView(Place place);
+        void deliveryView(Place place);
         Place pickplace();
     private:
 

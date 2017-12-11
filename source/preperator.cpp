@@ -5,7 +5,7 @@
 Preperator::Preperator(Place myplace){ // ctor
     // Read in all active orders and place them in our
     // global pizza vector, all operations are then done on the vector
-    // and modified into 
+    // and modified into
     activeorders = nullptr;
     this->myplace = myplace;
 }
