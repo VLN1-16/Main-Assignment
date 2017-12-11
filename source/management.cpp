@@ -8,14 +8,21 @@ Management::Management(){
     pizzasizelist = nullptr;
 }
 Management::~Management(){
-    if(productlist != nullptr)
+    if(productlist != nullptr){
         delete productlist;
-    if(pizzamenu != nullptr)
+    }
+    if(pizzamenu != nullptr){
         delete pizzamenu;
-    if(toppinglist != nullptr)
+    }
+    if(toppinglist != nullptr){
         delete toppinglist;
-    if(placelist != nullptr)
+    }
+    if(placelist != nullptr){
         delete placelist;
+    }
+    if(pizzasizelist != nullptr){
+        delete pizzasizelist;
+    }
 }
 void Management::AddProduct(Product product){
     if(productlist == nullptr)
@@ -27,7 +34,8 @@ void Management::GetProducts(std::ostream &os){
         productlist = new FileHandler<Product>(productfile);
     for(int i = 0; i < productlist->GetSize(); i++){
         os << "Product : " << i + 1 << std::endl;
-        os << productlist->at(i);
+        Product prod = productlist->at(i);
+        os << prod;
     }
 }
 void Management::RemoveProduct(int index){
@@ -45,7 +53,8 @@ void Management::GetPizzaSizes(std::ostream &os){
         pizzasizelist = new FileHandler<Pizzasize>(pizzasizefile);
     for(int i = 0; i < pizzasizelist->GetSize(); i++){
         os << "BASE : " << i + 1 << std::endl;
-        os << pizzasizelist->at(i);
+        Pizzasize pizzasize = pizzasizelist->at(i);
+        os << pizzasize;
     }
 }
 void Management::DeletePizzaSizeat(int index){
@@ -68,7 +77,8 @@ void Management::GetToppings(std::ostream &os){
         toppinglist = new FileHandler<Topping>(toppingfile);
     for(int i = 0; i < toppinglist->GetSize(); i++){
         os << "Topping : " << i + 1 << std::endl;
-        os << toppinglist->at(i);
+        Topping top = toppinglist->at(i);
+        os << top;
     }
 }
 Topping Management::GetToppingat(int index){
@@ -91,7 +101,8 @@ void Management::GetPlaces(std::ostream& os){
         placelist = new FileHandler<Place>(placefile);
     for(int i = 0; i < placelist->GetSize(); i++){
         os << "Place : " << i + 1 << std::endl;
-        os << placelist->at(i);
+        Place place = placelist->at(i);
+        os << place;
     }
 }
 Place Management::GetPlace(int index){ 
@@ -113,6 +124,7 @@ void Management::GetPizzas(std::ostream& os){
         pizzamenu = new FileHandler<Pizza>(pizzafile);
     for(int i = 0; i < pizzamenu->GetSize() ; i++){
         os << "Pizza : " << i + 1 << std::endl;
-        os << pizzamenu->at(i);
+        Pizza pizza = pizzamenu->at(i);
+        os << pizza;
     }
 }

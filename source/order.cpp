@@ -168,3 +168,8 @@ Pizza Order::GetPizzaat(int index){
 int Order::GetNumberOfPizzas(){
     return numberOfPizzas;
 }
+void Order::UpdatePizzaStatus(int index, int status){
+    if(index >= numberOfPizzas || index < 0)
+        throw IndexOutOfRangeException();
+    pizzas[index].SetStatus(status);
+}

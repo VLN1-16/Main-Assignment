@@ -28,6 +28,7 @@ class Pizza : public Product {
         virtual void WriteBin(std::ostream& BinaryOut);
         virtual void ReadBin (std::istream& BinaryIn);
 
+        void SetStatus(int status);
     private:
         void resize();
         int numberOfToppings;

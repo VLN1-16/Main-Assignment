@@ -27,10 +27,13 @@ void CommandLine::printMainMenu(){
             cout << "~Salesperson~" << endl;
             salesPerson();
             break;
-        case 'p':
+        case 'p':{
             cout << "~Preparation~" << endl;
-            preperationView(pickplace());
+            Place myplace;
+            myplace = pickplace();
+            preperationView(myplace);
             break;
+        }
         case 'd':
             cout << "~Delivery~" << endl;
             cout << "1. Select branch location" << endl;
@@ -64,9 +67,12 @@ void CommandLine::preperationView(Place place){
 Place CommandLine::pickplace(){
     // User has to pick his location
     int index;
-    Management manager;
-    manager.GetPlaces(cout);
+    Management* manager = new Management();
+    manager->GetPlaces(cout);
     cout << "Which place are you working at : ";
     cin >> index;
-    return manager.GetPlace(index - 1);
+    Place tobereturned;
+    tobereturned = manager->GetPlace(index - 1);
+    delete manager;
+    return tobereturned;
 }

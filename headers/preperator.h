@@ -15,7 +15,7 @@ class Preperator{
         void GetPizza(std::ostream& os, int index);
         void MarkDone(int index);
         void loadVec();
-        void UpdateStatus(int index, int status);
+        // void UpdateStatus(int index, int status);
     private:
         std::vector<Pizza> pizzas;
         FileHandler<Order>* activeorders;

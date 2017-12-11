@@ -141,3 +141,6 @@ bool Pizza::operator ==(const Pizza& pizza){
     }
     return true;
 }
+void Pizza::SetStatus(int status){
+    progress = status;
+}

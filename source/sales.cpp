@@ -18,13 +18,16 @@ Sales::~Sales(){
         delete toppingList;
     if(pizzasizes != nullptr)
         delete pizzasizes;
+    if(productList != nullptr)
+        delete productList;
 }
 void Sales::GetActiveOrders(std::ostream &os){
     if(orderList == nullptr)
         orderList = new FileHandler<Order>(orderfile);
     for(int i = 0; i < orderList->GetSize(); i++){
         os << "Order : " << i + 1 << std::endl;
-        os << orderList->at(i);
+        Order ord = orderList->at(i);
+        os << ord;
     }
 }
 void Sales::GetInActiveOrders(std::ostream &os){
@@ -32,7 +35,8 @@ void Sales::GetInActiveOrders(std::ostream &os){
         inActiveOrderList = new FileHandler<Order>(inActiveOrderListfile);
     for(int i = 0; i < inActiveOrderList->GetSize(); i++){
         os << "Order : " << i + 1 << std::endl;
-        os << inActiveOrderList->at(i);
+        Order ord = inActiveOrderList->at(i);
+        os << ord;
     }
 }
 void Sales::GetPizzas(std::ostream &os){
@@ -40,7 +44,8 @@ void Sales::GetPizzas(std::ostream &os){
         pizzamenu = new FileHandler<Pizza>(pizzafile);
     for(int i = 0; i < pizzamenu->GetSize(); i++){
         os << "Pizza : " << i + 1 << std::endl;
-        os << pizzamenu->at(i);
+        Pizza pizzam =pizzamenu->at(i);
+        os << pizzam;
     }
 }
 Pizza Sales::GetPizza(int index){
@@ -64,7 +69,8 @@ void Sales::GetProducts(std::ostream& os){
         productList = new FileHandler<Product>(productfile);
     for(int i = 0; i < productList->GetSize(); i++){
         os << "Product : " << i + 1 << std::endl;
-        os << productList->at(i);
+        Product prod = productList->at(i);
+        os << prod;
     }
     
 }
@@ -78,7 +84,8 @@ void Sales::GetToppings(std::ostream& os){
         toppingList = new FileHandler<Topping>(toppingfile);
     for(int i = 0; i < toppingList->GetSize(); i++){
         os << "Topping : " << i + 1 << std::endl;
-        os << toppingList->at(i);
+        Topping top = toppingList->at(i);
+        os << top; 
     }
 }
 Topping Sales::GetTopping(int index){
@@ -96,6 +103,7 @@ void Sales::GetPizzaSizes(std::ostream& os){
         pizzasizes = new FileHandler<Pizzasize>(pizzasizefile);
     for(int i = 0; i < pizzasizes->GetSize(); i++){
         os << "PizzaSize : " << i + 1 << std::endl;
-        os << pizzasizes->at(i);
+        Pizzasize pizzasize = pizzasizes->at(i);
+        os << pizzasize;
     }
 }

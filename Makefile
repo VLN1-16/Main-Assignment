@@ -64,8 +64,8 @@ testpizza:
 	rm *.o
 	valgrind -q --leak-check=full ./bin/pizzaTest.out ## Valgrind checks for leaks and access violations productTest test basic functionality ageinst known good
 testorder:
-	g++ -Wall -c -Iheaders -std=c++17 source/product.cpp source/topping.cpp source/pizza.cpp source/order.cpp source/costumer.cpp tests/orderTest.cpp source/pizzasize.cpp
-	g++ product.o topping.o pizza.o order.o costumer.o orderTest.o pizzasize.o -o bin/orderTest.out
+	g++ -Wall -c -Iheaders -std=c++17 source/product.cpp source/topping.cpp source/pizza.cpp source/order.cpp source/costumer.cpp tests/orderTest.cpp source/pizzasize.cpp source/place.cpp
+	g++ product.o topping.o pizza.o order.o costumer.o orderTest.o pizzasize.o place.o -o bin/orderTest.out
 	rm *.o
 	valgrind -q --leak-check=full ./bin/orderTest.out
 testplace:

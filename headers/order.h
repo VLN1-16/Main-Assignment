@@ -34,6 +34,8 @@ class Order{
         Pizza GetPizzaat(int index);
 
         int GetNumberOfPizzas();
+
+        void UpdatePizzaStatus(int index, int status);
     private:
         template <typename T>
         T* resize(T* oldarray, int& cap){

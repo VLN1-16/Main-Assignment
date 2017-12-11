@@ -29,7 +29,6 @@ template <typename T> class FileHandler {
         ~FileHandler(){
             if(prodList != nullptr){
                 delete [] prodList;
-                prodList = nullptr;
             }
         }
         void AddProduct(T& product, bool toFile = true){
@@ -71,16 +70,15 @@ template <typename T> class FileHandler {
             }
             return os;
         }
-        T& operator[] (int index){
+        T operator[] (int index){
             return at(index);
         }
-        T& at(int index){
+        const T at(int index){
             if(index < 0 || index >= numberOfProds){
                 throw IndexOutOfRangeException();
             }
-            T* returnval = new T[1];
-            *returnval = prodList[index];
-            return *returnval;
+            T returnval = prodList[index];
+            return returnval;
         }
     private:
         T *prodList;
