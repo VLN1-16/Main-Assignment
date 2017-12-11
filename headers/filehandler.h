@@ -32,7 +32,7 @@ template <typename T> class FileHandler {
                 prodList = nullptr;
             }
         }
-        void AddProduct(T& product,bool toFile = true){
+        void AddProduct(T& product, bool toFile = true){
             if(prodList == nullptr)
                 prodList = new T[size];
             if (numberOfProds == size){
@@ -46,6 +46,12 @@ template <typename T> class FileHandler {
                 fout.close();
             }
         }
+        void EditProduct(T& nversion, int index){
+            if(index < 0 || index >= numberOfProds)
+                throw IndexOutOfRangeException();
+            prodList[index] = nversion;
+            WriteEntireList();
+        }
         void RemoveProduct(int index){
             if(index < 0 || index >= numberOfProds){
                 throw IndexOutOfRangeException();
@@ -54,12 +60,7 @@ template <typename T> class FileHandler {
                 prodList[i] = prodList[i+1];
             }
             numberOfProds--;
-            std::ofstream fout(dataFile , std::ios::binary);
-            for(int i = 0; i < numberOfProds; i++){
-                prodList[i].WriteBin(fout);
-            }
-            fout.close();
-
+            WriteEntireList();
         }
         int GetSize(){
             return numberOfProds;
@@ -92,6 +93,13 @@ template <typename T> class FileHandler {
             prodList = tmp;
             tmp = nullptr;
             size *= 2;
+        }
+        void WriteEntireList(){
+            std::ofstream fout(dataFile , std::ios::binary);
+            for(int i = 0; i < numberOfProds; i++){
+                prodList[i].WriteBin(fout);
+            }
+            fout.close();
         }
         int size;
         std::string dataFile;

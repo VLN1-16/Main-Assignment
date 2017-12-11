@@ -19,18 +19,29 @@ void Preperator::GetPizza(std::ostream& os, int index){
     if(pizzas.size() == 0)
         loadVec();
     // os << activeorders->at(index) << std::endl;
+    if(index >= pizzas.size() || index < 0)
+        throw IndexOutOfRangeException();
     os << pizzas[index] << std::endl;
 }
 void Preperator::loadVec(){
     for(int i = 0; i < activeorders->GetSize(); i++){
         // go into each order and fetch all active pizzas with right place
+        Place placeoforder = activeorders->at(i).GetBranchLoc();
+        // Compare places
         if(activeorders->at(i).GetBranchLoc() == myplace){
-            // all pizzas inside this order should go into pizzas
-            for(int j = 0; i < activeorders->at(i).GetNumberOfPizzas(); j++){
-                Pizza currPizza = activeorders->at(i).GetPizzaat(j);
-                std::cout << currPizza;
-                // pizzas.push_back(activeorders->at(i).GetPizzaat(j));
+            // loop through 
+            for(int j = 0; j < activeorders->at(i).GetNumberOfPizzas(); j++){
+                pizzas.push_back(activeorders->at(i).GetPizzaat(j));
             }
         }
     }
+}
+void Preperator::UpdateStatus(int index, int status){
+    // find the order the pizza is in 
+    // modify the pizza 
+    // write the entire active order list back into file
+    for(int i = 0; i < activeorders.GetSize(); i++){
+         
+    }
+    // because this function has to edit it is really gona be slow
 }

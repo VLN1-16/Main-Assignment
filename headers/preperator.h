@@ -7,6 +7,7 @@
 #include "filehandler.h"
 #include <vector>
 #include "place.h"
+#include "exceptions.h"
 class Preperator{
     public:
         Preperator(Place myplace);
@@ -14,6 +15,7 @@ class Preperator{
         void GetPizza(std::ostream& os, int index);
         void MarkDone(int index);
         void loadVec();
+        void UpdateStatus(int index, int status);
     private:
         std::vector<Pizza> pizzas;
         FileHandler<Order>* activeorders;

@@ -165,6 +165,8 @@ void SalesUI::CreateOrder(){
     Costumer costumer(first, last,phone);
     Order order(costumer);
     Place tobeadded = pickplace();
+    // DEBUG
+    std::cout << tobeadded << std::endl;
     order.SetBranchLoc(tobeadded);
     EditOrder(order);
 
