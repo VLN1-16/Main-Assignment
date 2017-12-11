@@ -10,7 +10,7 @@
 using namespace std;
 
 class ManagerUI{
-    public: 
+    public:
         ManagerUI();
         void ManagerMenu();
         void EditSizes();
@@ -18,7 +18,8 @@ class ManagerUI{
         void EditToppings();
         void EditLocations();
         void EditPizzas();
-        // void 
+        void PrintOld();
+        // void
     private:
 };
 

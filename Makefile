@@ -34,7 +34,9 @@ commandline:
 	g++ -Wall -c -Iheaders -std=c++11 source/place.cpp -o obj/place.o
 	g++ -Wall -c -Iheaders -std=c++11 source/preperationUI.cpp -o obj/preperationUI.o
 	g++ -Wall -c -Iheaders -std=c++11 source/preperator.cpp -o obj/preperator.o
-	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/preperator.o -o bin/commandline.out 
+	g++ -Wall -c -Iheaders -std=c++11 source/deliveryUI.cpp -o obj/deliveryUI.o
+	g++ -Wall -c -Iheaders -std=c++11 source/delivery.cpp -o obj/delivery.o
+	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/preperator.o obj/deliveryUI.o obj/delivery.o -o bin/commandline.out
 
 
 testall:

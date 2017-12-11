@@ -2,6 +2,7 @@
 
 Order::Order() {
     pickup = true;
+    paid = false;
     timestamp = time(0);
     ready = false;
 
@@ -53,6 +54,15 @@ void Order::AddPizza(const Pizza& newpizza){
 int Order::GetPrice(){
         return price;
 }
+void Order::SetPaid(){
+    paid = true;
+}
+bool Order::IsPaid(){
+    return paid;
+}
+bool Order::IsReady(){
+    return ready;
+}
 
 void Order::WriteBin(std::ostream& out){
     // Dynamic content
@@ -71,6 +81,7 @@ void Order::WriteBin(std::ostream& out){
     out.write((char*)(&timestamp),sizeof(long));
     out.write((char*)(&discount), sizeof(double));
     out.write((char*)(&ready),    sizeof(bool));
+    out.write((char*)(&paid),    sizeof(bool));
     costumer.WriteBin(out);
     BranchLoc.WriteBin(out);
 }
@@ -99,6 +110,7 @@ void Order::ReadBin(std::istream& is){
     is.read((char*)(&timestamp),sizeof(long));
     is.read((char*)(&discount), sizeof(double));
     is.read((char*)(&ready),    sizeof(bool));
+    is.read((char*)(&paid),    sizeof(bool));
     costumer.ReadBin(is);
     BranchLoc.ReadBin(is);
 }
@@ -119,6 +131,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     }
     out << "Discount : " << order.discount << std::endl;
     out << "Total price : " << order.GetPrice() << std::endl;
+    out << "Paid : " << (order.paid ? "YES" : "NO") << std::endl;
 
     return out;
 }
@@ -129,6 +142,7 @@ bool Order::operator ==(Order& cmp){
     if(cmp.price != price) return false;
     if(cmp.discount != discount) return false;
     if(cmp.pickup != pickup) return false;
+    if(cmp.paid != paid) return false;
     if(cmp.numberOfProducts != numberOfProducts) return false;
     for(int i = 0; i < numberOfProducts; i++)
         if(!(products[i] == cmp.products[i])) return false;
@@ -142,9 +156,13 @@ Order& Order::operator=(const Order& order){
     pickup = order.pickup;
     timestamp = order.timestamp;
     ready = order.ready;
+    paid = order.paid;
     discount = order.discount;
     costumer = order.costumer;
     BranchLoc = order.BranchLoc;
+    numberOfProducts = 0;
+    numberOfPizzas = 0;
+
     for(int i = 0; i < order.numberOfPizzas; i++){
         AddPizza(order.pizzas[i]);
     }

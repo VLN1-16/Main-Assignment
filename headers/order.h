@@ -16,7 +16,9 @@ class Order{
         Order(Costumer cost);
         ~Order();
         int GetPrice();
-
+        void SetPaid();
+        bool IsPaid();
+        bool IsReady();
         void AddProduct(Product& newproduct);
         void AddPizza(const Pizza& newpizza);
 
@@ -50,6 +52,7 @@ class Order{
             return oldarray;
         }
         bool pickup;
+        bool paid;
         long timestamp;
         bool ready;
 

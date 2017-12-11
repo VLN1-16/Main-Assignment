@@ -21,9 +21,9 @@ void PreperationUI::WorkingMode(){
         // Preperator preperator;
         //  Print a single pizza, offer next pizza or previous pizza
         try{
-            prep->GetPizza(cout, index); 
+            prep->GetPizza(cout, index);
         }catch(IndexOutOfRangeException e){
-            cout << "No pizza so far" << endl; 
+            cout << "No pizza so far" << endl;
         }
         cout << "n: Next pizza" << endl;
         cout << "p: Prev pizza" << endl;

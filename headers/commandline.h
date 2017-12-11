@@ -4,6 +4,7 @@
 #include "managerui.h"
 #include "salesUI.h"
 #include "preperationUI.h"
+#include "deliveryUI.h"
 #include "place.h"
 using namespace std;
 
@@ -39,6 +40,7 @@ class CommandLine{
         void managementView();
         void salesPerson();
         void preperationView(Place place);
+        void deliveryView(Place place);
         Place pickplace();
     private:
 
