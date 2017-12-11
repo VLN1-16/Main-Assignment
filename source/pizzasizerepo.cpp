@@ -23,3 +23,6 @@ Pizzasize PizzaSizeRepo::GetPizzaSizeat(int index){
     Pizzasize p = pizzasizelist->at(index);
     return p;
 }
+Pizzasize PizzaSizeRepo::GetPizzaSize(int index){
+    return pizzasizelist->at(index);
+}

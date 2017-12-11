@@ -15,6 +15,7 @@ class PizzaRepo {
         ~PizzaRepo();
         void AddPizza(Pizza& pizza);
         void GetPizzas(std::ostream &os);
+        Pizza GetPizza(int index);
 
     private:
         FileHandler<Pizza>* pizzamenu;

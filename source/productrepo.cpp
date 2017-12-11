@@ -21,3 +21,6 @@ void ProductRepo::GetProducts(std::ostream &os){
 void ProductRepo::RemoveProduct(int index){
     productlist->RemoveProduct(index);
 }
+Product ProductRepo::GetProduct(int index){
+    return productlist->at(index); 
+}

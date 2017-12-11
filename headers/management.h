@@ -1,10 +1,12 @@
 #ifndef MANAGEMENT_H
 #define MANAGEMENT_H
+
 #define placefile "data/places.dat"
 #define toppingfile "data/toppings.dat"
 #define pizzafile "data/pizzamenu.dat"
 #define productfile "data/products.dat"
 #define pizzasizefile "data/pizzasizes.dat"
+
 #include <iostream>
 #include "filehandler.h"
 #include "pizza.h"

@@ -15,6 +15,7 @@ class PizzaSizeRepo{
         void GetPizzaSizes(std::ostream &os);
         void DeletePizzaSizeat(int index);
         Pizzasize GetPizzaSizeat(int index);
+        Pizzasize GetPizzaSize(int index);
     private:
         FileHandler<Pizzasize>* pizzasizelist;
 };

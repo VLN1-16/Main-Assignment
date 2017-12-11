@@ -13,6 +13,7 @@ class ProductRepo{
         void AddProduct(Product product);
         void GetProducts(std::ostream& os);
         void RemoveProduct(int index);
+        Product GetProduct(int index);
     private:
         FileHandler<Product>* productlist;
 };

@@ -2,8 +2,11 @@
 
 
 CommandLine::CommandLine(){
+    places = new PlaceRepo();
 }
-CommandLine::~CommandLine(){}
+CommandLine::~CommandLine(){
+    delete places;
+}
 
 void CommandLine::printMainMenu(){
     cout << "~Welcome to Main Menu~" << endl << endl;
@@ -67,12 +70,10 @@ void CommandLine::preperationView(Place place){
 Place CommandLine::pickplace(){
     // User has to pick his location
     int index;
-    Management* manager = new Management();
-    manager->GetPlaces(cout);
+    places->GetPlaces(cout);
     cout << "Which place are you working at : ";
     cin >> index;
     Place tobereturned;
-    tobereturned = manager->GetPlace(index - 1);
-    delete manager;
+    tobereturned = places->GetPlace(index - 1);
     return tobereturned;
 }

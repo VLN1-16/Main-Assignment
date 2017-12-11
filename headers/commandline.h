@@ -5,6 +5,7 @@
 #include "salesUI.h"
 #include "preperationUI.h"
 #include "place.h"
+#include "placerepo.h"
 using namespace std;
 
 /*
@@ -41,6 +42,7 @@ class CommandLine{
         void preperationView(Place place);
         Place pickplace();
     private:
+        PlaceRepo* places;
 
 };
 #endif

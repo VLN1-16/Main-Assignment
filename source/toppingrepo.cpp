@@ -23,3 +23,6 @@ void ToppingRepo::RemoveTopping(int index){
 Topping ToppingRepo::GetToppingat(int index){
     return toppinglist->at(index); // I think this does not work
 }
+Topping ToppingRepo::GetTopping(int index){
+    return GetToppingat(index);
+}

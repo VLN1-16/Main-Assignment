@@ -18,3 +18,6 @@ void PizzaRepo::GetPizzas(std::ostream &os){
         os << pizza;
     }
 }
+Pizza PizzaRepo::GetPizza(int index){
+    return pizzamenu->at(index);
+}

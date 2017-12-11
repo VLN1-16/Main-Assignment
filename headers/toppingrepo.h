@@ -13,6 +13,7 @@ class ToppingRepo{
         void GetToppings(std::ostream &os);
         void RemoveTopping(int index);
         Topping GetToppingat(int index);
+        Topping GetTopping(int index);
     private:
         FileHandler<Topping>* toppinglist;
 

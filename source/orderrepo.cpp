@@ -1,9 +1,10 @@
 #include "orderrepo.h"
 OrderRepo::OrderRepo(){
-
+    orderList = new FileHandler<Order>(orderfile);
 }
-~OrderRepo::OrderRepo(){
-
+OrderRepo::~OrderRepo(){
+    if(orderList != nullptr)
+        delete orderList;
 }
 void OrderRepo::GetActiveOrders(std::ostream &os){
     for(int i = 0; i < orderList->GetSize(); i++){

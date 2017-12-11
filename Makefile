@@ -39,7 +39,8 @@ commandline:
 	g++ -Wall -c -Iheaders -std=c++11 source/placerepo.cpp -o obj/placerepo.o
 	g++ -Wall -c -Iheaders -std=c++11 source/productrepo.cpp -o obj/productrepo.o
 	g++ -Wall -c -Iheaders -std=c++11 source/toppingrepo.cpp -o obj/toppingrepo.o
-	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/preperator.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o -o bin/commandline.out 
+	g++ -Wall -c -Iheaders -std=c++11 source/orderrepo.cpp -o obj/orderrepo.o
+	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/preperator.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o -o bin/commandline.out 
 
 
 testall:
