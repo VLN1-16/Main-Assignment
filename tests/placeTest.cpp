@@ -10,8 +10,13 @@ int main(){
     // cout << p << endl;
     // p.WriteBin(fout);
     // fout.close();
-    Place a;
-    ifstream fin("data/temp.dat");
-    a.ReadBin(fin);
+    // Place a;
+    // ifstream fin("data/temp.dat");
+    // a.ReadBin(fin);
+    // cout << a << endl;
+    
+    Place p("Kóp","Nýbýlavegur","5812345",true);
+    Place a = p;
+    cout << p << endl;
     cout << a << endl;
 }

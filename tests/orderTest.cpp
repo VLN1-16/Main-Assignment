@@ -15,13 +15,13 @@ int main(){
     Product products[5] = {Product("Stór Kók", 500), Product("Ostagott", 600), Product("Brauðstangir", 750), Product("Medium Kók", 300),Product("Lítil Kók", 251)};
     Costumer cost("First", "Last","5812345");
     Pizza pizza("THISISNAME");
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 10; i++)
         pizza.AddTopping(toppings[i % 5]);
     Order ord(cost);
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 1; i++)
          ord.AddPizza(pizza);
     
-    for(int i = 0; i < 1000; i++)
+    for(int i = 0; i < 1; i++)
         ord.AddProduct(products[i % 5]);
     // compare input and output streams // This does not make sense for order, not right now at least
 
@@ -42,5 +42,11 @@ int main(){
     ord4 = orders[2]; // 1 time  a total of 6 times
     Order ord5 = orders[2];
     delete [] orders;
+    cout << ord << endl;
+    ord.UpdatePizzaStatus(0,1);
+    cout << ord << endl;
+    ord.UpdatePizzaStatus(0,2);
+    cout << ord << endl;
+
     cout << "============================================================================== Class Order looks Ok ==============================================================================" << endl;
 }

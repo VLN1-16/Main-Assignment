@@ -104,6 +104,7 @@ Pizza& Pizza::operator=(const Pizza& from){
     size  = from.size;
     offset = from.offset;
     progress = from.progress;
+    currTopping = 0;
     for(int i = 0; i < from.currTopping; i++){
         AddTopping(from.toppings[i], false, true);
     }

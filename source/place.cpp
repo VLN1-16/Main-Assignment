@@ -45,7 +45,7 @@ void Place::ReadBin (std::istream& binaryIn){
     binaryIn.read((char*)(phone), sizeof(char)*8);
     binaryIn.read((char*)(&isActive), sizeof(bool));
 }
-bool Place::operator ==(Place& cmp){
+bool Place::operator ==(const Place& cmp){
     for(int i = 0; i < sizeOfplace; i++){
         if(cmp.name[i] != name[i]) return false;
         if(cmp.name[i] == '\0') break;

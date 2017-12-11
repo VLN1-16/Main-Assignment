@@ -156,6 +156,8 @@ Order& Order::operator=(const Order& order){
     discount = order.discount;
     costumer = order.costumer;
     BranchLoc = order.BranchLoc;
+    numberOfPizzas = 0;
+    numberOfProducts = 0;
     for(int i = 0; i < order.numberOfPizzas; i++){
         AddPizza(order.pizzas[i]);
     }

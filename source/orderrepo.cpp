@@ -20,3 +20,48 @@ void OrderRepo::AddOrder(Order &order){
 Order OrderRepo::GetOrderAt(int index){
     return orderList->at(index);
 }
+void OrderRepo::GetPizzaByPlace(std::ostream&os, const int index, const Place& myplace){
+    // If the pizza list is empty, fill it (don't do this at the start if somebody else is calling the class )
+    if(pizzas.size() == 0)
+        FillPizzaVector(myplace);
+    if(index >= pizzas.size() || index < 0) // if the pizza vector is empty, throw an exception
+        throw IndexOutOfRangeException();
+    os << pizzas[index] << std::endl;
+}
+
+void OrderRepo::UpdatePizzaStatus(int index, const int status, const Place& myplace){
+    if(index >= pizzas.size() || index < 0) throw IndexOutOfRangeException(); // Idea is that for this to be running the vector has to be loaded
+    int currindex = 0;
+    for(int i = 0; i < orderList->GetSize(); i++){
+        // copy the Order
+        Order order = orderList->at(i);
+        // Compare places
+        if(order.GetBranchLoc() == myplace){
+            // loop through all the pizzas in this order and add it to the list
+            for(int j = 0; j < order.GetNumberOfPizzas(); j++){
+                if(currindex == index){
+                    // at the right pizza
+                    order.UpdatePizzaStatus(j, status); // j is the index of the pizza inside this order, modify that's pizza status
+                    orderList->EditProduct(order, i); // i is the number of product inside of orderlist, replace current with that 
+                    std::cout << "Found the pizza at index  : " << currindex << std::endl;
+                    pizzas.clear();
+                }
+                currindex++;
+            }
+        }
+    }
+}
+
+void OrderRepo::FillPizzaVector(const Place& myplace){
+    for(int i = 0; i < orderList->GetSize(); i++){
+        // copy the Order
+        Order order = orderList->at(i);
+        // Compare places
+        if(order.GetBranchLoc() == myplace){
+            // loop through all the pizzas in this order and add it to the list
+            for(int j = 0; j < order.GetNumberOfPizzas(); j++){
+                pizzas.push_back(order.GetPizzaat(j));
+            }
+        }
+    }
+}

@@ -1,7 +1,8 @@
 #ifndef FILEHANDLER_H
 #define FILEHANDLER_H
 #define arraySize 10
-#include <stddef.h>
+#include <iostream>
+#include <cstddef>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -45,10 +46,11 @@ template <typename T> class FileHandler {
                 fout.close();
             }
         }
-        void EditProduct(T& nversion, int index){
+        void EditProduct(const T& editeditem,const int index){
             if(index < 0 || index >= numberOfProds)
                 throw IndexOutOfRangeException();
-            prodList[index] = nversion;
+            std::cout << "this ran" << std::endl;
+            prodList[index] = editeditem;
             WriteEntireList();
         }
         void RemoveProduct(int index){

@@ -28,10 +28,13 @@ and should .
 
 
 # TODO
-- make orders aware of the place they are ordered into
-- places needs to validate phone numbers, See costumers.cpp for implementation
+- make orders aware of the place they are ordered into #DONE
+- places needs to validate phone numbers, See costumers.cpp for implementation 
 - Add a nice way in filehandler for it to deal with deactivating places ( This is not necasery, places get written with the order );
 - Add functions for the preperation to do.
 - Create a Interface for delivery people.( the ones that hand over the pizza) 
 - Orders have to be verified sane before being registered ( where is it suppose to be made, is there anything on it etc, etc.).
 - Færa öll #define yfir í spes skrá, þannig hægt sé að stilla það 
+- Láta allar færibreytur sem taka index vera unsigned, það meikar ekki sens að það sé negatíft
+- Allt sem getur verið const verði const.
+- Skoða leiðir til þess að gera lestur á hlutum hraðari. Ef við bætum pizzu t.d. aðeins þá bætum við heildina svakalega vegna þess hvað það gerist oft. skoða það að lesa öll topping í einu frekar en að láta topping lesa sig sjálft osf.

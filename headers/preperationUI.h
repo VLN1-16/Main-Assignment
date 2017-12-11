@@ -3,7 +3,8 @@
 #include "place.h"
 #include "order.h"
 
-#include "preperator.h"
+// #include "preperator.h"
+#include "orderrepo.h"
 
 /*
 *
@@ -21,6 +22,6 @@ class PreperationUI{
         void WorkingMode();
     private:
         Place myplace;
-        Preperator* prep;
+        OrderRepo* orders;
 };
 #endif
