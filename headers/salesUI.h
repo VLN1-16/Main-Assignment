@@ -6,7 +6,8 @@
 #include "sales.h"
 #include "costumer.h"
 #include "order.h"
-
+#include "place.h"
+#include "management.h" // only for GetPlaces and GetPlace
 using namespace std;
 
 /*
@@ -25,6 +26,7 @@ class SalesUI{
         void OrderEditor();
         void CreateOrder();
         void EditOrder(Order order);
+        Place pickplace();
         // A sales person needs to select an order (new or old)
         // And proceed to edit that order
 

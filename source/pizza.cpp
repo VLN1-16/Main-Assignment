@@ -25,6 +25,7 @@ Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
     numberOfToppings = 2;
     toppings = nullptr;
     currTopping = 0;
+    progress = 0;
     price  = Pizzasize.GetPrice();
     offset = Pizzasize.GetOffset();
     size   = Pizzasize.GetSize();
@@ -69,6 +70,7 @@ std::ostream& operator<<(std::ostream &os,Pizza& pizza){
     os << pizza.GetName() << std::endl;
     os << "Number of toppings : " << pizza.GetNumberOfToppings() << std::endl;
     os << "Pizza size : " << pizza.GetSize() << std::endl;
+    os << "Pizza status : " << (pizza.progress == 0 ?  "Not started" : ( pizza.progress == 1 ? "In Progress" : "Pizza is ready" )) << std::endl;
     for (int i = 0; i < pizza.GetNumberOfToppings(); i++){
         os << "\t" << pizza.toppings[i];
     }
@@ -133,6 +135,7 @@ bool Pizza::operator ==(const Pizza& pizza){
     if(pizza.offset != offset) return false;
     if(pizza.price != price) return false;
     if(pizza.numberOfToppings != numberOfToppings) return false;
+    if(pizza.progress != progress) return false;
     for(int i = 0; i < numberOfToppings; i++){
         if(!(pizza.toppings[i] == toppings[i])) return false;
     }

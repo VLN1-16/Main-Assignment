@@ -2,6 +2,12 @@
 
 PreperationUI::PreperationUI(Place Myplace){
     myplace = Myplace;
+    prep = nullptr;
+}
+PreperationUI::~PreperationUI(){
+    if(prep == nullptr){
+        delete prep;
+    }
 }
 void PreperationUI::PreperationMenu(){
     WorkingMode();
@@ -9,9 +15,10 @@ void PreperationUI::PreperationMenu(){
 void PreperationUI::WorkingMode(){
     int index = 0;
     while(true){
+        prep = new Preperator(myplace);
         // Preperator preperator;
         //  Print a single pizza, offer next pizza or previous pizza
-        // preperator.GetPizza(cout, index); 
+        prep->GetPizza(cout, index); 
         cout << "n: Next pizza" << endl;
         cout << "p: Prev pizza" << endl;
         cout << "c: Mark complete" << endl;
@@ -32,8 +39,6 @@ void PreperationUI::WorkingMode(){
                 }
             }
             case 'c':{
-                // mark pizza at index complete
-                // preperator.MarkDone(index);
                 break;
             }
             case 'b':{

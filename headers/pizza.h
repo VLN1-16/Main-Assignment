@@ -35,7 +35,7 @@ class Pizza : public Product {
         int size;
         double offset;
         Topping *toppings;
-        int progress; // 0 not started, 1 in Progress, 2 Pizza is ready,
+        int progress; // 0 not started, 1 in Progress, Evrything else (normally 2) Pizza is ready,
 
 };
 #endif

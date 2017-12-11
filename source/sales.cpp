@@ -51,6 +51,7 @@ Pizza Sales::GetPizza(int index){
 void Sales::AddOrder(Order &order){
     if(orderList == nullptr)
         orderList = new FileHandler<Order>(orderfile);
+    // Here some order validation has to occur.
     orderList->AddProduct(order);
 }
 Order Sales::GetThisOrder(int orderid){

@@ -66,9 +66,9 @@ void SalesUI::EditOrder(Order order){
         cout << "d: Add a pizza" << endl;
         cout << "s: Show the order in current state" << endl;
         cout << "m: Mark the order as paid" << endl;
-        cout << "c: Comment" << endl;
+        // cout << "c: Comment" << endl;
         cout << "h: Toggle pickup" << endl;
-        cout << "l: Set pickup location" << endl;
+        // cout << "l: change preperation location" << endl;
         cout << "b: Go back" << endl;
         cout << "q: Quit (does not save)" << endl;
 
@@ -105,9 +105,6 @@ void SalesUI::EditOrder(Order order){
                 cin >> index;
                 Pizzasize size = sales.GetPizzaSize(index - 1);
                 Pizza pizza("User created", size);
-                // cout << "How many toppings do you want : ";
-                // int numberoftoppings;
-                // cin >> numberoftoppings;
                 while(true){
                     cout << "Add a topping (y/n)" << endl;
                     char userans;
@@ -134,9 +131,6 @@ void SalesUI::EditOrder(Order order){
                 break;
             case 'h':
                 cout << "Toggle pickup..." << endl;
-                break;
-            case 'l':
-                cout << "Select a pickup location for this order" << endl;
                 break;
             case 'b':
                 PrintSalesMenu();
@@ -170,6 +164,17 @@ void SalesUI::CreateOrder(){
     cin >> phone;
     Costumer costumer(first, last,phone);
     Order order(costumer);
+    Place tobeadded = pickplace();
+    order.SetBranchLoc(tobeadded);
     EditOrder(order);
 
+}
+Place SalesUI::pickplace(){
+    // User has to pick his location
+    int index;
+    Management manager;
+    manager.GetPlaces(cout);
+    cout << "Where is the order suppose to be made : ";
+    cin >> index;
+    return manager.GetPlace(index - 1);
 }

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-class IndexOutOfRangeException{};
+#include "exceptions.h"
 template <typename T> class FileHandler {
     public:
         FileHandler(std::string DataFile){

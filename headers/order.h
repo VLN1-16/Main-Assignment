@@ -7,6 +7,8 @@
 #include "pizza.h"
 #include "product.h"
 #include "topping.h"
+#include "place.h"
+#include "exceptions.h"
 
 class Order{
     public:
@@ -26,6 +28,12 @@ class Order{
         void WriteBin(std::ostream& out);
         void ReadBin(std::istream& is);
 
+        void SetBranchLoc(Place& newplace);
+        Place GetBranchLoc();
+
+        Pizza GetPizzaat(int index);
+
+        int GetNumberOfPizzas();
     private:
         template <typename T>
         T* resize(T* oldarray, int& cap){
@@ -55,5 +63,6 @@ class Order{
         int numberOfProducts;
 
         Costumer costumer;
+        Place BranchLoc;
 };
 #endif

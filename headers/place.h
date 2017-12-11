@@ -13,6 +13,8 @@ class Place{
         friend std::ostream& operator<<(std::ostream &os, Place &place);
         friend std::istream& operator>>(std::istream &is, Place &place);
 
+        bool operator ==(Place& cmp);
+
     private:
         char name[sizeOfplace];
         char address[sizeOfplace];

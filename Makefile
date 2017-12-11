@@ -19,9 +19,22 @@ places:
 	rm *.o
 
 commandline:
-	g++ -Wall -c -Iheaders -std=c++11 source/main.cpp source/costumer.cpp source/order.cpp source/salesUI.cpp source/sales.cpp source/commandline.cpp source/management.cpp source/topping.cpp source/product.cpp source/pizzasize.cpp source/pizza.cpp source/managerui.cpp source/place.cpp source/preperationUI.cpp
-	g++ main.o sales.o salesUI.o order.o costumer.o commandline.o management.o topping.o product.o pizzasize.o pizza.o managerui.o place.o preperationUI.o -o bin/commandline.out 
-	rm *.o
+	g++ -Wall -c -Iheaders -std=c++11 source/main.cpp -o obj/main.o
+	g++ -Wall -c -Iheaders -std=c++11 source/costumer.cpp  -o obj/costumer.o
+	g++ -Wall -c -Iheaders -std=c++11 source/order.cpp -o obj/order.o
+	g++ -Wall -c -Iheaders -std=c++11 source/salesUI.cpp -o obj/salesUI.o
+	g++ -Wall -c -Iheaders -std=c++11 source/sales.cpp -o obj/sales.o
+	g++ -Wall -c -Iheaders -std=c++11 source/commandline.cpp -o obj/commandline.o
+	g++ -Wall -c -Iheaders -std=c++11 source/management.cpp -o obj/management.o
+	g++ -Wall -c -Iheaders -std=c++11 source/topping.cpp -o obj/topping.o
+	g++ -Wall -c -Iheaders -std=c++11 source/product.cpp -o obj/product.o
+	g++ -Wall -c -Iheaders -std=c++11 source/pizzasize.cpp -o obj/pizzasize.o
+	g++ -Wall -c -Iheaders -std=c++11 source/pizza.cpp -o obj/pizza.o
+	g++ -Wall -c -Iheaders -std=c++11 source/managerui.cpp -o obj/managerui.o
+	g++ -Wall -c -Iheaders -std=c++11 source/place.cpp -o obj/place.o
+	g++ -Wall -c -Iheaders -std=c++11 source/preperationUI.cpp -o obj/preperationUI.o
+	g++ -Wall -c -Iheaders -std=c++11 source/preperator.cpp -o obj/preperator.o
+	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/preperator.o -o bin/commandline.out 
 
 
 testall:

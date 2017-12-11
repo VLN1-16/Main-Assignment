@@ -11,7 +11,8 @@ void CommandLine::printMainMenu(){
     cout << "m: For management" << endl;
     cout << "s: For sales" << endl;
     cout << "p: For preparation" << endl;
-    cout << "d: For delivery" << endl << endl;
+    cout << "d: For delivery" << endl;
+    cout << "q: quit" << endl << endl;
 
     char userAns;
     cin >> userAns;
@@ -38,6 +39,8 @@ void CommandLine::printMainMenu(){
             cout << "4. Search/select desired order" << endl;
 
             break;
+        case 'q':
+            exit(0);
         default:
             cout << "Not a valid input!" << endl;
             printMainMenu();
@@ -63,7 +66,7 @@ Place CommandLine::pickplace(){
     int index;
     Management manager;
     manager.GetPlaces(cout);
-    cout << "Which place are you working at : " << endl;
+    cout << "Which place are you working at : ";
     cin >> index;
     return manager.GetPlace(index - 1);
 }
