@@ -7,7 +7,7 @@
 
 /*
 *
-* The Idea with this UI is that the preperator always 
+* The Idea with this UI is that the preperator always
 * Has a pizza on screen, he can go next, prev, mark ready and mark in progress
 * but his world is around the pizzza queue rather than orders for evryone else.
 */

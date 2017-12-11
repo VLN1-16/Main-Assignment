@@ -12,7 +12,7 @@ void CommandLine::printMainMenu(){
     cout << "s: For sales" << endl;
     cout << "p: For preparation" << endl;
     cout << "d: For delivery" << endl;
-    cout << "q: quit" << endl << endl;
+    cout << "q: Quit" << endl << endl;
 
     char userAns;
     cin >> userAns;
