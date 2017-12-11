@@ -22,14 +22,16 @@ Order::Order(Costumer cost) : Order() {
 }
 
 Order::~Order(){
-    if(pizzas != nullptr)
+    if(pizzas != nullptr){
         delete [] pizzas;
-    if(products != nullptr)
+    }
+    if(products != nullptr){
         delete [] products;
+    }
 }
-void Order::AddProduct(Product newproduct){
+void Order::AddProduct(Product& newproduct){
     if(products == nullptr)
-        products = new Product[productcap]; 
+        products = new Product[productcap];
     if(productcap == numberOfProducts)
         products = resize(products, productcap);
 
@@ -50,10 +52,11 @@ void Order::AddPizza(const Pizza& newpizza){
 
 int Order::GetPrice(){
         return price;
-} 
+}
+
 void Order::WriteBin(std::ostream& out){
     // Dynamic content
-    // How many pizzas 
+    // How many pizzas
     out.write((char*)(&numberOfPizzas), sizeof(int));
     // write each pizza
     for(int i = 0; i < numberOfPizzas; i++) pizzas[i].WriteBin(out);
@@ -72,7 +75,7 @@ void Order::WriteBin(std::ostream& out){
 }
 void Order::ReadBin(std::istream& is){
     // Dynamic content
-    // How many pizzas 
+    // How many pizzas
     int number = 0;
     is.read((char*)(&number), sizeof(int));
     // read each pizza
@@ -102,15 +105,18 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     out << "Order : " << (!order.ready ? "IN PROGRESS" : "DELIVERED") << std::endl;
     out << "Created stamp : " << order.timestamp << std::endl;
     out << "Costumer : " << order.costumer;
-    out << "Products : " << std::endl;
+    if(order.numberOfProducts > 0)
+        out << "Products(" << order.numberOfProducts << ") : " << std::endl;
     for(int i = 0; i < order.numberOfProducts; i++){
         out << "\t" << order.products[i];
     }
+    if(order.numberOfPizzas > 0)
+        out << "Pizzas(" << order.numberOfPizzas << ") : " << std::endl;
     for(int i = 0; i < order.numberOfPizzas; i++){
         out << order.pizzas[i];
     }
     out << "Discount : " << order.discount << std::endl;
-    out << "Total price : " << order.GetPrice() << std::endl; 
+    out << "Total price : " << order.GetPrice() << std::endl;
 
     return out;
 }
@@ -129,4 +135,19 @@ bool Order::operator ==(Order& cmp){
     for(int i = 0; i < numberOfPizzas; i++)
         if(!(pizzas[i] == cmp.pizzas[i])) return false;
     return true;
+}
+Order& Order::operator=(const Order& order){
+    std::cout << "Copy constructor got called" << std::endl;
+    pickup = order.pickup;
+    timestamp = order.timestamp;
+    ready = order.ready;
+    discount = order.discount;
+    costumer = order.costumer;
+    for(int i = 0; i < order.numberOfPizzas; i++){
+        AddPizza(order.pizzas[i]);
+    }
+    for(int i = 0; i < order.numberOfProducts; i++){
+        AddProduct(order.products[i]);
+    }
+    return *this;
 }

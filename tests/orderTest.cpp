@@ -19,7 +19,7 @@ int main(){
         pizza.AddTopping(toppings[i % 5]);
     Order ord(cost);
     for(int i = 0; i < 100; i++)
-        ord.AddPizza(pizza);
+         ord.AddPizza(pizza);
     
     for(int i = 0; i < 1000; i++)
         ord.AddProduct(products[i % 5]);
@@ -32,6 +32,15 @@ int main(){
     ord2.ReadBin(ss);
     assert(ord == ord2);
 
-
+    Order ord3;
+    ord3 = ord; // 1
+    Order* orders = new Order[5];
+    for(int i = 0; i < 5; i++){
+        orders[i] = ord; // 5 times
+    }
+    Order ord4;
+    ord4 = orders[2]; // 1 time  a total of 6 times
+    // Order ord5 = orders[2];
+    delete [] orders;
     cout << "============================================================================== Class Order looks Ok ==============================================================================" << endl;
 }

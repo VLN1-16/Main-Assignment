@@ -8,7 +8,7 @@ void SalesUI::PrintSalesMenu(){
     cout << "i: List inactive orders" << endl;
     cout << "e: Edit a order" << endl;
     cout << "c: Create a order" << endl;
-    cout << "b: Go back" << endl;
+    cout << "b: Back" << endl;
     cout << "q: Quit" << endl;
 
     char userAns = 0;
@@ -17,11 +17,9 @@ void SalesUI::PrintSalesMenu(){
 
     switch(tolower(userAns)){
         case 'a':
-
             sales.GetActiveOrders(cout);
             break;
         case 'i':
-
             sales.GetInActiveOrders(cout);
             break;
         case 'e':
@@ -31,7 +29,7 @@ void SalesUI::PrintSalesMenu(){
             CreateOrder();
             break;
         case 'b':
-            break;
+            return;
         case 'q':
             cout << "Are you sure you want to quit?" << endl;
             cout << "y: yes" << endl << "n: no" << endl;
@@ -46,38 +44,26 @@ void SalesUI::PrintSalesMenu(){
             PrintSalesMenu();
             break;
     }
+    PrintSalesMenu();
 }
-
 void SalesUI::OrderEditor(){
-    cout << "Select order" << endl;
+    cout << "Select an order to edit" << endl;
     Sales sales;
     int orderid;
     sales.GetActiveOrders(cout);
     cin >> orderid;
     Order order = sales.GetThisOrder(orderid-1);
     EditOrder(order);
-
-    /*char validInputs[] = {'p','a','r','d','s','m','c','h','q','l'};
-    char input;
-    cin >> input;
-    for(int i = 0; i < 10; i++){
-        if(input == validInputs[i]){
-            return input;
-        }
-    }
-    cout << "Invalid input!" << endl;
-    cout << "Please enter one of the following: " << endl;
-    return SalesEditor();*/
-
 }
 void SalesUI::EditOrder(Order order){
     Sales sales;
-    bool again = true;
-    while(again){
+
+    while(true){
 
         cout << "a: Add pizza from menu" << endl;
+        cout << "k: Add a product" << endl;
         cout << "r: Register order" << endl;
-        cout << "d: Add a pizza" << endl; // this should be an entire process of it self, do it later
+        cout << "d: Add a pizza" << endl;
         cout << "s: Show the order in current state" << endl;
         cout << "m: Mark the order as paid" << endl;
         cout << "c: Comment" << endl;
@@ -94,16 +80,48 @@ void SalesUI::EditOrder(Order order){
             int pizzaid;
                 cout << "Select a pizza: " << endl;
                 sales.GetPizzas(cout);
+                cout << "Which number of pizza would you like : " << endl;
                 cin >> pizzaid;
                 order.AddPizza(sales.GetPizza(pizzaid-1));
                 break;
+            case 'k':{
+                int productId;
+                sales.GetProducts(cout);
+                cin >> productId;
+                Product tobeadded;
+                tobeadded = sales.GetProduct(productId -1);
+                order.AddProduct(tobeadded);
+                break;
+            }
             case 'r':
-                cout << "Register order.." << endl;
+                cout << "Registering Order" << endl;
+                sales.AddOrder(order);
+                return;
+            case 'd':{
+                cout << "Creating your own pizza" << endl;
+                sales.GetPizzaSizes(cout);
+                cout << "What size would you like : ";
+                int index;
+                cin >> index;
+                Pizzasize size = sales.GetPizzaSize(index - 1);
+                Pizza pizza("User created", size);
+                // cout << "How many toppings do you want : ";
+                // int numberoftoppings;
+                // cin >> numberoftoppings;
+                while(true){
+                    cout << "Add a topping (y/n)" << endl;
+                    char userans;
+                    cin >> userans;
+                    if(tolower(userans) != 'y') break;
+                    sales.GetToppings(cout);
+                    cout << "Which topping would you like : ";
+                    cin >> index;
+                    Topping top = sales.GetTopping(index - 1);
+                    pizza.AddTopping(top);
+                }
+                order.AddPizza(pizza);
                 break;
-            case 'd':
-                cout << "This should open the pizza menu for selecting pizzas.. " << endl;
-                //CreatePizza();
-                break;
+            }
             case 's':
                 cout << "Showing order in current state!" << endl;
                 cout << order << endl;
@@ -137,16 +155,10 @@ void SalesUI::EditOrder(Order order){
                 EditOrder(order);
                 break;
         }
-        cout << "Add another item? (y/n)" << endl;
-        cin >> userAns;
-        if(tolower(userAns) == 'y')
-            break;
-        else
-            again = false;
     }
 }
 void SalesUI::CreateOrder(){
-    
+
     char first[lengthOfName];
     char last[lengthOfName];
     char phone[lengthOfName];

@@ -279,8 +279,6 @@ void ManagerUI::EditPizzas(){
     
     switch(tolower(userAns)){
         case 'a':{
-            // Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
-            // Pick from one of the pizzasizes and give it a name
             char name[sizeOfName];
             cout << "What is the name of the pizza : ";
             cin >> name;

@@ -1,11 +1,11 @@
 #ifndef COMMANDLINE_H
 #define COMMANDLINE_H
 #include <iostream>
-#include <stdlib.h>
-#include <cctype>
-#include "management.h"
-#include "salesUI.h"
 #include "managerui.h"
+#include "salesUI.h"
+#include "preperationUI.h"
+#include "place.h"
+using namespace std;
 
 /*
 * A user communication class,
@@ -37,12 +37,9 @@ class CommandLine{
         // Gives options to the sales person and returns their choice
 
         void managementView();
-        void editPrices();
-        char salesEditor(char userAns);
         void salesPerson();
-        void preparation();
-        void CreatePizza();
-        void EditSizes();
+        void preperationView(Place place);
+        Place pickplace();
     private:
 
 };

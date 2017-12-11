@@ -12,7 +12,7 @@ template <typename T> class FileHandler {
             dataFile = DataFile;
             std::ifstream fin(dataFile, std::ios::binary);
             size = arraySize;
-            prodList = new T[size];
+            prodList = nullptr;
             numberOfProds = 0;
             if ( fin.is_open()){
                 while (true){
@@ -27,19 +27,14 @@ template <typename T> class FileHandler {
             fin.close();
         }
         ~FileHandler(){
-            if(prodList != NULL){
+            if(prodList != nullptr){
                 delete [] prodList;
+                prodList = nullptr;
             }
-        }
-        const std::vector<T>* GetIteratableNonMutableList() const {
-            std::vector<T>* returnList = new std::vector<T>;
-            for(int i = 0; i < numberOfProds; i++){
-                T usecopyconstructor = prodList[i];
-                returnList->push_back(usecopyconstructor);
-            }
-            return returnList;
         }
         void AddProduct(T& product,bool toFile = true){
+            if(prodList == nullptr)
+                prodList = new T[size];
             if (numberOfProds == size){
                 Resize();
             }
@@ -76,26 +71,31 @@ template <typename T> class FileHandler {
             return os;
         }
         T& operator[] (int index){
+            return at(index);
+        }
+        T& at(int index){
             if(index < 0 || index >= numberOfProds){
                 throw IndexOutOfRangeException();
             }
-            return prodList[index];
+            T* returnval = new T[1];
+            *returnval = prodList[index];
+            return *returnval;
         }
     private:
         T *prodList;
         void Resize(){
-            T *tmp = new T[size*2];
+            T *tmp = new T[size * 2];
             for (int i=0; i< size; i++){
                 tmp[i] = prodList[i];
             }
-            delete[] prodList;
-            size *= 2;
+            delete [] prodList;
             prodList = tmp;
             tmp = nullptr;
+            size *= 2;
         }
         int size;
-        int numberOfProds;
         std::string dataFile;
+        int numberOfProds;
 
 };
 #endif

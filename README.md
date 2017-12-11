@@ -31,3 +31,5 @@ and should .
 - make orders aware of the place they are ordered into
 - places needs to validate phone numbers, See costumers.cpp for implementation
 - Add a nice way in filehandler for it to deal with deactivating places
+- Add functions for the preperation to do.
+- Create a Interface for delivery people.( the ones that hand over the pizza) 

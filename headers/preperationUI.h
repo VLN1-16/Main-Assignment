@@ -3,12 +3,14 @@
 #include "place.h"
 #include "order.h"
 
+using namespace std;
+
 class PreperationUI{
     public:
         PreperationUI(Place Myplace);
         void PreperationMenu();
-        void WorkingMode;
+        void WorkingMode();
     private:
         Place myplace;
-}
+};
 #endif
