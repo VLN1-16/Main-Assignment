@@ -15,8 +15,8 @@ void Delivery::GetOrders(std::ostream& os){
     if(activeorders == nullptr)
         activeorders = new FileHandler<Order>(activeorderfile);
     for(int i = 0; i < activeorders->GetSize(); i++){
-        if(activeorders->at(i).GetBranchLoc() == myplace){
-            Order ord = activeorders->at(i);
+        Order ord = activeorders->at(i);
+        if(ord.GetBranchLoc() == myplace){
             os << "Order : " << i+1 << std::endl;
             os << ord;
         }
@@ -26,8 +26,8 @@ void Delivery::GetReadyOrders(std::ostream& os){
     if(activeorders == nullptr)
         activeorders = new FileHandler<Order>(activeorderfile);
     for(int i = 0; i < activeorders->GetSize(); i++){
-        if(activeorders->at(i).GetBranchLoc() == myplace && activeorders->at(i).IsReady()){
-            Order ord = activeorders->at(i);
+        Order ord = activeorders->at(i);
+        if(ord.GetBranchLoc() == myplace && ord.IsReady()){
             os << "Order : " << i+1 << std::endl;
             os << ord;
         }
@@ -36,8 +36,8 @@ void Delivery::GetReadyOrders(std::ostream& os){
 void Delivery::GetThisOrder(std::ostream& os,int orderid){
     if(activeorders == nullptr)
         activeorders = new FileHandler<Order>(activeorderfile);
-        Order ord = activeorders->at(orderid);
-        os << ord;
+    Order ord = activeorders->at(orderid);
+    os << ord;
 }
 void Delivery::MarkDelivered(int index){
     if(index < activeorders->GetSize() && index >= 0){
