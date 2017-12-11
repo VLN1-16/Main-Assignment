@@ -29,7 +29,7 @@ void Preperator::loadVec(){
         Place placeoforder = activeorders->at(i).GetBranchLoc();
         // Compare places
         if(activeorders->at(i).GetBranchLoc() == myplace){
-            // loop through 
+            // loop through
             for(int j = 0; j < activeorders->at(i).GetNumberOfPizzas(); j++){
                 pizzas.push_back(activeorders->at(i).GetPizzaat(j));
             }
@@ -37,11 +37,11 @@ void Preperator::loadVec(){
     }
 }
 void Preperator::UpdateStatus(int index, int status){
-    // find the order the pizza is in 
-    // modify the pizza 
+    // find the order the pizza is in
+    // modify the pizza
     // write the entire active order list back into file
-    for(int i = 0; i < activeorders.GetSize(); i++){
-         
+    for(int i = 0; i < activeorders->GetSize(); i++){
+
     }
     // because this function has to edit it is really gona be slow
 }

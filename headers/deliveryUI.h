@@ -2,8 +2,8 @@
 #define DELIVERYUI_H
 #include "place.h"
 #include "order.h"
+#include "delivery.h"
 
-#include "preperator.h"
 
 /*
 *
@@ -13,11 +13,12 @@
 */
 using namespace std;
 
-class PreperationUI{
+class DeliveryUI{
     public:
         DeliveryUI(Place Myplace);
         ~DeliveryUI();
         void DeliveryMenu();
+        void EditDelivery(int index);
         //void WorkingMode();
     private:
         Place myplace;

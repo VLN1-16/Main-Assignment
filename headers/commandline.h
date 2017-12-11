@@ -4,6 +4,7 @@
 #include "managerui.h"
 #include "salesUI.h"
 #include "preperationUI.h"
+#include "deliveryUI.h"
 #include "place.h"
 using namespace std;
 

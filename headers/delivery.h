@@ -6,18 +6,20 @@
 #include "topping.h"
 #include "order.h"
 #include "filehandler.h"
-#include <vector>
+#include <string>
 #include "place.h"
 class Delivery{
     public:
         Delivery(Place place);
         ~Delivery();
         void GetOrders(std::ostream& os);
+        void GetReadyOrders(std::ostream& os);
         void MarkDelivered(int index);
+        void GetThisOrder(std::ostream& os,int orderid);
+        void MarkPaid(int index);
 
     private:
-        std::vector<Order> activeorders;
-        FileHandler<Order>* orders;
+        FileHandler<Order>* activeorders;
         FileHandler<Order>* inactiveorders;
         Place myplace;
 };

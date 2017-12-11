@@ -5,6 +5,7 @@
 #define pizzafile "data/pizzamenu.dat"
 #define productfile "data/products.dat"
 #define pizzasizefile "data/pizzasizes.dat"
+#define inactiveorderfile "data/inactiveorders.dat"
 #include <iostream>
 #include "filehandler.h"
 #include "pizza.h"
@@ -12,6 +13,7 @@
 #include "product.h"
 #include "place.h"
 #include "pizzasize.h"
+#include "order.h"
 
 class Management{
     public:
@@ -33,7 +35,7 @@ class Management{
         void GetPlaces(std::ostream& os);
         void RemovePlace(int index);
         Place GetPlace(int index);
-
+        void PrintOldOrders(std::ostream &os);
         Pizzasize GetPizzaSizeat(int index);
         Topping GetToppingat(int index);
         // void ChangePrice(T product, int newPrice);
@@ -46,5 +48,6 @@ class Management{
         FileHandler<Topping>* toppinglist;
         FileHandler<Place>* placelist;
         FileHandler<Pizzasize>* pizzasizelist;
+        FileHandler<Order>* orderlist;
 };
 #endif

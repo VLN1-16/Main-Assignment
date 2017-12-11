@@ -46,10 +46,10 @@ void PreperationUI::WorkingMode(){
                 }
                 break;
             case 'c':
-                prep.UpdateStatus(index, 2); // 2 means complete
+                prep->UpdateStatus(index, 2); // 2 means complete
                 break;
             case 'v':
-                prep.UpdateStatus(index, 1); // 1 means in progress
+                prep->UpdateStatus(index, 1); // 1 means in progress
                 break;
             case 'b':
                 return;

@@ -1,29 +1,65 @@
+#include "delivery.h"
+
 Delivery::Delivery(Place place){
     this->myplace = place;
-    orders = nullptr;
+    activeorders = nullptr;
     inactiveorders = nullptr;
 }
-~Delivery::Delivery();
+Delivery::~Delivery(){
+    if(activeorders != nullptr)
+        delete activeorders;
+    if(inactiveorders != nullptr)
+        delete activeorders;
+}
 void Delivery::GetOrders(std::ostream& os){
-    int j = 1;
     if(activeorders == nullptr)
-        orders = new FileHandler<Order>(activeorderfile);
+        activeorders = new FileHandler<Order>(activeorderfile);
     for(int i = 0; i < activeorders->GetSize(); i++){
         if(activeorders->at(i).GetBranchLoc() == myplace){
-            os << "Order : " << j << std::endl;
-            os << activeorders->at(i);
-            j++;
+            Order ord = activeorders->at(i);
+            os << "Order : " << i+1 << std::endl;
+            os << ord;
+        }
+    }
+}
+void Delivery::GetReadyOrders(std::ostream& os){
+    if(activeorders == nullptr)
+        activeorders = new FileHandler<Order>(activeorderfile);
+    for(int i = 0; i < activeorders->GetSize(); i++){
+        if(activeorders->at(i).GetBranchLoc() == myplace && activeorders->at(i).IsReady()){
+            Order ord = activeorders->at(i);
+            os << "Order : " << i+1 << std::endl;
+            os << ord;
+        }
+    }
+}
+void Delivery::GetThisOrder(std::ostream& os,int orderid){
+    if(activeorders == nullptr)
+        activeorders = new FileHandler<Order>(activeorderfile);
+        Order ord = activeorders->at(orderid);
+        os << ord;
+}
+void Delivery::MarkDelivered(int index){
+    if(index < activeorders->GetSize() && index >= 0){
+        Order order;
+        order = activeorders->at(index);
+        if(order.IsPaid()){
+            if(inactiveorders == nullptr){
+                inactiveorders = new FileHandler<Order>(inactiveorderfile);
+            }
+            inactiveorders->AddProduct(order);
+            activeorders->RemoveProduct(index);
+        }
+        else {
+            // Exception stuff
         }
 
     }
 }
-void Delivery::loadVec(){
-    for(int i = 0; i < orders->GetSize(); i++){
-        // go into each order and fetch all active pizzas with right place
-        if(orders->at(i).GetBranchLoc() == myplace){
-            // all pizzas inside this order should go into pizzas
-            
-        }
+void Delivery::MarkPaid(int index){
+    if(index < activeorders->GetSize() && index >= 0){
+        Order order = activeorders->at(index);
+        order.SetPaid();
+        activeorders->EditProduct(order,index);
     }
 }
-void Delivery::MarkDelivered(int index);

@@ -17,6 +17,8 @@ class Order{
         ~Order();
         int GetPrice();
         void SetPaid();
+        bool IsPaid();
+        bool IsReady();
         void AddProduct(Product& newproduct);
         void AddPizza(const Pizza& newpizza);
 

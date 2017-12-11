@@ -54,8 +54,14 @@ void Order::AddPizza(const Pizza& newpizza){
 int Order::GetPrice(){
         return price;
 }
-void SetPaid(){
+void Order::SetPaid(){
     paid = true;
+}
+bool Order::IsPaid(){
+    return paid;
+}
+bool Order::IsReady(){
+    return ready;
 }
 
 void Order::WriteBin(std::ostream& out){
@@ -125,7 +131,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     }
     out << "Discount : " << order.discount << std::endl;
     out << "Total price : " << order.GetPrice() << std::endl;
-    out << "Paid : " << (!order.paid ? "YES" : "NO") << std::endl;
+    out << "Paid : " << (order.paid ? "YES" : "NO") << std::endl;
 
     return out;
 }
@@ -154,6 +160,9 @@ Order& Order::operator=(const Order& order){
     discount = order.discount;
     costumer = order.costumer;
     BranchLoc = order.BranchLoc;
+    numberOfProducts = 0;
+    numberOfPizzas = 0;
+
     for(int i = 0; i < order.numberOfPizzas; i++){
         AddPizza(order.pizzas[i]);
     }

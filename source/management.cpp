@@ -6,6 +6,7 @@ Management::Management(){
     toppinglist = nullptr;
     placelist = nullptr;
     pizzasizelist = nullptr;
+    orderlist = nullptr;
 }
 Management::~Management(){
     if(productlist != nullptr)
@@ -16,6 +17,8 @@ Management::~Management(){
         delete toppinglist;
     if(placelist != nullptr)
         delete placelist;
+    if(orderlist != nullptr)
+        delete orderlist;
 }
 void Management::AddProduct(Product product){
     if(productlist == nullptr)
@@ -94,14 +97,14 @@ void Management::GetPlaces(std::ostream& os){
         os << placelist->at(i);
     }
 }
-Place Management::GetPlace(int index){ 
+Place Management::GetPlace(int index){
     if(placelist == nullptr)
         placelist = new FileHandler<Place>(placefile);
     return placelist->at(index);
 }
 void Management::RemovePlace(int index){
     // this should set the active flag of a single place
-    // this has to be implemented cleanly in filehandler 
+    // this has to be implemented cleanly in filehandler
 }
 void Management::AddPizza(Pizza& pizza){
     if(pizzamenu == nullptr)
@@ -114,5 +117,14 @@ void Management::GetPizzas(std::ostream& os){
     for(int i = 0; i < pizzamenu->GetSize() ; i++){
         os << "Pizza : " << i + 1 << std::endl;
         os << pizzamenu->at(i);
+    }
+}
+void Management::PrintOldOrders(std::ostream &os){
+    if(orderlist == nullptr)
+        orderlist = new FileHandler<Order>(inactiveorderfile);
+    for(int i = 0; i < orderlist->GetSize(); i++){
+        Order ord = orderlist->at(i);
+        os << "Order : " << i + 1 << std::endl;
+        os << ord;
     }
 }
