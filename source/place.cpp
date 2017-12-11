@@ -34,21 +34,25 @@ std::istream& operator>>(std::istream &is, Place &place){
 }
 void Place::WriteBin(std::ostream& binaryOut){
     // Write out the int and the name
-    binaryOut.write((char*)(&name), sizeof(char)*sizeOfplace);
-    binaryOut.write((char*)(&address), sizeof(char)*sizeOfplace);
-    binaryOut.write((char*)(&phone), sizeof(char)*8);
+    binaryOut.write((char*)(name), sizeof(char)*sizeOfplace);
+    binaryOut.write((char*)(address), sizeof(char)*sizeOfplace);
+    binaryOut.write((char*)(phone), sizeof(char)*8);
     binaryOut.write((char*)(&isActive), sizeof(bool));
 }
 void Place::ReadBin (std::istream& binaryIn){
-    binaryIn.read((char*)(&name), sizeof(char)*sizeOfplace);
-    binaryIn.read((char*)(&address), sizeof(char)*sizeOfplace);
-    binaryIn.read((char*)(&phone), sizeof(char)*8);
+    binaryIn.read((char*)(name), sizeof(char)*sizeOfplace);
+    binaryIn.read((char*)(address), sizeof(char)*sizeOfplace);
+    binaryIn.read((char*)(phone), sizeof(char)*8);
     binaryIn.read((char*)(&isActive), sizeof(bool));
 }
 bool Place::operator ==(Place& cmp){
     for(int i = 0; i < sizeOfplace; i++){
         if(cmp.name[i] != name[i]) return false;
+        if(cmp.name[i] == '\0') break;
+    }
+    for(int i = 0; i < sizeOfplace; i++){
         if(cmp.address[i] != address[i]) return false;
+        if(cmp.address[i] == '\0') break;
     }
     for(int i = 0; i < 8; i++){
         if(cmp.phone[i] != phone[i]) return false;

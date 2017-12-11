@@ -68,3 +68,8 @@ testorder:
 	g++ product.o topping.o pizza.o order.o costumer.o orderTest.o pizzasize.o -o bin/orderTest.out
 	rm *.o
 	valgrind -q --leak-check=full ./bin/orderTest.out
+testplace:
+	g++ -Wall -c -Iheaders -std=c++17 source/place.cpp tests/placeTest.cpp
+	g++ place.o placeTest.o -o bin/placeTest.out
+	rm *.o
+	valgrind -q --leak-check=full ./bin/placeTest.out

@@ -39,3 +39,6 @@ vgcore.*
 
 # Binary executables
 *.out
+
+# Data files
+*.dat

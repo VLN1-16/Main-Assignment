@@ -1,6 +1,6 @@
 #include "order.h"
 
-Order::Order(){
+Order::Order() {
     pickup = true;
     paid = false;
     timestamp = time(0);
@@ -77,6 +77,7 @@ void Order::WriteBin(std::ostream& out){
     out.write((char*)(&ready),    sizeof(bool));
     out.write((char*)(&paid),    sizeof(bool));
     costumer.WriteBin(out);
+    BranchLoc.WriteBin(out);
 }
 void Order::ReadBin(std::istream& is){
     // Dynamic content
@@ -96,7 +97,6 @@ void Order::ReadBin(std::istream& is){
         Product newproduct;
         newproduct.ReadBin(is);
         AddProduct(newproduct);
-        // products[i].WriteBin(out);
     }
     // Static content
     is.read((char*)(&price), sizeof(int));
@@ -106,11 +106,13 @@ void Order::ReadBin(std::istream& is){
     is.read((char*)(&ready),    sizeof(bool));
     is.read((char*)(&paid),    sizeof(bool));
     costumer.ReadBin(is);
+    BranchLoc.ReadBin(is);
 }
 std::ostream& operator <<(std::ostream& out, Order& order){
     out << "Order : " << (!order.ready ? "IN PROGRESS" : "DELIVERED") << std::endl;
     out << "Created stamp : " << order.timestamp << std::endl;
     out << "Costumer : " << order.costumer;
+    out << "BranchLoc : " << order.BranchLoc << std::endl;
     if(order.numberOfProducts > 0)
         out << "Products(" << order.numberOfProducts << ") : " << std::endl;
     for(int i = 0; i < order.numberOfProducts; i++){
@@ -145,13 +147,13 @@ bool Order::operator ==(Order& cmp){
     return true;
 }
 Order& Order::operator=(const Order& order){
-    std::cout << "Copy constructor got called" << std::endl;
     pickup = order.pickup;
     timestamp = order.timestamp;
     ready = order.ready;
     paid = order.paid;
     discount = order.discount;
     costumer = order.costumer;
+    BranchLoc = order.BranchLoc;
     for(int i = 0; i < order.numberOfPizzas; i++){
         AddPizza(order.pizzas[i]);
     }
