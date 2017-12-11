@@ -14,6 +14,7 @@ class Order{
     public:
         Order();
         Order(Costumer cost);
+        Order(const Order& from);
         ~Order();
         int GetPrice();
 

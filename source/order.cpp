@@ -20,7 +20,18 @@ Order::Order() {
 Order::Order(Costumer cost) : Order() {
     costumer = cost;
 }
-
+Order::Order(const Order& from) : Order(){
+    pickup = from.pickup;
+    timestamp = from.timestamp;
+    ready = from.ready;
+    discount = from.discount;
+    costumer = from.costumer;
+    BranchLoc = from.BranchLoc;
+    for(int i = 0; i < from.numberOfPizzas; i++)
+        AddPizza(from.pizzas[i]);
+    for(int i = 0; i < from.numberOfProducts; i++)
+        AddProduct(from.products[i]);
+}
 Order::~Order(){
     if(pizzas != nullptr){
         delete [] pizzas;

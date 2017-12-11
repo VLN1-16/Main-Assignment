@@ -40,7 +40,7 @@ int main(){
     }
     Order ord4;
     ord4 = orders[2]; // 1 time  a total of 6 times
-    // Order ord5 = orders[2];
+    Order ord5 = orders[2];
     delete [] orders;
     cout << "============================================================================== Class Order looks Ok ==============================================================================" << endl;
 }
