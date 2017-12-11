@@ -34,3 +34,4 @@ and should .
 - Add functions for the preperation to do.
 - Create a Interface for delivery people.( the ones that hand over the pizza) 
 - Orders have to be verified sane before being registered ( where is it suppose to be made, is there anything on it etc, etc.).
+- Færa öll #define yfir í spes skrá, þannig hægt sé að stilla það 

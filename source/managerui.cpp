@@ -1,11 +1,17 @@
 #include "managerui.h"
-
-ManagerUI::ManagerUI(){
-    manager = new Management;
+ManagerUI::ManagerUI() {
+    pizzas = new PizzaRepo();
+    toppings = new ToppingRepo();
+    products = new ProductRepo();
+    places   = new PlaceRepo();
+    pizzaSizes = new PizzaSizeRepo();
 }
 ManagerUI::~ManagerUI(){
-    if(manager != nullptr)
-        delete manager;
+    delete pizzaSizes;
+    delete pizzas;
+    delete toppings;
+    delete products;
+    delete places; 
 }
 void ManagerUI::ManagerMenu(){
     cout << "s: Edit pizza type/size" << endl; // DONE 
@@ -90,20 +96,19 @@ void ManagerUI::EditSizes(){
             cin >> offset;
             // Here we need more input validation
             Pizzasize newbase(s, offset, price);
-            // Management manager;
-            manager->AddPizzaSize(newbase);
+            pizzaSizes->AddPizzaSize(newbase);
             break;
         }
         case 'd':{
-            manager->GetPizzaSizes(cout);
+            pizzaSizes->GetPizzaSizes(cout);
             cout << "Which base number would you like to delete : " << endl;
             int base;
             cin >> base;
-            manager->DeletePizzaSizeat(base - 1);
+            pizzaSizes->DeletePizzaSizeat(base - 1);
             break;
         }
         case 'l':{
-            manager->GetPizzaSizes(cout);
+            pizzaSizes->GetPizzaSizes(cout);
             break;
         }
         case 'b':
@@ -136,19 +141,19 @@ void ManagerUI::EditProducts(){
             cout << "What is the price : ";
             cin >> price;
             Product prod(name, price);
-            manager->AddProduct(prod);
+            products->AddProduct(prod);
             break;
         }
         case 'd':{
-            manager->GetProducts(cout);
+            products->GetProducts(cout);
             int index;
             cout << "Product number what would you like to remove : ";
             cin >> index;
-            manager->RemoveProduct(index - 1); 
+            products->RemoveProduct(index - 1); 
             break;
         }
         case 'l':
-            manager->GetProducts(cout);
+            products->GetProducts(cout);
             break;
         case 'b':
             return;
@@ -179,19 +184,19 @@ void ManagerUI::EditToppings(){
             cout << "What is the price : ";
             cin >> price;
             Topping top(name, price);
-            manager->AddTopping(top);
+            toppings->AddTopping(top);
             break;
         }
         case 'd':{
-            manager->GetToppings(cout);
+            toppings->GetToppings(cout);
             int index;
             cout << "Topping number what would you like to remove : ";
             cin >> index;
-            manager->RemoveTopping(index - 1); 
+            toppings->RemoveTopping(index - 1); 
             break;
         }
         case 'l':
-            manager->GetToppings(cout);
+            toppings->GetToppings(cout);
             break;
         case 'b':
             return;
@@ -225,18 +230,18 @@ void ManagerUI::EditLocations(){
             cout << "What is the phone number : ";
             cin >> phone;
             Place p(name, addr, phone);
-            manager->AddPlace(p); 
+            places->AddPlace(p); 
             break;
         }
         case 'd':
-            manager->GetPlaces(cout);
+            places->GetPlaces(cout);
             int index;
             cout << "Which place would you like to Deactivate";
             cin >> index;
-            manager->RemovePlace(index - 1); 
+            places->RemovePlace(index - 1); 
             break;
         case 'l':
-            manager->GetPlaces(cout);
+            places->GetPlaces(cout);
             break;
         case 'b':
             return;
@@ -248,8 +253,6 @@ void ManagerUI::EditLocations(){
 
 }
 void ManagerUI::EditPizzas(){
-    PizzaRepo pizzas;
-    PizzaSizeRepo pizzasizes;
     cout << "Editing Ready pizzas : " << endl;
     cout << "a: Add a pizza" << endl;
     cout << "d: Delete a pizza" << endl;
@@ -266,38 +269,33 @@ void ManagerUI::EditPizzas(){
             char name[sizeOfName];
             cout << "What is the name of the pizza : ";
             cin >> name;
-            // manager->GetPizzaSizes(cout);
-            pizzasizes.GetPizzaSizes(cout);
+            pizzaSizes->GetPizzaSizes(cout);
             cout << "What size do you want : ";
             int index;
             cin >> index;
-            Pizzasize size = manager->GetPizzaSizeat(index - 1);
+            Pizzasize size = pizzaSizes->GetPizzaSizeat(index - 1);
             Pizza pizza(name, size);
             cout << "How many toppings do you want : ";
             int numberoftoppings;
             cin >> numberoftoppings;
             for(int i = 0; i < numberoftoppings; i++){
-                // pizzas.GetToppings();
-                manager->GetToppings(cout);
+                toppings->GetToppings(cout);
                 cout << "Which topping would you like : ";
                 cin >> index;
-                Topping top = manager->GetToppingat(index - 1);
+                Topping top = toppings->GetToppingat(index - 1);
                 pizza.AddTopping(top);
             }
-            manager->AddPizza(pizza);
+            pizzas->AddPizza(pizza);
             break;
         }
         case 'd':{
-            // Management management;
-            // management.GetPlaces(cout);
             // int index;
             // cout << "Which place would you like to Deactivate";
             // cin >> index;
-            // management.RemovePlace(index - 1); 
             break;
         }
         case 'l':
-            manager->GetPizzas(cout);
+            pizzas->GetPizzas(cout);
             break;
         case 'b':{
             return;

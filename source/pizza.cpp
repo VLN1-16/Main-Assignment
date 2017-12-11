@@ -30,6 +30,16 @@ Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
     offset = Pizzasize.GetOffset();
     size   = Pizzasize.GetSize();
 }
+Pizza::Pizza(const Pizza& from) : Pizza() {
+    SetName(from.name);
+    price = from.price;
+    size  = from.size;
+    offset = from.offset;
+    progress = from.progress;
+    for(int i = 0; i < from.currTopping; i++){
+        AddTopping(from.toppings[i], false, true);
+    }
+}
 Pizza::~Pizza() {
     if(toppings != nullptr)
         delete [] toppings;

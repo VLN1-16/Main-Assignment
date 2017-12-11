@@ -9,6 +9,7 @@ class NoSizes{};
 class Pizza : public Product {
     public:
         Pizza();
+        Pizza(const Pizza& from);
         Pizza(char n[sizeOfName], int Price = 1000, double Offset = 1.4, int Size = 16) ;
         Pizza(char n[sizeOfName], Pizzasize& Pizzasize);
         virtual ~Pizza();
