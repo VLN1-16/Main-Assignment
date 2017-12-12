@@ -23,9 +23,7 @@ commandline:
 	g++ -Wall -c -Iheaders -std=c++11 source/costumer.cpp  -o obj/costumer.o
 	g++ -Wall -c -Iheaders -std=c++11 source/order.cpp -o obj/order.o
 	g++ -Wall -c -Iheaders -std=c++11 source/salesUI.cpp -o obj/salesUI.o
-	g++ -Wall -c -Iheaders -std=c++11 source/sales.cpp -o obj/sales.o
 	g++ -Wall -c -Iheaders -std=c++11 source/commandline.cpp -o obj/commandline.o
-	g++ -Wall -c -Iheaders -std=c++11 source/management.cpp -o obj/management.o
 	g++ -Wall -c -Iheaders -std=c++11 source/topping.cpp -o obj/topping.o
 	g++ -Wall -c -Iheaders -std=c++11 source/product.cpp -o obj/product.o
 	g++ -Wall -c -Iheaders -std=c++11 source/pizzasize.cpp -o obj/pizzasize.o
@@ -33,10 +31,15 @@ commandline:
 	g++ -Wall -c -Iheaders -std=c++11 source/managerui.cpp -o obj/managerui.o
 	g++ -Wall -c -Iheaders -std=c++11 source/place.cpp -o obj/place.o
 	g++ -Wall -c -Iheaders -std=c++11 source/preperationUI.cpp -o obj/preperationUI.o
-	g++ -Wall -c -Iheaders -std=c++11 source/preperator.cpp -o obj/preperator.o
 	g++ -Wall -c -Iheaders -std=c++11 source/deliveryUI.cpp -o obj/deliveryUI.o
-	g++ -Wall -c -Iheaders -std=c++11 source/delivery.cpp -o obj/delivery.o
-	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/preperator.o obj/deliveryUI.o obj/delivery.o -o bin/commandline.out
+	g++ -Wall -c -Iheaders -std=c++11 source/pizzasizerepo.cpp -o obj/pizzasizerepo.o
+	g++ -Wall -c -Iheaders -std=c++11 source/pizzarepo.cpp -o obj/pizzarepo.o
+	g++ -Wall -c -Iheaders -std=c++11 source/placerepo.cpp -o obj/placerepo.o
+	g++ -Wall -c -Iheaders -std=c++11 source/productrepo.cpp -o obj/productrepo.o
+	g++ -Wall -c -Iheaders -std=c++11 source/toppingrepo.cpp -o obj/toppingrepo.o
+	g++ -Wall -c -Iheaders -std=c++11 source/orderrepo.cpp -o obj/orderrepo.o
+	g++ -Wall -c -Iheaders -std=c++11 source/inactiveorderrepo.cpp -o obj/inactiveorderrepo.o
+	g++ obj/main.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/deliveryUI.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o obj/inactiveorderrepo.o -o bin/commandline.out
 
 
 testall:

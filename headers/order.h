@@ -14,11 +14,13 @@ class Order{
     public:
         Order();
         Order(Costumer cost);
+        Order(const Order& from);
         ~Order();
         int GetPrice();
-        void SetPaid();
-        bool IsPaid();
         bool IsReady();
+        void SetReady();
+        bool IsPaid();
+        void SetPaid();
         void AddProduct(Product& newproduct);
         void AddPizza(const Pizza& newpizza);
 
@@ -52,9 +54,9 @@ class Order{
             return oldarray;
         }
         bool pickup;
-        bool paid;
         long timestamp;
         bool ready;
+        bool paid;
 
         int price;
         int discount;

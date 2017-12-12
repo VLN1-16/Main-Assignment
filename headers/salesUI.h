@@ -3,11 +3,20 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cctype>
-#include "sales.h"
+
+// #include "sales.h" // Getting rid of this
 #include "costumer.h"
 #include "order.h"
 #include "place.h"
-#include "management.h" // only for GetPlaces and GetPlace
+// #include "management.h" // only for GetPlaces and GetPlace this is the first sign that the design was bad
+
+#include "pizzarepo.h"
+#include "toppingrepo.h"
+#include "productrepo.h"
+#include "placerepo.h"
+#include "pizzasizerepo.h"
+#include "orderrepo.h"
+
 using namespace std;
 
 /*
@@ -20,7 +29,7 @@ using namespace std;
 class SalesUI{
     public:
         SalesUI();
-
+        ~SalesUI();
         //void userInteraction();
         void PrintSalesMenu();
         void OrderEditor();
@@ -35,9 +44,12 @@ class SalesUI{
 
         // Gives options to the sales person and returns their choice
 
-
-
     private:
-
+        PizzaRepo* pizzas;
+        ToppingRepo* toppings;
+        ProductRepo* products;
+        PlaceRepo* places;
+        PizzaSizeRepo* pizzaSizes;
+        OrderRepo* activeorders;
 };
 #endif

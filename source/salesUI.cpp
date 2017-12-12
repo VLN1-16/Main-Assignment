@@ -1,11 +1,25 @@
 #include "salesUI.h"
 
-SalesUI::SalesUI(){}
+SalesUI::SalesUI(){
+    pizzas = new PizzaRepo();
+    toppings = new ToppingRepo();
+    products = new ProductRepo();
+    places   = new PlaceRepo();
+    pizzaSizes = new PizzaSizeRepo();
+    activeorders = new OrderRepo();
+}
+SalesUI::~SalesUI(){
+    delete pizzaSizes;
+    delete pizzas;
+    delete toppings;
+    delete products;
+    delete places; 
+    delete activeorders;
+}
 
 void SalesUI::PrintSalesMenu(){
-    Sales sales;
+    // Sales sales;
     cout << "a: List active orders" << endl;
-    cout << "i: List inactive orders" << endl;
     cout << "e: Edit a order" << endl;
     cout << "c: Create a order" << endl;
     cout << "b: Back" << endl;
@@ -17,10 +31,7 @@ void SalesUI::PrintSalesMenu(){
 
     switch(tolower(userAns)){
         case 'a':
-            sales.GetActiveOrders(cout);
-            break;
-        case 'i':
-            sales.GetInActiveOrders(cout);
+            activeorders->GetActiveOrders(cout);
             break;
         case 'e':
             OrderEditor();
@@ -48,16 +59,13 @@ void SalesUI::PrintSalesMenu(){
 }
 void SalesUI::OrderEditor(){
     cout << "Select an order to edit" << endl;
-    Sales sales;
     int orderid;
-    sales.GetActiveOrders(cout);
+    activeorders->GetActiveOrders(cout);
     cin >> orderid;
-    Order order = sales.GetThisOrder(orderid-1);
+    Order order = activeorders->GetOrderAt(orderid-1);
     EditOrder(order);
 }
 void SalesUI::EditOrder(Order order){
-    Sales sales;
-
     while(true){
 
         cout << "a: Add pizza from menu" << endl;
@@ -79,41 +87,41 @@ void SalesUI::EditOrder(Order order){
             case 'a':
             int pizzaid;
                 cout << "Select a pizza: " << endl;
-                sales.GetPizzas(cout);
+                pizzas->GetPizzas(cout);
                 cout << "Which number of pizza would you like : " << endl;
                 cin >> pizzaid;
-                order.AddPizza(sales.GetPizza(pizzaid-1));
+                order.AddPizza(pizzas->GetPizza(pizzaid-1));
                 break;
             case 'k':{
                 int productId;
-                sales.GetProducts(cout);
+                products->GetProducts(cout);
                 cin >> productId;
                 Product tobeadded;
-                tobeadded = sales.GetProduct(productId -1);
+                tobeadded = products->GetProduct(productId -1);
                 order.AddProduct(tobeadded);
                 break;
             }
             case 'r':
                 cout << "Registering Order" << endl;
-                sales.AddOrder(order);
+                activeorders->AddOrder(order);
                 return;
             case 'd':{
                 cout << "Creating your own pizza" << endl;
-                sales.GetPizzaSizes(cout);
+                pizzaSizes->GetPizzaSizes(cout);
                 cout << "What size would you like : ";
                 int index;
                 cin >> index;
-                Pizzasize size = sales.GetPizzaSize(index - 1);
+                Pizzasize size = pizzaSizes->GetPizzaSize(index - 1);
                 Pizza pizza("User created", size);
                 while(true){
                     cout << "Add a topping (y/n)" << endl;
                     char userans;
                     cin >> userans;
                     if(tolower(userans) != 'y') break;
-                    sales.GetToppings(cout);
+                    toppings->GetToppings(cout);
                     cout << "Which topping would you like : ";
                     cin >> index;
-                    Topping top = sales.GetTopping(index - 1);
+                    Topping top = toppings->GetTopping(index - 1);
                     pizza.AddTopping(top);
                 }
                 order.AddPizza(pizza);
@@ -174,9 +182,8 @@ void SalesUI::CreateOrder(){
 Place SalesUI::pickplace(){
     // User has to pick his location
     int index;
-    Management manager;
-    manager.GetPlaces(cout);
+    places->GetPlaces(cout);
     cout << "Where is the order suppose to be made : ";
     cin >> index;
-    return manager.GetPlace(index - 1);
+    return places->GetPlace(index - 1);
 }

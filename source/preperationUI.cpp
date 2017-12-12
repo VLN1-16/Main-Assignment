@@ -2,26 +2,23 @@
 
 PreperationUI::PreperationUI(Place Myplace){
     myplace = Myplace;
-    prep = nullptr;
+    orders = new OrderRepo();
 }
 PreperationUI::~PreperationUI(){
-    if(prep != nullptr){
-        delete prep;
+    if(orders != nullptr){
+        delete orders;
     }
 }
 void PreperationUI::PreperationMenu(){
     WorkingMode();
 }
 void PreperationUI::WorkingMode(){
-    prep = new Preperator(myplace);
     int index = 0;
 
     while(true){
-        std::cout << "Index is : " << index << std::endl;
-        // Preperator preperator;
         //  Print a single pizza, offer next pizza or previous pizza
         try{
-            prep->GetPizza(cout, index);
+            orders->GetPizzaByPlace(cout, index, myplace);
         }catch(IndexOutOfRangeException e){
             cout << "No pizza so far" << endl;
         }
@@ -46,10 +43,10 @@ void PreperationUI::WorkingMode(){
                 }
                 break;
             case 'c':
-                // prep->UpdateStatus(index, 2); // 2 means complete
+                orders->UpdatePizzaStatus(index, 2, myplace); // 2 means ready
                 break;
             case 'v':
-                // prep->UpdateStatus(index, 1); // 1 means in progress
+                orders->UpdatePizzaStatus(index, 1, myplace); // 1 means in progress
                 break;
             case 'b':
                 return;

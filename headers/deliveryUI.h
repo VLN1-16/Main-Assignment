@@ -2,7 +2,8 @@
 #define DELIVERYUI_H
 #include "place.h"
 #include "order.h"
-#include "delivery.h"
+#include "orderrepo.h"
+#include "inactiveorderrepo.h"
 
 
 /*
@@ -19,9 +20,11 @@ class DeliveryUI{
         ~DeliveryUI();
         void DeliveryMenu();
         void EditDelivery(int index);
-        //void WorkingMode();
+        void MakeDelivered(int index);
+        
     private:
         Place myplace;
-        Delivery* dev;
+        OrderRepo* orders;
+        InActiveOrderRepo* inorders;
 };
 #endif

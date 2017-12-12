@@ -1,16 +1,20 @@
 #include "deliveryUI.h"
 
 DeliveryUI::DeliveryUI(Place Myplace){
-    this->myplace = Myplace;
-    dev = nullptr;
+    myplace = Myplace;
+    orders = new OrderRepo();
+    inorders = new InActiveOrderRepo();
 }
 DeliveryUI::~DeliveryUI(){
-    if(dev != nullptr){
-        delete dev;
+    if(orders != nullptr){
+        delete orders;
+    }
+    if(inorders != nullptr){
+        delete inorders;
     }
 }
 void DeliveryUI::DeliveryMenu(){
-    dev = new Delivery(myplace);
+
     while(true){
         cout << "a: Get list of all active orders" << endl;
         cout << "r: Get list of ready orders" << endl;
@@ -21,19 +25,21 @@ void DeliveryUI::DeliveryMenu(){
         cin >> userin;
         switch(tolower(userin)){
             case 'a':
-                cout << "All active orders at" << endl;
-                dev->GetOrders(cout);
+                cout << "All active orders at this place:" << endl;
+                orders->GetActiveOrders(cout,myplace);
+                cout << endl;
                 break;
             case 'r':
                 cout << "All ready orders" << endl;
-                dev->GetReadyOrders(cout);
+                orders->GetReadyOrders(cout,myplace);
+                cout << endl;
                 break;
             case 'i':
                 int id;
                 cout << "Select An order: " << endl;
-                dev->GetOrders(cout);
+                orders->GetActiveOrders(cout,myplace);
                 cin >> id;
-                dev->GetThisOrder(cout,id-1);
+                orders->ReadOrderAt(cout,id-1);
                 EditDelivery(id-1);
                 break;
             case 'b':
@@ -55,16 +61,16 @@ void DeliveryUI::EditDelivery(int index){
     cin >> userin;
     switch(tolower(userin)){
         case 'a':{
-            dev->MarkPaid(index);
+            orders->MarkPaid(index);
             break;
         }
         case 'd':{
-            dev->MarkDelivered(index);
+            MakeDelivered(index);
             break;
         }
         case 'r':{
-            dev->MarkPaid(index);
-            dev->MarkDelivered(index);
+            orders->MarkPaid(index);
+            MakeDelivered(index);
             break;
         }
         case 'b':{
@@ -74,4 +80,15 @@ void DeliveryUI::EditDelivery(int index){
             exit(0);
         }
     }
+}
+void DeliveryUI::MakeDelivered(int index){
+    Order order = orders->GetOrderAt(index);
+    if(order.IsPaid()){
+        inorders->AddOrder(order);
+        orders->RemoveOrder(index);
+    }
+    else{
+        // ORDER NOT PAID EXCEPTION
+    }
+
 }

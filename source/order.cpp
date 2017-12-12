@@ -2,10 +2,9 @@
 
 Order::Order() {
     pickup = true;
-    paid = false;
     timestamp = time(0);
     ready = false;
-
+    paid = false;
     price = 0;
     discount = 0;
 
@@ -21,7 +20,19 @@ Order::Order() {
 Order::Order(Costumer cost) : Order() {
     costumer = cost;
 }
-
+Order::Order(const Order& from) : Order(){
+    pickup = from.pickup;
+    timestamp = from.timestamp;
+    ready = from.ready;
+    paid = from.paid;
+    discount = from.discount;
+    costumer = from.costumer;
+    BranchLoc = from.BranchLoc;
+    for(int i = 0; i < from.numberOfPizzas; i++)
+        AddPizza(from.pizzas[i]);
+    for(int i = 0; i < from.numberOfProducts; i++)
+        AddProduct(from.products[i]);
+}
 Order::~Order(){
     if(pizzas != nullptr){
         delete [] pizzas;
@@ -52,16 +63,19 @@ void Order::AddPizza(const Pizza& newpizza){
 }
 
 int Order::GetPrice(){
-        return price;
+    return price;
 }
-void Order::SetPaid(){
-    paid = true;
+bool Order::IsReady(){
+    return ready;
+}
+void Order::SetReady(){
+    ready = true;
 }
 bool Order::IsPaid(){
     return paid;
 }
-bool Order::IsReady(){
-    return ready;
+void Order::SetPaid(){
+    paid = true;
 }
 
 void Order::WriteBin(std::ostream& out){
@@ -131,7 +145,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     }
     out << "Discount : " << order.discount << std::endl;
     out << "Total price : " << order.GetPrice() << std::endl;
-    out << "Paid : " << (order.paid ? "YES" : "NO") << std::endl;
+    out << "Order Paid : " << (order.paid? "YES" : "NO") << std::endl;
 
     return out;
 }
@@ -139,6 +153,7 @@ bool Order::operator ==(Order& cmp){
     if(cmp.pickup != pickup) return false;
     if(cmp.timestamp != timestamp) return false;
     if(cmp.ready != ready) return false;
+    if(cmp.paid != ready) return false;
     if(cmp.price != price) return false;
     if(cmp.discount != discount) return false;
     if(cmp.pickup != pickup) return false;
@@ -160,9 +175,8 @@ Order& Order::operator=(const Order& order){
     discount = order.discount;
     costumer = order.costumer;
     BranchLoc = order.BranchLoc;
-    numberOfProducts = 0;
     numberOfPizzas = 0;
-
+    numberOfProducts = 0;
     for(int i = 0; i < order.numberOfPizzas; i++){
         AddPizza(order.pizzas[i]);
     }

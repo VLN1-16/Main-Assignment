@@ -2,8 +2,12 @@
 
 
 CommandLine::CommandLine(){
+    places = new PlaceRepo();
 }
-CommandLine::~CommandLine(){}
+CommandLine::~CommandLine(){
+    if(places != nullptr)
+        delete places;
+}
 
 void CommandLine::printMainMenu(){
     cout << "~Welcome to Main Menu~" << endl << endl;
@@ -34,13 +38,15 @@ void CommandLine::printMainMenu(){
             preperationView(myplace);
             break;
         }
-        case 'd':
+        case 'd':{
             cout << "~Delivery~" << endl;
-            deliveryView(pickplace());
-
+            Place myplace;
+            myplace = pickplace();
+            deliveryView(myplace);
             break;
+        }
         case 'q':
-            exit(0);
+            return;
         default:
             cout << "Not a valid input!" << endl;
             printMainMenu();
@@ -62,18 +68,13 @@ void CommandLine::preperationView(Place place){
     prep.PreperationMenu();
 }
 void CommandLine::deliveryView(Place place){
-    DeliveryUI dev(place);
-    dev.DeliveryMenu();
+    DeliveryUI delivery(place);
+    delivery.DeliveryMenu();
 }
 Place CommandLine::pickplace(){
-    // User has to pick his location
     int index;
-    Management* manager = new Management();
-    manager->GetPlaces(cout);
+    places->GetPlaces(cout);
     cout << "Which place are you working at : ";
     cin >> index;
-    Place tobereturned;
-    tobereturned = manager->GetPlace(index - 1);
-    delete manager;
-    return tobereturned;
+    return places->GetPlace(index - 1);
 }
