@@ -17,6 +17,7 @@ class Pizza : public Product {
 
         int GetPrice() const;
         int GetSize() const;
+        int GetStatus() const;
         int GetOffset() const;
         int SetSize(const int& newsize);
         int GetNumberOfToppings() const;

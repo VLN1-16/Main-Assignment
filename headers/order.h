@@ -38,7 +38,7 @@ class Order{
         Pizza GetPizzaat(int index);
 
         int GetNumberOfPizzas();
-
+        bool AllPizzasReady();
         void UpdatePizzaStatus(int index, int status);
     private:
         template <typename T>
