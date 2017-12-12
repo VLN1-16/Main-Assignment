@@ -16,16 +16,21 @@ class OrderRepo{
         OrderRepo();
         ~OrderRepo();
         void GetActiveOrders(std::ostream &os);
+        void GetActiveOrders(std::ostream &os,const Place& myplace);
+        void GetReadyOrders(std::ostream &os,const Place& myplace);
+        void ReadOrderAt(std::ostream &os,int index);
         void AddOrder(Order &order);
         Order GetOrderAt(int index);
         /*
-        *  Functions for getting items based on pizzas, 
+        *  Functions for getting items based on pizzas,
         *  Used in preperation view
         */
+        void MarkPaid(int index);
+        void RemoveOrder(int index);
         void GetPizzaByPlace(std::ostream& os, const int index, const Place& myplace);
         void UpdatePizzaStatus(int index, const int status, const Place& myplace);
     private:
-        FileHandler<Order>* orderList;        
+        FileHandler<Order>* orderList;
         void FillPizzaVector(const Place& myplace);
         std::vector<Pizza> pizzas;
 };

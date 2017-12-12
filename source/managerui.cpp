@@ -5,17 +5,18 @@ ManagerUI::ManagerUI() {
     products = new ProductRepo();
     places   = new PlaceRepo();
     pizzaSizes = new PizzaSizeRepo();
+    inorders = new InActiveOrderRepo();
 }
 ManagerUI::~ManagerUI(){
     delete pizzaSizes;
     delete pizzas;
     delete toppings;
     delete products;
-    delete places; 
+    delete places;
 }
 void ManagerUI::ManagerMenu(){
-    cout << "s: Edit pizza type/size" << endl; // DONE 
-    cout << "t: Edit pizza toppings" << endl; // DONE 
+    cout << "s: Edit pizza type/size" << endl; // DONE
+    cout << "t: Edit pizza toppings" << endl; // DONE
     cout << "m: Edit/add pizza on menu" << endl; // NOT DONE
     cout << "p: Edit/add product on menu" << endl; // DONE
     cout << "l: Edit/add branch locations" << endl; // ALMOST DONE
@@ -27,7 +28,7 @@ void ManagerUI::ManagerMenu(){
     char userAns = 0;
     cin >> userAns;
     cout << endl;
-    
+
     switch(tolower(userAns)){
         case 's':
             EditSizes();
@@ -50,6 +51,7 @@ void ManagerUI::ManagerMenu(){
         case 'b':
             return;
         case 'w':
+            inorders->GetOrders(cout);
             // Print old orders // some sort of filters, by costumer or time period
             break;
         case 'q':
@@ -82,7 +84,7 @@ void ManagerUI::EditSizes(){
     char userAns = 0;
     cin >> userAns;
     cout << endl;
-    
+
     switch(tolower(userAns)){
         case 'a':{
             int s;
@@ -131,7 +133,7 @@ void ManagerUI::EditProducts(){
     char userAns = 0;
     cin >> userAns;
     cout << endl;
-    
+
     switch(tolower(userAns)){
         case 'a':{
             char name[sizeOfName];
@@ -149,7 +151,7 @@ void ManagerUI::EditProducts(){
             int index;
             cout << "Product number what would you like to remove : ";
             cin >> index;
-            products->RemoveProduct(index - 1); 
+            products->RemoveProduct(index - 1);
             break;
         }
         case 'l':
@@ -174,7 +176,7 @@ void ManagerUI::EditToppings(){
     char userAns = 0;
     cin >> userAns;
     cout << endl;
-    
+
     switch(tolower(userAns)){
         case 'a':{
             char name[sizeOfName];
@@ -192,7 +194,7 @@ void ManagerUI::EditToppings(){
             int index;
             cout << "Topping number what would you like to remove : ";
             cin >> index;
-            toppings->RemoveTopping(index - 1); 
+            toppings->RemoveTopping(index - 1);
             break;
         }
         case 'l':
@@ -217,7 +219,7 @@ void ManagerUI::EditLocations(){
     char userAns = 0;
     cin >> userAns;
     cout << endl;
-    
+
     switch(tolower(userAns)){
         case 'a':{
             char name[sizeOfplace];
@@ -230,7 +232,7 @@ void ManagerUI::EditLocations(){
             cout << "What is the phone number : ";
             cin >> phone;
             Place p(name, addr, phone);
-            places->AddPlace(p); 
+            places->AddPlace(p);
             break;
         }
         case 'd':
@@ -238,7 +240,7 @@ void ManagerUI::EditLocations(){
             int index;
             cout << "Which place would you like to Deactivate";
             cin >> index;
-            places->RemovePlace(index - 1); 
+            places->RemovePlace(index - 1);
             break;
         case 'l':
             places->GetPlaces(cout);
@@ -263,7 +265,7 @@ void ManagerUI::EditPizzas(){
     char userAns = 0;
     cin >> userAns;
     cout << endl;
-    
+
     switch(tolower(userAns)){
         case 'a':{
             char name[sizeOfName];

@@ -33,6 +33,7 @@ commandline:
 	g++ -Wall -c -Iheaders -std=c++11 source/managerui.cpp -o obj/managerui.o
 	g++ -Wall -c -Iheaders -std=c++11 source/place.cpp -o obj/place.o
 	g++ -Wall -c -Iheaders -std=c++11 source/preperationUI.cpp -o obj/preperationUI.o
+		g++ -Wall -c -Iheaders -std=c++11 source/deliveryUI.cpp -o obj/deliveryUI.o
 	g++ -Wall -c -Iheaders -std=c++11 source/preperator.cpp -o obj/preperator.o
 	g++ -Wall -c -Iheaders -std=c++11 source/pizzasizerepo.cpp -o obj/pizzasizerepo.o
 	g++ -Wall -c -Iheaders -std=c++11 source/pizzarepo.cpp -o obj/pizzarepo.o
@@ -40,7 +41,8 @@ commandline:
 	g++ -Wall -c -Iheaders -std=c++11 source/productrepo.cpp -o obj/productrepo.o
 	g++ -Wall -c -Iheaders -std=c++11 source/toppingrepo.cpp -o obj/toppingrepo.o
 	g++ -Wall -c -Iheaders -std=c++11 source/orderrepo.cpp -o obj/orderrepo.o
-	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/preperator.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o -o bin/commandline.out 
+	g++ -Wall -c -Iheaders -std=c++11 source/inactiveorderrepo.cpp -o obj/inactiveorderrepo.o
+	g++ obj/main.o obj/sales.o obj/salesUI.o obj/order.o obj/costumer.o obj/commandline.o obj/management.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/deliveryUI.o obj/preperator.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o obj/inactiveorderrepo.o -o bin/commandline.out
 
 
 testall:

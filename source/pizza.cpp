@@ -17,7 +17,7 @@ Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     currTopping = 0;
     price  = Price;
     offset = Offset;
-    size   = Size;;
+    size   = Size;
     progress = 0;
 }
 Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {

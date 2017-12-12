@@ -38,14 +38,13 @@ void CommandLine::printMainMenu(){
             preperationView(myplace);
             break;
         }
-        case 'd':
+        case 'd':{
             cout << "~Delivery~" << endl;
-            cout << "1. Select branch location" << endl;
-            cout << "2. Get list of active orders for selected location" << endl;
-            cout << "3. Get list of ready orders for selected location" << endl;
-            cout << "4. Search/select desired order" << endl;
-
+            Place myplace;
+            myplace = pickplace();
+            deliveryView(myplace);
             break;
+        }
         case 'q':
             return;
         default:
@@ -67,6 +66,10 @@ void CommandLine::salesPerson(){
 void CommandLine::preperationView(Place place){
     PreperationUI prep(place);
     prep.PreperationMenu();
+}
+void CommandLine::deliveryView(Place place){
+    DeliveryUI delivery(place);
+    delivery.DeliveryMenu();
 }
 Place CommandLine::pickplace(){
     int index;

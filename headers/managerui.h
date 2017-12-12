@@ -12,11 +12,12 @@
 #include "productrepo.h"
 #include "placerepo.h"
 #include "pizzasizerepo.h"
+#include "inactiveorderrepo.h"
 
 using namespace std;
 
 class ManagerUI{
-    public: 
+    public:
         ManagerUI();
         ~ManagerUI();
         void ManagerMenu();
@@ -33,6 +34,7 @@ class ManagerUI{
         ProductRepo* products;
         PlaceRepo* places;
         PizzaSizeRepo* pizzaSizes;
+        InActiveOrderRepo* inorders;
 };
 
 #endif

@@ -4,7 +4,7 @@ Order::Order() {
     pickup = true;
     timestamp = time(0);
     ready = false;
-
+    paid = false;
     price = 0;
     discount = 0;
 
@@ -24,6 +24,7 @@ Order::Order(const Order& from) : Order(){
     pickup = from.pickup;
     timestamp = from.timestamp;
     ready = from.ready;
+    paid = from.paid;
     discount = from.discount;
     costumer = from.costumer;
     BranchLoc = from.BranchLoc;
@@ -62,7 +63,19 @@ void Order::AddPizza(const Pizza& newpizza){
 }
 
 int Order::GetPrice(){
-        return price;
+    return price;
+}
+bool Order::IsReady(){
+    return ready;
+}
+void Order::SetReady(){
+    ready = true;
+}
+bool Order::IsPaid(){
+    return paid;
+}
+void Order::SetPaid(){
+    paid = true;
 }
 
 void Order::WriteBin(std::ostream& out){
@@ -82,6 +95,7 @@ void Order::WriteBin(std::ostream& out){
     out.write((char*)(&timestamp),sizeof(long));
     out.write((char*)(&discount), sizeof(double));
     out.write((char*)(&ready),    sizeof(bool));
+    out.write((char*)(&paid),    sizeof(bool));
     costumer.WriteBin(out);
     BranchLoc.WriteBin(out);
 }
@@ -110,6 +124,7 @@ void Order::ReadBin(std::istream& is){
     is.read((char*)(&timestamp),sizeof(long));
     is.read((char*)(&discount), sizeof(double));
     is.read((char*)(&ready),    sizeof(bool));
+    is.read((char*)(&paid),    sizeof(bool));
     costumer.ReadBin(is);
     BranchLoc.ReadBin(is);
 }
@@ -130,6 +145,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     }
     out << "Discount : " << order.discount << std::endl;
     out << "Total price : " << order.GetPrice() << std::endl;
+    out << "Order Paid : " << (order.paid? "YES" : "NO") << std::endl;
 
     return out;
 }
@@ -137,6 +153,7 @@ bool Order::operator ==(Order& cmp){
     if(cmp.pickup != pickup) return false;
     if(cmp.timestamp != timestamp) return false;
     if(cmp.ready != ready) return false;
+    if(cmp.paid != ready) return false;
     if(cmp.price != price) return false;
     if(cmp.discount != discount) return false;
     if(cmp.pickup != pickup) return false;
@@ -153,6 +170,7 @@ Order& Order::operator=(const Order& order){
     pickup = order.pickup;
     timestamp = order.timestamp;
     ready = order.ready;
+    paid = order.paid;
     discount = order.discount;
     costumer = order.costumer;
     BranchLoc = order.BranchLoc;

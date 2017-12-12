@@ -13,6 +13,28 @@ void OrderRepo::GetActiveOrders(std::ostream &os){
         os << ord;
     }
 }
+void OrderRepo::GetActiveOrders(std::ostream &os, const Place& myplace){
+    for(int i = 0; i < orderList->GetSize(); i++){
+        Order ord = orderList->at(i);
+        if(ord.GetBranchLoc() == myplace){
+            os << "Order : " << i+1 << std::endl;
+            os << ord;
+        }
+    }
+}
+void OrderRepo::GetReadyOrders(std::ostream &os,const Place& myplace){
+    for(int i = 0; i < orderList->GetSize(); i++){
+        Order ord = orderList->at(i);
+        if(ord.GetBranchLoc() == myplace && ord.IsReady()){
+            os << "Order : " << i+1 << std::endl;
+            os << ord;
+        }
+    }
+}
+void OrderRepo::ReadOrderAt(std::ostream &os, int index){
+    Order ord = orderList->at(index);
+    os << ord;
+}
 void OrderRepo::AddOrder(Order &order){
     // Here some order validation has to occur.
     orderList->AddProduct(order);
@@ -42,7 +64,7 @@ void OrderRepo::UpdatePizzaStatus(int index, const int status, const Place& mypl
                 if(currindex == index){
                     // at the right pizza
                     order.UpdatePizzaStatus(j, status); // j is the index of the pizza inside this order, modify that's pizza status
-                    orderList->EditProduct(order, i); // i is the number of product inside of orderlist, replace current with that 
+                    orderList->EditProduct(order, i); // i is the number of product inside of orderlist, replace current with that
                     std::cout << "Found the pizza at index  : " << currindex << std::endl;
                     pizzas.clear();
                 }
@@ -51,7 +73,23 @@ void OrderRepo::UpdatePizzaStatus(int index, const int status, const Place& mypl
         }
     }
 }
-
+void OrderRepo::RemoveOrder(int index){
+    if(index < orderList->GetSize() && index >= 0){
+        Order order;
+        order = orderList->at(index);
+        orderList->RemoveProduct(index);
+        }
+    else {
+        // index IndexOutOfRangeException();
+    }
+}
+void OrderRepo::MarkPaid(int index){
+    if(index < orderList->GetSize() && index >= 0){
+        Order order = orderList->at(index);
+        order.SetPaid();
+        orderList->EditProduct(order,index);
+    }
+}
 void OrderRepo::FillPizzaVector(const Place& myplace){
     for(int i = 0; i < orderList->GetSize(); i++){
         // copy the Order

@@ -17,7 +17,10 @@ class Order{
         Order(const Order& from);
         ~Order();
         int GetPrice();
-
+        bool IsReady();
+        void SetReady();
+        bool IsPaid();
+        void SetPaid();
         void AddProduct(Product& newproduct);
         void AddPizza(const Pizza& newpizza);
 
@@ -53,6 +56,7 @@ class Order{
         bool pickup;
         long timestamp;
         bool ready;
+        bool paid;
 
         int price;
         int discount;
