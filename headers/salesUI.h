@@ -1,6 +1,7 @@
 #ifndef SALESUI_H
 #define SALESUI_H
 #include <iostream>
+#include <cstdlib>
 #include <stdlib.h>
 #include <cctype>
 

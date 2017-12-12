@@ -1,5 +1,6 @@
 #ifndef DELIVERYUI_H
 #define DELIVERYUI_H
+#include <cstdlib>
 #include "place.h"
 #include "order.h"
 //#include "delivery.h"
