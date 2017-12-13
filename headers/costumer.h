@@ -15,6 +15,7 @@ class Costumer{
         const char* GetFirstName();
         const char* GetLastName();
         const char* GetNumber();
+        const bool CompareNumber(const char n[8]);
         void SetFirstName(const char newFirstName[lengthOfName]);
         void SetLastName(const char newLastName[lengthOfName]);
         // This throws a badnumber if the number is not good

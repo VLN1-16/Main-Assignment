@@ -23,6 +23,15 @@ void OrderRepo::GetActiveOrders(std::ostream &os, const Place& myplace){
         }
     }
 }
+void OrderRepo::GetOrdersByCostumer(std::ostream &os, const Place& myplace, char phone[8]){
+    for(int i = 0; i < orderList->GetSize(); i++){
+        Order ord = orderList->at(i);
+        if(ord.GetBranchLoc() == myplace && ord.GetCostumer().CompareNumber(phone)){
+            os << "Order : " << i+1 << std::endl;
+            os << ord;
+        }
+    }
+}
 void OrderRepo::GetReadyOrders(std::ostream &os,const Place& myplace){
     for(int i = 0; i < orderList->GetSize(); i++){
         Order ord = orderList->at(i);
@@ -110,7 +119,7 @@ void OrderRepo::FillPizzaVector(const Place& myplace){
     }
 }
 const int OrderRepo::GetNumberOfPizzas(){
-    // For this to run loadvec has to have been run 
+    // For this to run loadvec has to have been run
     return pizzas.size();
 }
 const int OrderRepo::GetNumberOfOrders(){
