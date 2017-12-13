@@ -69,7 +69,10 @@ void Order::AddPizza(const Pizza& newpizza){
 }
 
 int Order::GetPrice(){
-    return price;
+    return std::ceil(price *(1.0 - double(discount) / 100.0));
+}
+void Order::SetDiscount(int d){
+    discount = d;
 }
 bool Order::IsReady(){
     return ready;
