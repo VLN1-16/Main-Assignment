@@ -34,6 +34,7 @@ class Order{
 
         void SetBranchLoc(Place& newplace);
         Place GetBranchLoc();
+        Costumer GetCostumer();
 
         Pizza GetPizzaat(int index);
 

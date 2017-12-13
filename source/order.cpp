@@ -213,3 +213,6 @@ void Order::UpdatePizzaStatus(int index, int status){
     }
     ready = temp;
 }
+Costumer Order::GetCostumer(){
+    return costumer;
+}

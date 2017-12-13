@@ -18,6 +18,7 @@ class OrderRepo{
         ~OrderRepo();
         void GetActiveOrders(std::ostream &os);
         void GetActiveOrders(std::ostream &os,const Place& myplace);
+        void GetOrdersByCostumer(std::ostream &os, const Place& myplace, char phone[8]);
         void GetReadyOrders(std::ostream &os,const Place& myplace);
         void ReadOrderAt(std::ostream &os,int index);
         void AddOrder(Order &order);
