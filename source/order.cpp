@@ -142,18 +142,18 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     out << "Order : " << (!order.ready ? "IN PROGRESS" : "READY") << std::endl;
     out << "Delivery : " << (!order.pickup ? "HOME DELIVERY" : "PICKUP") << std::endl;
     out << "Delivery address: " << order.address << std::endl;
-    // char buf[80];
-    //struct tm* now = localtime( order.timestamp);
-    long now = time(0);
-    out << "Status: ";
-    if((now - order.timestamp) > lateTime)
-        out << "LATE" << std::endl;
-    else if((now - order.timestamp) > ruinedTime)
-        out << "RUINED" << std::endl;
-    else
-        out << "OK" << std::endl;
+    if(!order.ready){
+        out << "Status: ";
+        long now = time(0);
+        if((now - order.timestamp) > lateTime)
+            out << "LATE" << std::endl;
+        else if((now - order.timestamp) > ruinedTime)
+            out << "RUINED" << std::endl;
+        else
+            out << "OK" << std::endl;
+    }
     std::time_t create_time = order.timestamp;
-    out << "Created : " << std::ctime(&create_time) << std::endl;
+    out << "Created : " << std::ctime(&create_time);
     out << "Costumer : " << order.costumer;
     out << "BranchLoc : " << order.BranchLoc << std::endl;
     if(order.numberOfProducts > 0)
