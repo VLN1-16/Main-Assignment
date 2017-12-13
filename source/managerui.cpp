@@ -223,17 +223,23 @@ void ManagerUI::EditLocations(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[sizeOfplace];
-            char addr[sizeOfplace];
+            string name;
+            string address;
             char phone[sizeOfplace];
             cout << "What is the name of this place : ";
-            cin >> name;
+            getline(cin, name);
+            getline(cin, name);
             cout << "What is the address of this place : ";
-            cin >> addr;
+            getline(cin, address);
             cout << "What is the phone number : ";
             cin >> phone;
-            Place p(name, addr, phone);
-            places->AddPlace(p);
+            Place p(name, address, phone);
+            try{
+                places->AddPlace(p);
+            }
+            catch(badnumber e){
+                cout << "The phone number was invalid!" << endl;
+            }
             break;
         }
         case 'd':
