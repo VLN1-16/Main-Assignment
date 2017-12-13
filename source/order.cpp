@@ -69,7 +69,10 @@ void Order::AddPizza(const Pizza& newpizza){
 }
 
 int Order::GetPrice(){
-    return price;
+    return std::ceil(price *(1.0 - double(discount) / 100.0));
+}
+void Order::SetDiscount(int d){
+    discount = d;
 }
 bool Order::IsReady(){
     return ready;
@@ -168,7 +171,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
         out << order.pizzas[i];
     }
     out << std::endl;
-    out << "Discount : " << order.discount << std::endl;
+    out << "Discount : " << order.discount << "\%"<< std::endl;
     out << "Total price : " << order.GetPrice() << std::endl;
     out << "Order Paid : " << (order.paid? "YES" : "NO") << std::endl;
     out << "Comment: " << order.comment << std::endl;

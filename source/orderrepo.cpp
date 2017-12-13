@@ -9,7 +9,7 @@ OrderRepo::~OrderRepo(){
 void OrderRepo::GetActiveOrders(std::ostream &os){
     for(int i = 0; i < orderList->GetSize(); i++){
         os << std::endl;
-            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl;
         Order ord = orderList->at(i);
         os << ord;
     }
@@ -18,7 +18,7 @@ void OrderRepo::GetActiveOrders(std::ostream &os, const Place& myplace){
     for(int i = 0; i < orderList->GetSize(); i++){
         Order ord = orderList->at(i);
         if(ord.GetBranchLoc() == myplace){
-            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl;
             os << ord;
         }
     }
@@ -27,7 +27,7 @@ void OrderRepo::GetOrdersByCostumer(std::ostream &os, const Place& myplace, char
     for(int i = 0; i < orderList->GetSize(); i++){
         Order ord = orderList->at(i);
         if(ord.GetBranchLoc() == myplace && ord.GetCostumer().CompareNumber(phone)){
-            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl;
             os << ord;
         }
     }
@@ -56,13 +56,13 @@ void OrderRepo::GetPizzaByPlace(std::ostream&os, const unsigned int index, const
     // If the pizza list is empty, fill it (don't do this at the start if somebody else is calling the class )
     if(pizzas.size() == 0)
         FillPizzaVector(myplace);
-    if(index >= pizzas.size() || index < 0) // if the pizza vector is empty, throw an exception
+    if(index >= pizzas.size()) // if the pizza vector is empty, throw an exception
         throw IndexOutOfRangeException();
     os << pizzas[index] << std::endl;
 }
 
 void OrderRepo::UpdatePizzaStatus(const unsigned int index, const int status, const Place& myplace){
-    if(index >= pizzas.size() || index < 0) throw IndexOutOfRangeException(); // Idea is that for this to be running the vector has to be loaded
+    if(index >= pizzas.size()) throw IndexOutOfRangeException(); // Idea is that for this to be running the vector has to be loaded
     unsigned int currindex = 0;
     for(int i = 0; i < orderList->GetSize(); i++){
         // copy the Order

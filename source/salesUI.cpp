@@ -80,6 +80,7 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
         cout << "c: Add a comment to the order" << endl;
         cout << "h: Home Delivered" << endl;
         // cout << "l: change preperation location" << endl;
+        cout << "z: Add a discount to the order" << endl;
         cout << "b: Go back" << endl;
         cout << "q: Quit (does not save)" << endl;
 
@@ -160,6 +161,18 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 getline(cin, delivered);
                 getline(cin, delivered);
                 order.HomeDelivery(delivered);
+                break;
+            }
+            case 'z':{
+                int d;
+                cout << "How much discount (0-100):" << endl;
+                cin >> d;
+                if(d >= 0 && d < 101){
+                    order.SetDiscount(d);
+                }
+                else{
+                    cout << "Not a valid discount" << endl;
+                }
                 break;
             }
             case 'b':
