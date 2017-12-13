@@ -3,6 +3,8 @@
 #define lengthOfName 50
 #include <iostream>
 
+#include "iscostumernamevalid.h"
+
 class badnumber{};
 class Costumer{
     public:

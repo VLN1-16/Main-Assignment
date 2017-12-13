@@ -2,6 +2,7 @@
 #define MANAGERUI_H
 
 #include <iostream>
+#include <cstdlib>
 #include "filehandler.h"
 #include "pizzasize.h"
 #include "place.h"
