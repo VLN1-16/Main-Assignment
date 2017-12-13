@@ -146,9 +146,9 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     //struct tm* now = localtime( order.timestamp);
     long now = time(0);
     out << "Status: ";
-    if((now - order.timestamp) > 1200)
+    if((now - order.timestamp) > lateTime)
         out << "LATE" << std::endl;
-    else if((now - order.timestamp) > 2400)
+    else if((now - order.timestamp) > ruinedTime)
         out << "RUINED" << std::endl;
     else
         out << "OK" << std::endl;
