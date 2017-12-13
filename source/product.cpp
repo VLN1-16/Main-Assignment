@@ -30,7 +30,7 @@ void Product::SetName(const char n[lengthOfName]){
     }
 }
 void Product::SetName(const std::string n){
-    for(int i = 0; i < sizeOfName;i++){
+    for(int i = 0; i < lengthOfName;i++){
         name[i] = n[i];
         if(name[i] == '\0') break;
     }
