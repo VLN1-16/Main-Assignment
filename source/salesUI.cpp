@@ -165,7 +165,7 @@ void SalesUI::CreateOrder(){
     char last[lengthOfName];
     char phone[lengthOfName];
     cout << "Firstname of costumer" << endl;
-    cin >> first >> '\n';
+    cin >> first;
     cout << "Lastname of costumer" << endl;
     cin >> last;
     cout << "phone of costumer" << endl;
