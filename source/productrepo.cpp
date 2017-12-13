@@ -15,7 +15,7 @@ void ProductRepo::GetProducts(std::ostream &os){
     for(int i = 0; i < productlist->GetSize(); i++){
         os << "Product : " << i + 1 << std::endl;
         Product prod = productlist->at(i);
-        os << prod;
+        os << prod << std::endl;
     }
 }
 void ProductRepo::RemoveProduct(int index){

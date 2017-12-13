@@ -3,6 +3,7 @@
 #define sizeOfName 50
 #include <iostream>
 #include <cstring>
+
 class Product{
     public:
         Product();
@@ -14,6 +15,7 @@ class Product{
 
         virtual void SetPrice(const int& p);
         virtual void SetName(const char n[sizeOfName]);
+        virtual void SetName(const std::string  n);
 
         friend std::ostream& operator<<(std::ostream &os, Product& prod);
         friend std::istream& operator>>(std::istream &is, Product &prod);

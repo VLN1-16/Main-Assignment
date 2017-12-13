@@ -9,6 +9,7 @@ Product::Product(int p, char n[sizeOfName]){
     SetName(n);
 }
 Product::Product(char n[sizeOfName], int p) : Product(p, n) {
+
 }
 Product::~Product(){
 
@@ -26,6 +27,13 @@ void Product::SetPrice(const int& p){
 void Product::SetName(const char n[sizeOfName]){
     for(int i = 0; i < sizeOfName;i++){
         name[i] = n[i];
+        if(name[i] == '\0') break;
+    }
+}
+void Product::SetName(const std::string n){
+    for(int i = 0; i < sizeOfName;i++){
+        name[i] = n[i];
+        if(name[i] == '\0') break;
     }
 }
 std::ostream& operator<<(std::ostream &os, Product& prod){

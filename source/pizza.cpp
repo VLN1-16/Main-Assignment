@@ -9,7 +9,6 @@ Pizza::Pizza() : Product(){
     size   = 16;
     progress = 0;
 }
-
 Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     SetName(n);
     numberOfToppings = 2;
@@ -26,6 +25,12 @@ Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
     toppings = nullptr;
     currTopping = 0;
     progress = 0;
+    price  = Pizzasize.GetPrice();
+    offset = Pizzasize.GetOffset();
+    size   = Pizzasize.GetSize();
+}
+Pizza::Pizza(std::string name, Pizzasize& Pizzasize) : Pizza() {
+    SetName(name);
     price  = Pizzasize.GetPrice();
     offset = Pizzasize.GetOffset();
     size   = Pizzasize.GetSize();
@@ -77,7 +82,7 @@ void Pizza::AddTopping(const Topping topping, const bool calcOffset, const bool 
         price += topping.GetPrice(); // costumer always looses part of a krona
 }
 std::ostream& operator<<(std::ostream &os,Pizza& pizza){
-    os << pizza.GetName() << std::endl;
+    os << "=====  " << pizza.GetName() << "  =====" << std::endl;
     // os << "Number of toppings : " << pizza.GetNumberOfToppings() << std::endl;
     os << "Pizza size : " << pizza.GetSize() << std::endl;
     os << "Pizza status : " << (pizza.progress == 0 ?  "Not started" : ( pizza.progress == 1 ? "In Progress" : "Pizza is ready" )) << std::endl;

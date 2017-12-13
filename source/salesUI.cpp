@@ -18,44 +18,42 @@ SalesUI::~SalesUI(){
 }
 
 void SalesUI::PrintSalesMenu(){
-    // Sales sales;
-    cout << "a: List active orders" << endl;
-    cout << "e: Edit a order" << endl;
-    cout << "c: Create a order" << endl;
-    cout << "b: Back" << endl;
-    cout << "q: Quit" << endl;
+    char userAns;
+    while(true){
+        cout << "a: List active orders" << endl;
+        cout << "e: Edit a order" << endl;
+        cout << "c: Create a order" << endl;
+        cout << "b: Back" << endl;
+        cout << "q: Quit" << endl;
 
-    char userAns = 0;
-    cin >> userAns;
-    cout << endl;
-
-    switch(tolower(userAns)){
-        case 'a':
-            activeorders->GetActiveOrders(cout);
-            break;
-        case 'e':
-            OrderEditor();
-            break;
-        case 'c':
-            CreateOrder();
-            break;
-        case 'b':
-            return;
-        case 'q':
-            cout << "Are you sure you want to quit?" << endl;
-            cout << "y: yes" << endl << "n: no" << endl;
-            cin >> userAns;
-            if(tolower(userAns) == 'y')
-                exit(EXIT_SUCCESS);
-                else
+        cin >> userAns;
+        switch(tolower(userAns)){
+            case 'a':
+                activeorders->GetActiveOrders(cout);
+                break;
+            case 'e':
+                OrderEditor();
+                break;
+            case 'c':
+                CreateOrder();
+                break;
+            case 'b':
+                return;
+            case 'q':
+                cout << "Are you sure you want to quit?" << endl;
+                cout << "y: yes" << endl << "n: no" << endl;
+                cin >> userAns;
+                if(tolower(userAns) == 'y')
+                    exit(EXIT_SUCCESS);
+                    else
+                    PrintSalesMenu();
+                    break;
+            default:
+                cout << "Please enter a valid input!" << endl;
                 PrintSalesMenu();
                 break;
-        default:
-            cout << "Please enter a valid input!" << endl;
-            PrintSalesMenu();
-            break;
+        }
     }
-    PrintSalesMenu();
 }
 void SalesUI::OrderEditor(){
     cout << "Select an order to edit" << endl;
@@ -100,6 +98,7 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
             case 'k':{
                 int productId;
                 products->GetProducts(cout);
+                cout << "ProductId : ";
                 cin >> productId;
                 Product tobeadded;
                 tobeadded = products->GetProduct(productId -1);

@@ -74,7 +74,7 @@ void Costumer::SetFirstName(const char newFirstName[lengthOfName]){
         firstName[i] = newFirstName[i];
         if(isdigit(newFirstName[i]))
             throw invalidCostumerName("Name can only consist of letter! ");
-            if(newFirstName[i] == '\0') break;
+        if(newFirstName[i] == '\0') break;
     }
 }
 
