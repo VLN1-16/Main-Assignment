@@ -30,7 +30,7 @@ and should .
 # TODO
 - make orders aware of the place they are ordered into #DONE
 - places needs to validate phone numbers, See costumers.cpp for implementation 
-- Add a nice way in filehandler for it to deal with deactivating places ( This is not necasery, places get written with the order );
+- Add a nice way in filehandler for it to deal with deactivating places ( This is not necasery, places get written with the order ); Just remove it the normal way #DONE
 - Add functions for the preperation to do.
 - Create a Interface for delivery people.( the ones that hand over the pizza) 
 - Orders have to be verified sane before being registered ( where is it suppose to be made, is there anything on it etc, etc.).

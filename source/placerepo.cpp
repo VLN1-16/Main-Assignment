@@ -22,8 +22,6 @@ Place PlaceRepo::GetPlace(int index){
     return placelist->at(index);
 }
 void PlaceRepo::RemovePlace(int index){
-    // this should set the active flag of a single place
-    // this has to be implemented cleanly in filehandler 
-
-    // That actually is not neccasery, since the information is written with the order
+    // This function does not deal with the possible exception
+    placelist->RemoveProduct(index);
 }

@@ -36,7 +36,7 @@ class SalesUI{
         void PrintSalesMenu();
         void OrderEditor();
         void CreateOrder();
-        void EditOrder(Order order);
+        void EditOrder(Order order, bool edit = false, int index = 0);
         Place pickplace();
         // A sales person needs to select an order (new or old)
         // And proceed to edit that order

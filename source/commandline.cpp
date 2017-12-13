@@ -16,6 +16,7 @@ void CommandLine::printMainMenu(){
     cout << "s: For sales" << endl;
     cout << "p: For preparation" << endl;
     cout << "d: For delivery" << endl;
+    cout << "h: Display help" << endl;
     cout << "q: Quit" << endl << endl;
 
     char userAns;
@@ -47,6 +48,16 @@ void CommandLine::printMainMenu(){
         }
         case 'q':
             return;
+        case 'h':{
+            ifstream fout("data/help.txt");
+            while(true){
+                string helpline;
+                getline(fout, helpline);
+                if(fout.eof()) break;
+                cout << helpline << endl;
+            }
+            break;
+        }
         default:
             cout << "Not a valid input!" << endl;
             printMainMenu();
