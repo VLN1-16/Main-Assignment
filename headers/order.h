@@ -12,6 +12,8 @@
 #include "exceptions.h"
 #define sizeOfplace 100
 #define sizeOfComment 100
+#define ruinedTime 2400
+#define lateTime 1200
 
 class Order{
     public:
