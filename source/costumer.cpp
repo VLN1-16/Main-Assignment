@@ -6,7 +6,6 @@ Costumer::Costumer(){
    number[0] = '\0';
 }
 Costumer::Costumer(char FirstName[lengthOfName], char LastName[lengthOfName], char Number[8]){
-    if(!NumberIsOk(Number)) throw BadNumber("asdf");
     SetFirstName(FirstName);
     SetLastName(LastName);
     SetNumber(Number);
@@ -27,7 +26,7 @@ std::ostream& operator <<(std::ostream& out, Costumer& cost){
 }
 std::istream& operator >>(std::istream& is, Costumer& cost){
     is >> cost.firstName >> cost.lastName >> cost.number;
-    if(!cost.NumberIsOk(cost.number)) throw BadNumber("Number Not OK");
+    if(!cost.NumberIsOk(cost.number)) throw BadNumber();
     return is;
 }
 bool Costumer::operator ==(Costumer& cost){
@@ -89,18 +88,19 @@ void Costumer::SetLastName(const char newLastName[lengthOfName]){
     }
 }
 void Costumer::SetNumber(const char newNumber[8]){
-    if(!NumberIsOk(newNumber)) throw BadNumber("Number not OK");
-    for(int i = 0; i <= 8; i++){
+    if(NumberIsOk(newNumber)) {
+        for(int i = 0; i <= 8; i++){
         number[i] = newNumber[i];
+    }
     }
 }
 bool Costumer::NumberIsOk(const char numberToCheck[8]){
     // check if the number is long enough
     for(int i = 0; i < 7; i++){
-        if(numberToCheck[i] == '\0') return false;
-        if((int)(numberToCheck[i]) < 48 || (int)(numberToCheck[i]) > 48 + 10) return false;
+        if(numberToCheck[i] == '\0') throw BadNumber("Number is too short");
+        if((int)(numberToCheck[i]) < 48 || (int)(numberToCheck[i]) > 48 + 10) throw BadNumber("Number can not contain letter");
     }
     // check if it ends in the right place
-    if(numberToCheck[7] != '\0') return false;
+    if(numberToCheck[7] != '\0') throw BadNumber("Number is too long");
     return true;
 }
