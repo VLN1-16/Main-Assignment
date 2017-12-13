@@ -41,7 +41,8 @@ commandline:
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/inactiveorderrepo.cpp -o obj/inactiveorderrepo.o
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/exceptions/iscostumernamevalid.cpp -o obj/iscostumernamevalid.o
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/exceptions/invalidpizzasize.cpp -o obj/invalidpizzasize.o
-	g++ obj/main.o obj/salesUI.o obj/iscostumernamevalid.o obj/invalidpizzasize.o obj/order.o obj/costumer.o obj/commandline.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/deliveryUI.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o obj/inactiveorderrepo.o -o bin/commandline.out
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/exceptions/badnumber.cpp -o obj/badnumber.o
+	g++ obj/main.o obj/salesUI.o obj/iscostumernamevalid.o obj/invalidpizzasize.o obj/order.o obj/costumer.o obj/commandline.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/deliveryUI.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o obj/inactiveorderrepo.o obj/badnumber.o -o bin/commandline.out
 
 
 testall:

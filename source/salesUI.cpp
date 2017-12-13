@@ -193,9 +193,6 @@ void SalesUI::CreateOrder(){
     catch(BadNumber e){
         cout << "Exception was thrown with error: " << e.getMessage() << endl;
     }
-    catch(BadNumber e){
-        cout << "Exception was thrown with error: " << e.getMessage() << endl;
-    }
 }
 Place SalesUI::pickplace(){
     // User has to pick his location
