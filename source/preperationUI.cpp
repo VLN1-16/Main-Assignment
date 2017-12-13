@@ -17,11 +17,7 @@ void PreperationUI::WorkingMode(){
 
     while(true){
         //  Print a single pizza, offer next pizza or previous pizza
-        try{
-            orders->GetPizzaByPlace(cout, index, myplace);
-        }catch(IndexOutOfRangeException e){
-            cout << "No pizza so far" << endl;
-        }
+        orders->GetPizzaByPlace(cout, index, myplace);
         cout << "n: Next pizza" << endl;
         cout << "p: Prev pizza" << endl;
         cout << "v: Mark in progress" << endl;
@@ -32,7 +28,12 @@ void PreperationUI::WorkingMode(){
         cin >> userin;
         switch(tolower(userin)){
             case 'n':
-                index++;
+                if(index + 1 == orders->GetNumberOfPizzas()){
+                    cout << "Already at the last pizza" << endl;
+                }
+                else{
+                    index++;
+                }
                 break;
             case 'p':
                 if(index > 0){

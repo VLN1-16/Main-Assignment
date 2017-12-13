@@ -213,7 +213,7 @@ void ManagerUI::EditToppings(){
 void ManagerUI::EditLocations(){
     cout << "Editing Locations : " << endl;
     cout << "a: Add a Location" << endl;
-    // cout << "d: Deactivate a place" << endl;
+    cout << "d: Delete a place" << endl;
     cout << "l: List all locations" << endl;
     cout << "b: Back" << endl;
     cout << "q: Quit" << endl;
@@ -239,7 +239,7 @@ void ManagerUI::EditLocations(){
         case 'd':
             places->GetPlaces(cout);
             int index;
-            cout << "Which place would you like to Deactivate";
+            cout << "Which place would you like to Delete";
             cin >> index;
             places->RemovePlace(index - 1);
             break;

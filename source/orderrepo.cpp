@@ -8,6 +8,7 @@ OrderRepo::~OrderRepo(){
 }
 void OrderRepo::GetActiveOrders(std::ostream &os){
     for(int i = 0; i < orderList->GetSize(); i++){
+        os << std::endl;
         os << "Order : " << i + 1 << std::endl;
         Order ord = orderList->at(i);
         os << ord;
@@ -105,4 +106,14 @@ void OrderRepo::FillPizzaVector(const Place& myplace){
             }
         }
     }
+}
+const int OrderRepo::GetNumberOfPizzas(){
+    // For this to run loadvec has to have been run 
+    return pizzas.size();
+}
+const int OrderRepo::GetNumberOfOrders(){
+    return orderList->GetSize();
+}
+void OrderRepo::EditOrder(int index, const Order& order){
+    orderList->EditProduct(order,index);
 }

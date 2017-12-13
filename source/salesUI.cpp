@@ -60,12 +60,17 @@ void SalesUI::PrintSalesMenu(){
 void SalesUI::OrderEditor(){
     cout << "Select an order to edit" << endl;
     int orderid;
+    // check if there are any orders to edit
+    if(activeorders->GetNumberOfOrders() == 0){
+        cout << "There are no orders to edit" << endl;
+        return;
+    }
     activeorders->GetActiveOrders(cout);
     cin >> orderid;
     Order order = activeorders->GetOrderAt(orderid-1);
-    EditOrder(order);
+    EditOrder(order, true, orderid - 1);
 }
-void SalesUI::EditOrder(Order order){
+void SalesUI::EditOrder(Order order, bool edit, int index){
     while(true){
 
         cout << "a: Add pizza from menu" << endl;
@@ -103,7 +108,13 @@ void SalesUI::EditOrder(Order order){
             }
             case 'r':
                 cout << "Registering Order" << endl;
-                activeorders->AddOrder(order);
+                if(edit){
+                    // Edit active order
+                    activeorders->(index, order);
+                }
+                else{
+                    activeorders->AddOrder(order);
+                }
                 return;
             case 'd':{
                 cout << "Creating your own pizza" << endl;
@@ -141,8 +152,7 @@ void SalesUI::EditOrder(Order order){
                 cout << "Toggle pickup..." << endl;
                 break;
             case 'b':
-                PrintSalesMenu();
-                break;
+                return;
             case 'q':
                 cout << "Are you sure you want to quit?" << endl;
                 cout << "y: yes" << endl << "n: no" << endl;

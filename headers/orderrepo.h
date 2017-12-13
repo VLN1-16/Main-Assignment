@@ -29,6 +29,9 @@ class OrderRepo{
         void RemoveOrder(int index);
         void GetPizzaByPlace(std::ostream& os, const int index, const Place& myplace);
         void UpdatePizzaStatus(int index, const int status, const Place& myplace);
+        const int GetNumberOfPizzas();
+        const int GetNumberOfOrders();
+        void EditOrder(int index, const Order& order);
     private:
         FileHandler<Order>* orderList;
         void FillPizzaVector(const Place& myplace);
