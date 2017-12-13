@@ -197,7 +197,7 @@ void SalesUI::CreateOrder(){
         order.SetBranchLoc(tobeadded);
         EditOrder(order);
     }
-    catch(isCostumerNameValid e){
+    catch(BadNumber e){
         cout << "Exception was thrown with error: " << e.getMessage() << endl;
     }
 }

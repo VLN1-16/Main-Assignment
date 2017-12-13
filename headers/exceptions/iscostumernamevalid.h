@@ -5,10 +5,10 @@
 using namespace std;
 
 
-class isCostumerNameValid
+class invalidCostumerName
 {
     public:
-        isCostumerNameValid(string message);
+        invalidCostumerName(string message);
         string getMessage();
 
     private:

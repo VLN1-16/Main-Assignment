@@ -19,7 +19,7 @@ void PlaceRepo::GetPlaces(std::ostream& os){
         os << place;
     }
 }
-Place PlaceRepo::GetPlace(int index){ 
+Place PlaceRepo::GetPlace(int index){
     return placelist->at(index);
 }
 void PlaceRepo::RemovePlace(int index){
@@ -28,9 +28,9 @@ void PlaceRepo::RemovePlace(int index){
 }
 bool PlaceRepo::NumberIsOk(const char numberToCheck[8]){
     for(int i = 0; i < 7; i++){
-        if(numberToCheck[i] == '\0') throw badnumber();
-        if((int)(numberToCheck[i]) < 48 || (int)(numberToCheck[i]) > 48 + 10) throw badnumber();
+        if(numberToCheck[i] == '\0') throw BadNumber("Number has to be 7 digits");
+        if((int)(numberToCheck[i]) < 48 || (int)(numberToCheck[i]) > 48 + 10) throw BadNumber("Number not OK");
     }
-    if(numberToCheck[7] != '\0') throw badnumber();
+    if(numberToCheck[7] != '\0') throw BadNumber("Number not OK");
     return true;
 }

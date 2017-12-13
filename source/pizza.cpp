@@ -78,11 +78,12 @@ void Pizza::AddTopping(const Topping topping, const bool calcOffset, const bool 
 }
 std::ostream& operator<<(std::ostream &os,Pizza& pizza){
     os << pizza.GetName() << std::endl;
-    os << "Number of toppings : " << pizza.GetNumberOfToppings() << std::endl;
+    // os << "Number of toppings : " << pizza.GetNumberOfToppings() << std::endl;
     os << "Pizza size : " << pizza.GetSize() << std::endl;
     os << "Pizza status : " << (pizza.progress == 0 ?  "Not started" : ( pizza.progress == 1 ? "In Progress" : "Pizza is ready" )) << std::endl;
+    os << "Toppings (" << pizza.GetNumberOfToppings() << ") : ";
     for (int i = 0; i < pizza.GetNumberOfToppings(); i++){
-        os << "\t" << pizza.toppings[i];
+        os << "\t" << pizza.toppings[i] << ( i + 1 != pizza.GetNumberOfToppings() ? ", " : "" );
     }
     os << std::endl;
     os << pizza.GetPrice() << std::endl;

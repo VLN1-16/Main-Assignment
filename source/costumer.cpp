@@ -1,11 +1,13 @@
 #include "costumer.h"
+
+
 Costumer::Costumer(){
    firstName[0] = '\0';
    lastName[0]  = '\0';
    number[0] = '\0';
 }
 Costumer::Costumer(char FirstName[lengthOfName], char LastName[lengthOfName], char Number[8]){
-    if(!NumberIsOk(Number)) throw badnumber();
+    if(!NumberIsOk(Number)) throw BadNumber("Number not OK");
     SetFirstName(FirstName);
     SetLastName(LastName);
     SetNumber(Number);
@@ -26,7 +28,7 @@ std::ostream& operator <<(std::ostream& out, Costumer& cost){
 }
 std::istream& operator >>(std::istream& is, Costumer& cost){
     is >> cost.firstName >> cost.lastName >> cost.number;
-    if(!cost.NumberIsOk(cost.number)) throw badnumber();
+    if(!cost.NumberIsOk(cost.number)) throw BadNumber("Number Not OK");
     return is;
 }
 bool Costumer::operator ==(Costumer& cost){
@@ -65,30 +67,30 @@ const char* Costumer::GetNumber(){
     return number;
 }
 void Costumer::SetFirstName(const char newFirstName[lengthOfName]){
+    if(newFirstName[0] == '\0')
+        throw invalidCostumerName("First name is empty! ");
 
-        for(int i = 0; i < lengthOfName; i++){
-            if(firstName[i] == '\0'){
-                break;
-            }
-            if(!(isalpha(firstName[i]))) {
-               throw isCostumerNameValid("Name can not include numbers!");
-
-               }
-            else{
-                firstName[i] = newFirstName[i];
-               }
-        }
-
-
+    for(int i = 0; i < lengthOfName; i++){
+        firstName[i] = newFirstName[i];
+        if(isdigit(newFirstName[i]))
+            throw invalidCostumerName("Name can only consist of letter! ");
+            if(newFirstName[i] == '\0') break;
     }
+}
 
 void Costumer::SetLastName(const char newLastName[lengthOfName]){
+    if(newLastName[0] == '\0')
+           throw invalidCostumerName("Last name is empty! ");
+
     for(int i = 0; i < lengthOfName; i++){
         lastName[i] = newLastName[i];
+        if(isdigit(newLastName[i]))
+            throw invalidCostumerName("Name can only consist of letter! ");
+        if(newLastName[i] == '\0') break;
     }
 }
 void Costumer::SetNumber(const char newNumber[8]){
-    if(!NumberIsOk(newNumber)) throw badnumber();
+    if(!NumberIsOk(newNumber)) throw BadNumber("Number not OK");
     for(int i = 0; i <= 8; i++){
         number[i] = newNumber[i];
     }

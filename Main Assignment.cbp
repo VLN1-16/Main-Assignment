@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="headers/exceptions/" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="headers/exceptions/" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -35,14 +37,12 @@
 		<Unit filename="headers/commandline.h" />
 		<Unit filename="headers/controller.h" />
 		<Unit filename="headers/costumer.h" />
-		<Unit filename="headers/delivery.h" />
 		<Unit filename="headers/deliveryUI.h" />
 		<Unit filename="headers/exceptions.h" />
 		<Unit filename="headers/exceptions/invalidpizzasize.h" />
 		<Unit filename="headers/exceptions/iscostumernamevalid.h" />
 		<Unit filename="headers/filehandler.h" />
 		<Unit filename="headers/inactiveorderrepo.h" />
-		<Unit filename="headers/management.h" />
 		<Unit filename="headers/managerui.h" />
 		<Unit filename="headers/order.h" />
 		<Unit filename="headers/orderrepo.h" />
@@ -53,22 +53,18 @@
 		<Unit filename="headers/place.h" />
 		<Unit filename="headers/placerepo.h" />
 		<Unit filename="headers/preperationUI.h" />
-		<Unit filename="headers/preperator.h" />
 		<Unit filename="headers/product.h" />
 		<Unit filename="headers/productrepo.h" />
-		<Unit filename="headers/sales.h" />
 		<Unit filename="headers/salesUI.h" />
 		<Unit filename="headers/topping.h" />
 		<Unit filename="headers/toppingrepo.h" />
 		<Unit filename="source/commandline.cpp" />
 		<Unit filename="source/costumer.cpp" />
-		<Unit filename="source/delivery.cpp" />
 		<Unit filename="source/deliveryUI.cpp" />
 		<Unit filename="source/exceptions/invalidpizzasize.cpp" />
 		<Unit filename="source/exceptions/iscostumernamevalid.cpp" />
 		<Unit filename="source/inactiveorderrepo.cpp" />
 		<Unit filename="source/main.cpp" />
-		<Unit filename="source/management.cpp" />
 		<Unit filename="source/managerui.cpp" />
 		<Unit filename="source/order.cpp" />
 		<Unit filename="source/orderrepo.cpp" />
@@ -79,10 +75,8 @@
 		<Unit filename="source/place.cpp" />
 		<Unit filename="source/placerepo.cpp" />
 		<Unit filename="source/preperationUI.cpp" />
-		<Unit filename="source/preperator.cpp" />
 		<Unit filename="source/product.cpp" />
 		<Unit filename="source/productrepo.cpp" />
-		<Unit filename="source/sales.cpp" />
 		<Unit filename="source/salesUI.cpp" />
 		<Unit filename="source/topping.cpp" />
 		<Unit filename="source/toppingrepo.cpp" />

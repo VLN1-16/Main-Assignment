@@ -237,7 +237,7 @@ void ManagerUI::EditLocations(){
             try{
                 places->AddPlace(p);
             }
-            catch(badnumber e){
+            catch(BadNumber e){
                 cout << "The phone number was invalid!" << endl;
             }
             break;
