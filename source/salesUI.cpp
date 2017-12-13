@@ -110,7 +110,7 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 cout << "Registering Order" << endl;
                 if(edit){
                     // Edit active order
-                    activeorders->(index, order);
+                    activeorders->EditOrder(index, order);
                 }
                 else{
                     activeorders->AddOrder(order);
