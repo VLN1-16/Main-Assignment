@@ -1,11 +1,13 @@
 #include "costumer.h"
+
+
 Costumer::Costumer(){
    firstName[0] = '\0';
    lastName[0]  = '\0';
    number[0] = '\0';
 }
 Costumer::Costumer(char FirstName[lengthOfName], char LastName[lengthOfName], char Number[8]){
-    if(!NumberIsOk(Number)) throw badnumber();
+    if(!NumberIsOk(Number)) throw BadNumber("Number not OK");
     SetFirstName(FirstName);
     SetLastName(LastName);
     SetNumber(Number);
@@ -26,7 +28,7 @@ std::ostream& operator <<(std::ostream& out, Costumer& cost){
 }
 std::istream& operator >>(std::istream& is, Costumer& cost){
     is >> cost.firstName >> cost.lastName >> cost.number;
-    if(!cost.NumberIsOk(cost.number)) throw badnumber();
+    if(!cost.NumberIsOk(cost.number)) throw BadNumber("Number Not OK");
     return is;
 }
 bool Costumer::operator ==(Costumer& cost){
@@ -100,7 +102,7 @@ void Costumer::SetLastName(const char newLastName[lengthOfName]){
         }
 }
 void Costumer::SetNumber(const char newNumber[8]){
-    if(!NumberIsOk(newNumber)) throw badnumber();
+    if(!NumberIsOk(newNumber)) throw BadNumber("Number not OK");
     for(int i = 0; i <= 8; i++){
         number[i] = newNumber[i];
     }

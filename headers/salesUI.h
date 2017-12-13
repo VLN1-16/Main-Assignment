@@ -17,7 +17,8 @@
 #include "placerepo.h"
 #include "pizzasizerepo.h"
 #include "orderrepo.h"
-//#include "iscostumernamevalid.h"
+#include "badnumber.h"
+#include "iscostumernamevalid.h"
 
 using namespace std;
 
