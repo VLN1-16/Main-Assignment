@@ -12,9 +12,9 @@ void ToppingRepo::AddTopping(Topping topping){
 }
 void ToppingRepo::GetToppings(std::ostream &os){
     for(int i = 0; i < toppinglist->GetSize(); i++){
-        os << "Topping : " << i + 1 << std::endl;
+        os << "===== Topping : " << i + 1 << " =====" << std::endl;
         Topping top = toppinglist->at(i);
-        os << top;
+        os << top << std::endl;
     }
 }
 void ToppingRepo::RemoveTopping(int index){

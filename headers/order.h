@@ -24,6 +24,7 @@ class Order{
         void SetReady();
         bool IsPaid();
         void SetPaid();
+        void SetDiscount(int d);
         void AddProduct(Product& newproduct);
         void AddPizza(const Pizza& newpizza);
 

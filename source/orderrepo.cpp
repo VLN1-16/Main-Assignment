@@ -52,7 +52,7 @@ void OrderRepo::AddOrder(Order &order){
 Order OrderRepo::GetOrderAt(int index){
     return orderList->at(index);
 }
-void OrderRepo::GetPizzaByPlace(std::ostream&os, const int index, const Place& myplace){
+void OrderRepo::GetPizzaByPlace(std::ostream&os, const unsigned int index, const Place& myplace){
     // If the pizza list is empty, fill it (don't do this at the start if somebody else is calling the class )
     if(pizzas.size() == 0)
         FillPizzaVector(myplace);
@@ -61,9 +61,9 @@ void OrderRepo::GetPizzaByPlace(std::ostream&os, const int index, const Place& m
     os << pizzas[index] << std::endl;
 }
 
-void OrderRepo::UpdatePizzaStatus(int index, const int status, const Place& myplace){
+void OrderRepo::UpdatePizzaStatus(const unsigned int index, const int status, const Place& myplace){
     if(index >= pizzas.size() || index < 0) throw IndexOutOfRangeException(); // Idea is that for this to be running the vector has to be loaded
-    int currindex = 0;
+    unsigned int currindex = 0;
     for(int i = 0; i < orderList->GetSize(); i++){
         // copy the Order
         Order order = orderList->at(i);

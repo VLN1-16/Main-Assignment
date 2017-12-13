@@ -26,6 +26,13 @@ void Product::SetPrice(const int& p){
 void Product::SetName(const char n[lengthOfName]){
     for(int i = 0; i < lengthOfName;i++){
         name[i] = n[i];
+        if(name[i] == '\0') break;
+    }
+}
+void Product::SetName(const std::string n){
+    for(int i = 0; i < lengthOfName;i++){
+        name[i] = n[i];
+        if(name[i] == '\0') break;
     }
 }
 std::ostream& operator<<(std::ostream &os, Product& prod){

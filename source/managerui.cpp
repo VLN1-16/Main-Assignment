@@ -276,9 +276,10 @@ void ManagerUI::EditPizzas(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[lengthOfName];
+            std::string name;
             cout << "What is the name of the pizza : ";
-            cin >> name;
+            getline(cin, name);
+            getline(cin, name);
             pizzaSizes->GetPizzaSizes(cout);
             cout << "What size do you want : ";
             int index;

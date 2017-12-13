@@ -1,12 +1,12 @@
 #ifndef PIZZA_H
 #define PIZZA_H
 
+#include <iostream>
+#include <cmath>
+#include <string>
 #include "product.h"
 #include "topping.h"
 #include "pizzasize.h"
-
-#include <iostream>
-#include <cmath>
 
 class NoSizes{};
 class Pizza : public Product {
@@ -15,6 +15,8 @@ class Pizza : public Product {
         Pizza(const Pizza& from);
         Pizza(char n[lengthOfName], int Price = 1000, double Offset = 1.4, int Size = 16) ;
         Pizza(char n[lengthOfName], Pizzasize& Pizzasize);
+        Pizza(std::string name, Pizzasize& Pizzasize);
+
         virtual ~Pizza();
         void AddTopping(const Topping topping, const bool calcOffset = true, const bool free = false);
 
