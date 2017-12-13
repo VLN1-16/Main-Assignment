@@ -8,6 +8,7 @@ Order::Order() {
     price = 0;
     discount = 0;
     address[0] = '\0';
+    comment[0] = '\0';
 
     products = nullptr;
     productcap = 2;
@@ -35,6 +36,8 @@ Order::Order(const Order& from) : Order(){
         AddProduct(from.products[i]);
     for(int i = 0; i < sizeOfplace; i++)
         address[i] = from.address[i];
+    for(int i = 0; i < sizeOfComment; i++)
+        comment[i] = from.comment[i];
 }
 Order::~Order(){
     if(pizzas != nullptr){
@@ -100,6 +103,7 @@ void Order::WriteBin(std::ostream& out){
     out.write((char*)(&ready),    sizeof(bool));
     out.write((char*)(&paid),    sizeof(bool));
     out.write((char*)(address),    sizeof(char)*sizeOfplace);
+    out.write((char*)(comment),    sizeof(char)*sizeOfComment);
     costumer.WriteBin(out);
     BranchLoc.WriteBin(out);
 }
@@ -130,12 +134,13 @@ void Order::ReadBin(std::istream& is){
     is.read((char*)(&ready),    sizeof(bool));
     is.read((char*)(&paid),    sizeof(bool));
     is.read((char*)(address),    sizeof(char)*sizeOfplace);
+    is.read((char*)(comment),    sizeof(char)*sizeOfComment);
     costumer.ReadBin(is);
     BranchLoc.ReadBin(is);
 }
 std::ostream& operator <<(std::ostream& out, Order& order){
     out << "Order : " << (!order.ready ? "IN PROGRESS" : "Ready") << std::endl;
-    out << "Order : " << (!order.pickup ? "HOME DELIVERY" : "PICKUP") << std::endl;
+    out << "Delivery : " << (!order.pickup ? "HOME DELIVERY" : "PICKUP") << std::endl;
     out << "Delivery address: " << order.address << std::endl;
     out << "Created stamp : " << order.timestamp << std::endl;
     out << "Costumer : " << order.costumer;
@@ -154,7 +159,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     out << "Discount : " << order.discount << std::endl;
     out << "Total price : " << order.GetPrice() << std::endl;
     out << "Order Paid : " << (order.paid? "YES" : "NO") << std::endl;
-
+    out << "Comment: " << order.comment << std::endl;
     return out;
 }
 bool Order::operator ==(Order& cmp){
@@ -175,6 +180,8 @@ bool Order::operator ==(Order& cmp){
         if(!(pizzas[i] == cmp.pizzas[i])) return false;
     for(int i = 0; i < sizeOfplace; i++)
         if(!(address[i] == cmp.address[i])) return false;
+    for(int i = 0; i < sizeOfComment; i++)
+        if(!(comment[i] == cmp.comment[i])) return false;
     return true;
 }
 Order& Order::operator=(const Order& order){
@@ -195,6 +202,8 @@ Order& Order::operator=(const Order& order){
     }
     for(int i = 0; i < sizeOfplace; i++)
         address[i] = order.address[i];
+    for(int i = 0; i < sizeOfComment; i++)
+        comment[i] = order.comment[i];
     return *this;
 }
 void Order::SetBranchLoc(Place& newplace){
@@ -233,5 +242,11 @@ void Order::HomeDelivery(std::string addr){
     for(int i = 0; i < sizeOfplace; i++){
         this->address[i] = addr[i];
         if(addr[i] == '\0') break;
+    }
+}
+void Order::AddComment(std::string com){
+    for(int i = 0; i < sizeOfComment; i++){
+        this->comment[i] = com[i];
+        if(com[i] == '\0') break;
     }
 }

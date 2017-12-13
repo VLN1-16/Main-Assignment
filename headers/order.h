@@ -11,6 +11,7 @@
 #include "place.h"
 #include "exceptions.h"
 #define sizeOfplace 100
+#define sizeOfComment 100
 
 class Order{
     public:
@@ -43,6 +44,7 @@ class Order{
         int GetNumberOfPizzas();
         void UpdatePizzaStatus(int index, int status);
         void HomeDelivery(std::string address);
+        void AddComment(std::string comment);
     private:
         template <typename T>
         T* resize(T* oldarray, int& cap){
@@ -75,5 +77,6 @@ class Order{
         Costumer costumer;
         Place BranchLoc;
         char address[sizeOfplace];
+        char comment[sizeOfComment];
 };
 #endif

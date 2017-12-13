@@ -79,7 +79,7 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
         cout << "d: Add a pizza" << endl;
         cout << "s: Show the order in current state" << endl;
         cout << "m: Mark the order as paid" << endl;
-        cout << "c: Comment" << endl;
+        cout << "c: Add a comment to the order" << endl;
         cout << "h: Home Delivered" << endl;
         // cout << "l: change preperation location" << endl;
         cout << "b: Go back" << endl;
@@ -147,9 +147,14 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 order.SetPaid();
 
                 break;
-            case 'c':
-                cout << "Adding a comment to order!" << endl;
+            case 'c':{
+                string comment;
+                cout << "What do you want to add to the order? " << endl;
+                getline(cin, comment);
+                getline(cin, comment);
+                order.AddComment(comment);
                 break;
+            }
             case 'h':{
                 string delivered;
                 cout << "Where would you like to have the order delivered? " << endl;
