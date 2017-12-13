@@ -165,7 +165,7 @@ void SalesUI::CreateOrder(){
     char last[lengthOfName];
     char phone[lengthOfName];
     cout << "Firstname of costumer" << endl;
-    cin >> first >> '\n';
+    cin >> first;
     cout << "Lastname of costumer" << endl;
     cin >> last;
     cout << "phone of costumer" << endl;
@@ -180,7 +180,10 @@ void SalesUI::CreateOrder(){
         order.SetBranchLoc(tobeadded);
         EditOrder(order);
     }
-    catch(isCostumerNameValid e){
+    catch(invalidCostumerName e){
+        cout << "Exception was thrown with error: " << e.getMessage() << endl;
+    }
+    catch(invalidPhoneNumber e){
         cout << "Exception was thrown with error: " << e.getMessage() << endl;
     }
 }

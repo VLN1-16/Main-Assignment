@@ -60,27 +60,39 @@ const char* Costumer::GetNumber(){
     return number;
 }
 void Costumer::SetFirstName(const char newFirstName[lengthOfName]){
-
+        if(newFirstName[0] == '\0'){
+                        throw invalidCostumerName("First name is empty! ");
+                    }
         for(int i = 0; i < lengthOfName; i++){
-            if(firstName[i] == '\0'){
-                break;
-            }
-            if(!(isalpha(firstName[i]))) {
-               throw isCostumerNameValid("Name can not include numbers!");
-
-               }
-            else{
-                firstName[i] = newFirstName[i];
-               }
+                if(!(newFirstName[i] == '\0')){
+                        if(!(isalpha(newFirstName[i]))){
+                            throw invalidCostumerName("Name can only consist of letter! ");
+                        }
+                        else{
+                            firstName[i] = newFirstName[i];
+                        }
+                }
+                else
+                        break;
         }
-
-
     }
 
 void Costumer::SetLastName(const char newLastName[lengthOfName]){
-    for(int i = 0; i < lengthOfName; i++){
-        lastName[i] = newLastName[i];
-    }
+    if(newLastName[0] == '\0'){
+                        throw invalidCostumerName("Last name is empty! ");
+                    }
+        for(int i = 0; i < lengthOfName; i++){
+                if(!(newLastName[i] == '\0')){
+                        if(!(isalpha(newLastName[i]))){
+                            throw invalidCostumerName("Name can only consist of letter! ");
+                        }
+                        else{
+                            lastName[i] = newLastName[i];
+                        }
+                }
+                else
+                        break;
+        }
 }
 void Costumer::SetNumber(const char newNumber[8]){
     if(!NumberIsOk(newNumber)) throw badnumber();

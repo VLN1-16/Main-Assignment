@@ -1,10 +1,10 @@
 #include "iscostumernamevalid.h"
 
-isCostumerNameValid::isCostumerNameValid(string message){
+invalidCostumerName::invalidCostumerName(string message){
     this->message = message;
 }
 
-string isCostumerNameValid::getMessage(){
+string invalidCostumerName::getMessage(){
     return message;
 }
 

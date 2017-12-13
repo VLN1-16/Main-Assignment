@@ -2,7 +2,7 @@
 #define SALESUI_H
 #include <iostream>
 #include <cstdlib>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <cctype>
 
 // #include "sales.h" // Getting rid of this
@@ -17,7 +17,7 @@
 #include "placerepo.h"
 #include "pizzasizerepo.h"
 #include "orderrepo.h"
-#include "iscostumernamevalid.h"
+//#include "iscostumernamevalid.h"
 
 using namespace std;
 
