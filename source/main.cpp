@@ -2,9 +2,10 @@
 #include "commandline.h"
 
 
-using namespace std;
-
 int main(){
+
+    std::cout << "Developed by : Ómar Högni Guðmarsson, Bjarki Halldórsson, Íris Ósk Óttarsdóttir" << std::endl;
+    std::cout << "As a final assignment for VLN1-16 at RU University" << std::endl;
 
     CommandLine CommandObj; //CommandLine object
 
