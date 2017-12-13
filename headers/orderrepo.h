@@ -1,8 +1,7 @@
 #ifndef ORDERREPO_H
 #define ORDERREPO_H
 
-#define orderfile "data/orderfile.dat"
-
+#include "config.h"
 #include "pizza.h"
 #include "topping.h"
 #include "product.h"
@@ -10,6 +9,7 @@
 #include "filehandler.h"
 #include "place.h"
 #include "exceptions.h"
+
 #include <vector>
 
 class OrderRepo{

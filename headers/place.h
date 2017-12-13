@@ -1,8 +1,11 @@
 #ifndef PLACE_H
 #define PLACE_H
-#define sizeOfplace 100
+
+#include "config.h"
+
 #include <iostream>
 #include <string>
+
 class Place{
     public:
         Place();

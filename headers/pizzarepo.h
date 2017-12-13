@@ -1,13 +1,13 @@
 #ifndef PIZZAREPO_H
 #define PIZZAREPO_H
 
-#define pizzafile "data/pizzamenu.dat"
-
-#include <iostream>
 #include "filehandler.h"
 #include "pizza.h"
 #include "topping.h"
 #include "product.h"
+#include "config.h"
+
+#include <iostream>
 
 class PizzaRepo {
     public:

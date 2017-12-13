@@ -1,10 +1,11 @@
 #ifndef COSTUMER_H
 #define COSTUMER_H
-#define lengthOfName 50
-#include <iostream>
 
 #include "iscostumernamevalid.h"
 #include "badnumber.h"
+#include "config.h"
+
+#include <iostream>
 
 class Costumer{
     public:

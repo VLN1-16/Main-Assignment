@@ -4,11 +4,11 @@ Product::Product(){
     price = 0;
     name[0] = '\0';
 }
-Product::Product(int p, char n[sizeOfName]){
+Product::Product(int p, char n[lengthOfName]){
     price = p;
     SetName(n);
 }
-Product::Product(char n[sizeOfName], int p) : Product(p, n) {
+Product::Product(char n[lengthOfName], int p) : Product(p, n) {
 }
 Product::~Product(){
 
@@ -23,8 +23,8 @@ char* Product::GetName(){
 void Product::SetPrice(const int& p){
     price = p;
 }
-void Product::SetName(const char n[sizeOfName]){
-    for(int i = 0; i < sizeOfName;i++){
+void Product::SetName(const char n[lengthOfName]){
+    for(int i = 0; i < lengthOfName;i++){
         name[i] = n[i];
     }
 }
@@ -39,17 +39,17 @@ std::istream& operator>>(std::istream &is, Product &prod){
 void Product::WriteBin(std::ostream& binaryOut){
     // Write out the int and the name
     binaryOut.write((char*)(&price), sizeof(int));
-    binaryOut.write((char*)(name), sizeof(char) * sizeOfName);
+    binaryOut.write((char*)(name), sizeof(char) * lengthOfName);
 }
 void Product::ReadBin (std::istream& binaryIn){
     binaryIn.read((char*)(&price), sizeof(int));
-    binaryIn.read((char*)(name), sizeof(char) * sizeOfName);
+    binaryIn.read((char*)(name), sizeof(char) * lengthOfName);
 }
 bool Product::operator ==(Product& prod1){
     bool NameTheSame = true;
-    for(int i = 0; i < sizeOfName; i++){
+    for(int i = 0; i < lengthOfName; i++){
         if(prod1.name[i] == name[i]){
-            if(name[i] == '\0') break; 
+            if(name[i] == '\0') break;
         }
         else{
             return false;

@@ -1,19 +1,17 @@
 #ifndef ORDER_H
 #define ORDER_H
 
-#include <iostream>
-#include <string>
-#include <ctime> // for the unix timestamp
 #include "costumer.h"
 #include "pizza.h"
 #include "product.h"
 #include "topping.h"
 #include "place.h"
 #include "exceptions.h"
-#define sizeOfplace 100
-#define sizeOfComment 100
-#define ruinedTime 2400
-#define lateTime 1200
+#include "config.h"
+
+#include <iostream>
+#include <string>
+#include <ctime> // for the unix timestamp
 
 class Order{
     public:

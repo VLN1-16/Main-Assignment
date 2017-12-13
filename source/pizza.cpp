@@ -10,7 +10,7 @@ Pizza::Pizza() : Product(){
     progress = 0;
 }
 
-Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
+Pizza::Pizza(char n[lengthOfName], int Price, double Offset, int Size) {
     SetName(n);
     numberOfToppings = 2;
     toppings = nullptr;
@@ -20,7 +20,7 @@ Pizza::Pizza(char n[sizeOfName], int Price, double Offset, int Size) {
     size   = Size;
     progress = 0;
 }
-Pizza::Pizza(char n[sizeOfName], Pizzasize& Pizzasize) {
+Pizza::Pizza(char n[lengthOfName], Pizzasize& Pizzasize) {
     SetName(n);
     numberOfToppings = 2;
     toppings = nullptr;
