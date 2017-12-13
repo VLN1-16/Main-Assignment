@@ -29,8 +29,7 @@ void Product::SetName(const char n[sizeOfName]){
     }
 }
 std::ostream& operator<<(std::ostream &os, Product& prod){
-    os << prod.GetName() << ", Kr. ";
-    os << prod.GetPrice();
+    os << prod.GetName() << " Kr. " << prod.GetPrice();
     return os;
 }
 std::istream& operator>>(std::istream &is, Product &prod){
