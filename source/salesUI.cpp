@@ -63,14 +63,24 @@ void SalesUI::OrderEditor(){
         cout << "There are no orders to edit" << endl;
         return;
     }
-    activeorders->GetActiveOrders(cout);
-    cin >> orderid;
-    Order order = activeorders->GetOrderAt(orderid-1);
-    EditOrder(order, true, orderid - 1);
+    while(true){
+        try{
+            activeorders->GetActiveOrders(cout);
+            cout << "Order id: " << endl;
+            cin >> orderid;
+            Order order = activeorders->GetOrderAt(orderid-1);
+            EditOrder(order, true, orderid - 1);
+            return;
+        }catch(IndexOutOfRangeException e){
+            cout << "Please select a id that exists" << endl;
+            cin.clear();
+            cin.ignore(80, '\n');
+            cout << endl;
+        }
+    }
 }
 void SalesUI::EditOrder(Order order, bool edit, int index){
     while(true){
-
         cout << "a: Add pizza from menu" << endl;
         cout << "k: Add a product" << endl;
         cout << "r: Register order" << endl;
@@ -92,9 +102,11 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
             int pizzaid;
                 cout << "Select a pizza: " << endl;
                 pizzas->GetPizzas(cout);
-                cout << "Which number of pizza would you like : " << endl;
+                cout << "PizzaId : " << endl;
                 cin >> pizzaid;
+                // Some sane index validation
                 order.AddPizza(pizzas->GetPizza(pizzaid-1));
+                // Same
                 break;
             case 'k':{
                 int productId;
@@ -183,45 +195,54 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 cin >> userAns;
                 if(tolower(userAns) == 'y')
                     exit(EXIT_SUCCESS);
-                else
-                    EditOrder(order);
                 break;
             default:
-                cout << "Please enter a valid input!" << endl;
-                EditOrder(order);
+                cout << "Invalid input!" << endl;
                 break;
         }
     }
 }
 void SalesUI::CreateOrder(){
-
-    char first[lengthOfName];
-    char last[lengthOfName];
-    char phone[lengthOfName];
-    cout << "Firstname of costumer" << endl;
-    cin >> first;
-    cout << "Lastname of costumer" << endl;
-    cin >> last;
-    cout << "phone of costumer" << endl;
-    cin >> phone;
-
-    try{
-        Costumer costumer(first, last, phone);
-        Order order(costumer);
-        Place tobeadded = pickplace();
-        order.SetBranchLoc(tobeadded);
-        EditOrder(order);
+    while(true){
+        char first[lengthOfName];
+        char last[lengthOfName];
+        char phone[lengthOfName];
+        cout << "Costumer information" << endl;
+        cout << "Firstname : ";
+        cin >> first;
+        cout << "Lastname : ";
+        cin >> last;
+        cout << "Phonenumber :";
+        cin >> phone;
+        cout << std::endl;
+        try{
+            Costumer costumer(first, last, phone);
+            Order order(costumer);
+            Place tobeadded = pickplace();
+            order.SetBranchLoc(tobeadded);
+            EditOrder(order);
+            return;
+        }
+        catch(BadNumber e){
+            cout << "Exception was thrown with error: " << e.getMessage() << endl;
+            cin.clear();
+            cin.ignore(80, '\n');
+        }
     }
-    catch(BadNumber e){
-        cout << "Exception was thrown with error: " << e.getMessage() << endl;
-    }
-
 }
 Place SalesUI::pickplace(){
-    // User has to pick his location
-    int index;
-    places->GetPlaces(cout);
-    cout << "Where is the order suppose to be made : ";
-    cin >> index;
-    return places->GetPlace(index - 1);
+    while(true){
+        int index;
+        places->GetPlaces(cout);
+        cout << "Where is the order suppose to be made : ";
+        cin >> index;
+        try{
+            return places->GetPlace(index - 1);
+        }
+        catch(IndexOutOfRangeException e){
+            cout << "Please select a place that exists ";
+            cin.clear();
+            cin.ignore(80, '\n');
+        }
+    }
 }

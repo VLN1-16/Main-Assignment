@@ -10,60 +10,60 @@ CommandLine::~CommandLine(){
 }
 
 void CommandLine::printMainMenu(){
-    cout << "~Welcome to Main Menu~" << endl << endl;
-    cout << "Press: " << endl;
-    cout << "m: For management" << endl;
-    cout << "s: For sales" << endl;
-    cout << "p: For preparation" << endl;
-    cout << "d: For delivery" << endl;
-    cout << "h: Display help" << endl;
-    cout << "q: Quit" << endl << endl;
+    while(true){
+        cout << "~Welcome to Main Menu~" << endl << endl;
+        cout << "Press: " << endl;
+        cout << "m: For management" << endl;
+        cout << "s: For sales" << endl;
+        cout << "p: For preparation" << endl;
+        cout << "d: For delivery" << endl;
+        cout << "h: Display help" << endl;
+        cout << "q: Quit" << endl << endl;
 
-    char userAns;
-    cin >> userAns;
+        char userAns;
+        cin >> userAns;
 
-    switch(tolower(userAns)){
-        case 'm':
-            cout << "~Management~" << endl;
-            managementView();
-            break;
-        case 's':
-            //TO-DO: clear screen
-            cout << "~Salesperson~" << endl;
-            salesPerson();
-            break;
-        case 'p':{
-            cout << "~Preparation~" << endl;
-            Place myplace;
-            myplace = pickplace();
-            preperationView(myplace);
-            break;
-        }
-        case 'd':{
-            cout << "~Delivery~" << endl;
-            Place myplace;
-            myplace = pickplace();
-            deliveryView(myplace);
-            break;
-        }
-        case 'q':
-            return;
-        case 'h':{
-            ifstream fout("data/help.txt");
-            while(true){
-                string helpline;
-                getline(fout, helpline);
-                if(fout.eof()) break;
-                cout << helpline << endl;
+        switch(tolower(userAns)){
+            case 'm':
+                cout << "~Management~" << endl;
+                managementView();
+                break;
+            case 's':
+                cout << "~Salesperson~" << endl;
+                salesPerson();
+                break;
+            case 'p':{
+                cout << "~Preparation~" << endl;
+                Place myplace;
+                myplace = pickplace();
+                preperationView(myplace);
+                break;
             }
-            break;
+            case 'd':{
+                cout << "~Delivery~" << endl;
+                Place myplace;
+                myplace = pickplace();
+                deliveryView(myplace);
+                break;
+            }
+            case 'q':
+
+                return;
+            case 'h':{
+                ifstream fout("data/help.txt");
+                while(true){
+                    string helpline;
+                    getline(fout, helpline);
+                    if(fout.eof()) break;
+                    cout << helpline << endl;
+                }
+                break;
+            }
+            default:
+                cout << "Not valid input!" << endl;
+                break;
         }
-        default:
-            cout << "Not a valid input!" << endl;
-            printMainMenu();
-            break;
     }
-    printMainMenu();
 }
 
 void CommandLine::managementView(){
@@ -87,5 +87,7 @@ Place CommandLine::pickplace(){
     places->GetPlaces(cout);
     cout << "Which place are you working at : ";
     cin >> index;
+    cout << "Placeid : " << endl;
+    
     return places->GetPlace(index - 1);
 }

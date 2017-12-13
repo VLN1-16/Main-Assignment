@@ -29,8 +29,8 @@ void PlaceRepo::RemovePlace(int index){
 bool PlaceRepo::NumberIsOk(const char numberToCheck[8]){
     for(int i = 0; i < 7; i++){
         if(numberToCheck[i] == '\0') throw BadNumber("Number has to be 7 digits");
-        if((int)(numberToCheck[i]) < 48 || (int)(numberToCheck[i]) > 48 + 10) throw BadNumber("Number not OK");
+        if((int)(numberToCheck[i]) < 48 || (int)(numberToCheck[i]) > 48 + 10) throw BadNumber("Number can only contain numbers");
     }
-    if(numberToCheck[7] != '\0') throw BadNumber("Number not OK");
+    if(numberToCheck[7] != '\0') throw BadNumber("Number can only be 7 digits");
     return true;
 }

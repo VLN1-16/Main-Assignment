@@ -11,7 +11,8 @@ void PizzaSizeRepo::AddPizzaSize(Pizzasize s){
 }
 void PizzaSizeRepo::GetPizzaSizes(std::ostream &os){
     for(int i = 0; i < pizzasizelist->GetSize(); i++){
-        os << "BASE : " << i + 1 << std::endl;
+        os << "===== BASE : " << i + 1 << " =====" << std::endl;
+        os << "BASE : " << i + 1 << std::endl << std::endl;
         Pizzasize pizzasize = pizzasizelist->at(i);
         os << pizzasize;
     }
