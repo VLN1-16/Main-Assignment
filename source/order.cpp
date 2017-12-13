@@ -7,6 +7,7 @@ Order::Order() {
     paid = false;
     price = 0;
     discount = 0;
+    address[0] = '\0';
 
     products = nullptr;
     productcap = 2;
@@ -216,4 +217,11 @@ void Order::UpdatePizzaStatus(int index, int status){
 }
 Costumer Order::GetCostumer(){
     return costumer;
+}
+void Order::HomeDelivery(string addr){
+    pickup = false;
+    for(int i = 0; i < sizeOfplace; i++){
+        this->address[i] = addr[i];
+        if(addr[i] == '\0') break;
+    }
 }

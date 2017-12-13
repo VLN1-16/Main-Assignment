@@ -150,11 +150,14 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
             case 'c':
                 cout << "Adding a comment to order!" << endl;
                 break;
-            case 'h':
+            case 'h':{
                 string delivered;
                 cout << "Where would you like to have the order delivered? " << endl;
-                
+                getline(cin, delivered);
+                getline(cin, delivered);
+                order.HomeDelivery(delivered);
                 break;
+            }
             case 'b':
                 return;
             case 'q':

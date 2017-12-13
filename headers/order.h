@@ -2,6 +2,7 @@
 #define ORDER_H
 
 #include <iostream>
+#include <string>
 #include <ctime> // for the unix timestamp
 #include "costumer.h"
 #include "pizza.h"
@@ -9,6 +10,7 @@
 #include "topping.h"
 #include "place.h"
 #include "exceptions.h"
+#define sizeOfplace 100
 
 class Order{
     public:
@@ -40,6 +42,7 @@ class Order{
 
         int GetNumberOfPizzas();
         void UpdatePizzaStatus(int index, int status);
+        void HomeDelivery(string address);
     private:
         template <typename T>
         T* resize(T* oldarray, int& cap){
@@ -71,5 +74,6 @@ class Order{
 
         Costumer costumer;
         Place BranchLoc;
+        char address[sizeOfplace];
 };
 #endif
