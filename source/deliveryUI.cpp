@@ -61,7 +61,7 @@ void DeliveryUI::EditDelivery(int index){
     cin >> userin;
     switch(tolower(userin)){
         case 'a':{
-            orders->MarkPaid(index);
+            orders->MarkPaid(index,myplace);
             break;
         }
         case 'd':{
@@ -69,7 +69,7 @@ void DeliveryUI::EditDelivery(int index){
             break;
         }
         case 'r':{
-            orders->MarkPaid(index);
+            orders->MarkPaid(index,myplace);
             MakeDelivered(index);
             break;
         }
@@ -85,7 +85,7 @@ void DeliveryUI::MakeDelivered(int index){
     Order order = orders->GetOrderAt(index);
     if(order.IsPaid()){
         inorders->AddOrder(order);
-        orders->RemoveOrder(index);
+        orders->RemoveOrder(index,myplace);
     }
     else{
         // ORDER NOT PAID EXCEPTION

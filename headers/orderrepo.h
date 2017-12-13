@@ -9,6 +9,7 @@
 #include "order.h"
 #include "filehandler.h"
 #include "place.h"
+#include "exceptions.h"
 #include <vector>
 
 class OrderRepo{
@@ -25,8 +26,8 @@ class OrderRepo{
         *  Functions for getting items based on pizzas,
         *  Used in preperation view
         */
-        void MarkPaid(int index);
-        void RemoveOrder(int index);
+        void MarkPaid(int index,const Place& myplace);
+        void RemoveOrder(int index, const Place& myplace);
         void GetPizzaByPlace(std::ostream& os, const int index, const Place& myplace);
         void UpdatePizzaStatus(int index, const int status, const Place& myplace);
     private:

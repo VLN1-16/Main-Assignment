@@ -64,9 +64,6 @@ void OrderRepo::UpdatePizzaStatus(int index, const int status, const Place& mypl
                 if(currindex == index){
                     // at the right pizza
                     order.UpdatePizzaStatus(j, status); // j is the index of the pizza inside this order, modify that's pizza status
-                    if(order.AllPizzasReady()){
-                        order.SetReady();
-                    }
                     orderList->EditProduct(order, i); // i is the number of product inside of orderlist, replace current with that
                     std::cout << "Found the pizza at index  : " << currindex << std::endl;
                     pizzas.clear();
@@ -76,21 +73,26 @@ void OrderRepo::UpdatePizzaStatus(int index, const int status, const Place& mypl
         }
     }
 }
-void OrderRepo::RemoveOrder(int index){
+void OrderRepo::RemoveOrder(int index, const Place& myplace){
     if(index < orderList->GetSize() && index >= 0){
         Order order;
         order = orderList->at(index);
+        if (!(order.GetBranchLoc() == myplace)) throw InvalidPaymentLocation();
         orderList->RemoveProduct(index);
         }
     else {
-        // index IndexOutOfRangeException();
+        throw IndexOutOfRangeException();
     }
 }
-void OrderRepo::MarkPaid(int index){
+void OrderRepo::MarkPaid(int index, const Place& myplace){
     if(index < orderList->GetSize() && index >= 0){
         Order order = orderList->at(index);
+        if (!(order.GetBranchLoc() == myplace)) throw InvalidPaymentLocation();
         order.SetPaid();
         orderList->EditProduct(order,index);
+    }
+    else{
+        throw IndexOutOfRangeException();
     }
 }
 void OrderRepo::FillPizzaVector(const Place& myplace){

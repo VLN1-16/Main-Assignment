@@ -204,16 +204,12 @@ void Order::UpdatePizzaStatus(int index, int status){
     if(index >= numberOfPizzas || index < 0)
         throw IndexOutOfRangeException();
     pizzas[index].SetStatus(status);
-}
-bool Order::AllPizzasReady(){
-    int count = 0;
+    bool temp = true;
     for (int i = 0; i < numberOfPizzas; i++){
-        if(pizzas[i].GetStatus() == 2){
-            count++;
+        if(pizzas[i].GetStatus() != 2){
+            temp = false;
+            break;
         }
     }
-    if (count == numberOfPizzas)
-        return true;
-    else
-        return false;
+    ready = temp;
 }
