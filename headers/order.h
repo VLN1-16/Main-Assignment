@@ -42,7 +42,7 @@ class Order{
 
         int GetNumberOfPizzas();
         void UpdatePizzaStatus(int index, int status);
-        void HomeDelivery(string address);
+        void HomeDelivery(std::string address);
     private:
         template <typename T>
         T* resize(T* oldarray, int& cap){

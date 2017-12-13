@@ -33,6 +33,8 @@ Order::Order(const Order& from) : Order(){
         AddPizza(from.pizzas[i]);
     for(int i = 0; i < from.numberOfProducts; i++)
         AddProduct(from.products[i]);
+    for(int i = 0; i < sizeOfplace; i++)
+        address[i] = from.address[i];
 }
 Order::~Order(){
     if(pizzas != nullptr){
@@ -97,6 +99,7 @@ void Order::WriteBin(std::ostream& out){
     out.write((char*)(&discount), sizeof(double));
     out.write((char*)(&ready),    sizeof(bool));
     out.write((char*)(&paid),    sizeof(bool));
+    out.write((char*)(address),    sizeof(char)*sizeOfplace);
     costumer.WriteBin(out);
     BranchLoc.WriteBin(out);
 }
@@ -126,11 +129,14 @@ void Order::ReadBin(std::istream& is){
     is.read((char*)(&discount), sizeof(double));
     is.read((char*)(&ready),    sizeof(bool));
     is.read((char*)(&paid),    sizeof(bool));
+    is.read((char*)(address),    sizeof(char)*sizeOfplace);
     costumer.ReadBin(is);
     BranchLoc.ReadBin(is);
 }
 std::ostream& operator <<(std::ostream& out, Order& order){
-    out << "Order : " << (!order.ready ? "IN PROGRESS" : "DELIVERED") << std::endl;
+    out << "Order : " << (!order.ready ? "IN PROGRESS" : "Ready") << std::endl;
+    out << "Order : " << (!order.pickup ? "HOME DELIVERY" : "PICKUP") << std::endl;
+    out << "Delivery address: " << order.address << std::endl;
     out << "Created stamp : " << order.timestamp << std::endl;
     out << "Costumer : " << order.costumer;
     out << "BranchLoc : " << order.BranchLoc << std::endl;
@@ -167,6 +173,8 @@ bool Order::operator ==(Order& cmp){
     return true;
     for(int i = 0; i < numberOfPizzas; i++)
         if(!(pizzas[i] == cmp.pizzas[i])) return false;
+    for(int i = 0; i < sizeOfplace; i++)
+        if(!(address[i] == cmp.address[i])) return false;
     return true;
 }
 Order& Order::operator=(const Order& order){
@@ -185,6 +193,8 @@ Order& Order::operator=(const Order& order){
     for(int i = 0; i < order.numberOfProducts; i++){
         AddProduct(order.products[i]);
     }
+    for(int i = 0; i < sizeOfplace; i++)
+        address[i] = order.address[i];
     return *this;
 }
 void Order::SetBranchLoc(Place& newplace){
@@ -218,7 +228,7 @@ void Order::UpdatePizzaStatus(int index, int status){
 Costumer Order::GetCostumer(){
     return costumer;
 }
-void Order::HomeDelivery(string addr){
+void Order::HomeDelivery(std::string addr){
     pickup = false;
     for(int i = 0; i < sizeOfplace; i++){
         this->address[i] = addr[i];
