@@ -1,13 +1,12 @@
 #include "costumer.h"
 
-
 Costumer::Costumer(){
    firstName[0] = '\0';
    lastName[0]  = '\0';
    number[0] = '\0';
 }
 Costumer::Costumer(char FirstName[lengthOfName], char LastName[lengthOfName], char Number[8]){
-    if(!NumberIsOk(Number)) throw BadNumber("Number not OK");
+    if(!NumberIsOk(Number)) throw BadNumber("asdf");
     SetFirstName(FirstName);
     SetLastName(LastName);
     SetNumber(Number);
