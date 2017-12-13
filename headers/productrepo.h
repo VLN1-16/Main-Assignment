@@ -1,8 +1,7 @@
 #ifndef PRODUCTREPO_H
 #define PRODUCTREPO_H
 
-#define productfile "data/products.dat"
-
+#include "config.h"
 #include "filehandler.h"
 #include "product.h"
 

@@ -1,12 +1,15 @@
 #ifndef FILEHANDLER_H
 #define FILEHANDLER_H
-#define arraySize 10
+
+#include "exceptions.h"
+#include "config.h"
+
 #include <iostream>
 #include <cstddef>
 #include <fstream>
 #include <string>
 #include <vector>
-#include "exceptions.h"
+
 template <typename T> class FileHandler {
     public:
         FileHandler(std::string DataFile){

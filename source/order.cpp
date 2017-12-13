@@ -162,7 +162,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     if(order.numberOfProducts > 0)
         out << "Products(" << order.numberOfProducts << ") : " << std::endl;
     for(int i = 0; i < order.numberOfProducts; i++){
-        out << "\t" << order.products[i];
+        out << order.products[i] << (i + 1 != order.numberOfProducts ? ",  " : "");
     }
     out << endl;
     if(order.numberOfPizzas > 0)
@@ -170,6 +170,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     for(int i = 0; i < order.numberOfPizzas; i++){
         out << order.pizzas[i];
     }
+    out << std::endl;
     out << "Discount : " << order.discount << "\%"<< std::endl;
     out << "Total price : " << order.GetPrice() << std::endl;
     out << "Order Paid : " << (order.paid? "YES" : "NO") << std::endl;

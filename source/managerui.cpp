@@ -138,7 +138,7 @@ void ManagerUI::EditProducts(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[sizeOfName];
+            char name[lengthOfName];
             int price;
             cout << "What is the name of the product : ";
             cin >> name;
@@ -181,7 +181,7 @@ void ManagerUI::EditToppings(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[sizeOfName];
+            char name[lengthOfName];
             int price;
             cout << "What is the name of the topping : ";
             cin >> name;
@@ -276,9 +276,10 @@ void ManagerUI::EditPizzas(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[sizeOfName];
+            std::string name;
             cout << "What is the name of the pizza : ";
-            cin >> name;
+            getline(cin, name);
+            getline(cin, name);
             pizzaSizes->GetPizzaSizes(cout);
             cout << "What size do you want : ";
             int index;

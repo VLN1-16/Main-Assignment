@@ -1,8 +1,6 @@
 #ifndef MANAGERUI_H
 #define MANAGERUI_H
 
-#include <iostream>
-#include <cstdlib>
 #include "filehandler.h"
 #include "pizzasize.h"
 #include "place.h"
@@ -14,6 +12,9 @@
 #include "placerepo.h"
 #include "pizzasizerepo.h"
 #include "inactiveorderrepo.h"
+
+#include <iostream>
+#include <cstdlib>
 
 using namespace std;
 

@@ -1,8 +1,7 @@
 #ifndef PLACEREPO_H
 #define PLACEREPO_H
 
-#define placefile "data/places.dat"
-
+#include "config.h"
 #include "filehandler.h"
 #include "place.h"
 #include "badnumber.h"

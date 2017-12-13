@@ -1,8 +1,9 @@
 #ifndef PIZZASIZE_H
 #define PIZZASIZE_H
 
-#include <iostream>
 #include "math.h"
+
+#include <iostream>
 
 class Pizzasize {
     public:

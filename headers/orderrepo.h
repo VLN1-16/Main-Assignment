@@ -1,8 +1,7 @@
 #ifndef ORDERREPO_H
 #define ORDERREPO_H
 
-#define orderfile "data/orderfile.dat"
-
+#include "config.h"
 #include "pizza.h"
 #include "topping.h"
 #include "product.h"
@@ -10,6 +9,7 @@
 #include "filehandler.h"
 #include "place.h"
 #include "exceptions.h"
+
 #include <vector>
 
 class OrderRepo{
@@ -29,8 +29,8 @@ class OrderRepo{
         */
         void MarkPaid(int index,const Place& myplace);
         void RemoveOrder(int index, const Place& myplace);
-        void GetPizzaByPlace(std::ostream& os, const int index, const Place& myplace);
-        void UpdatePizzaStatus(int index, const int status, const Place& myplace);
+        void GetPizzaByPlace(std::ostream& os, const unsigned int index, const Place& myplace);
+        void UpdatePizzaStatus(const unsigned int index, const int status, const Place& myplace);
         const int GetNumberOfPizzas();
         const int GetNumberOfOrders();
         void EditOrder(int index, const Order& order);

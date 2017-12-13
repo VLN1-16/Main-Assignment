@@ -1,10 +1,10 @@
 #ifndef TOPPINGREPO_H
 #define TOPPINGREPO_H
 
-#define toppingfile "data/toppings.dat"
-
+#include "config.h"
 #include "filehandler.h"
 #include "topping.h"
+
 class ToppingRepo{
     public:
         ToppingRepo();
