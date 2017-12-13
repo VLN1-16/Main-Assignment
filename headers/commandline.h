@@ -1,7 +1,6 @@
 #ifndef COMMANDLINE_H
 #define COMMANDLINE_H
-#include <iostream>
-#include <string>
+
 #include "managerui.h"
 #include "salesUI.h"
 #include "preperationUI.h"
@@ -9,6 +8,10 @@
 #include "place.h"
 #include "placerepo.h"
 #include "iscostumernamevalid.h"
+
+#include <iostream>
+#include <string>
+
 using namespace std;
 
 /*

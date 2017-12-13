@@ -8,6 +8,7 @@ using namespace std;
 class BadNumber
 {
     public:
+        BadNumber();
         BadNumber(string message);
         string getMessage();
 

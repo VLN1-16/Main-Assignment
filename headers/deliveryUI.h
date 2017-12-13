@@ -1,11 +1,12 @@
 #ifndef DELIVERYUI_H
 #define DELIVERYUI_H
-#include <cstdlib>
+
 #include "place.h"
 #include "order.h"
 #include "orderrepo.h"
 #include "inactiveorderrepo.h"
 
+#include <cstdlib>
 
 /*
 *
@@ -22,7 +23,7 @@ class DeliveryUI{
         void DeliveryMenu();
         void EditDelivery(int index);
         void MakeDelivered(int index);
-        
+
     private:
         Place myplace;
         OrderRepo* orders;

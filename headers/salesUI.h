@@ -1,15 +1,11 @@
 #ifndef SALESUI_H
 #define SALESUI_H
-#include <iostream>
-#include <cstdlib>
-//#include <stdlib.h>
-#include <cctype>
 
-// #include "sales.h" // Getting rid of this
 #include "costumer.h"
 #include "order.h"
 #include "place.h"
-// #include "management.h" // only for GetPlaces and GetPlace this is the first sign that the design was bad
+#include "badnumber.h"
+#include "iscostumernamevalid.h"
 
 #include "pizzarepo.h"
 #include "toppingrepo.h"
@@ -17,8 +13,10 @@
 #include "placerepo.h"
 #include "pizzasizerepo.h"
 #include "orderrepo.h"
-#include "badnumber.h"
-#include "iscostumernamevalid.h"
+
+#include <iostream>
+#include <cstdlib>
+#include <cctype>
 
 using namespace std;
 

@@ -1,16 +1,17 @@
 #ifndef ORDER_H
 #define ORDER_H
 
-#include <iostream>
-#include <string>
-#include <ctime> // for the unix timestamp
 #include "costumer.h"
 #include "pizza.h"
 #include "product.h"
 #include "topping.h"
 #include "place.h"
 #include "exceptions.h"
-#define sizeOfplace 100
+#include "config.h"
+
+#include <iostream>
+#include <string>
+#include <ctime> // for the unix timestamp
 
 class Order{
     public:
@@ -43,6 +44,7 @@ class Order{
         int GetNumberOfPizzas();
         void UpdatePizzaStatus(int index, int status);
         void HomeDelivery(std::string address);
+        void AddComment(std::string comment);
     private:
         template <typename T>
         T* resize(T* oldarray, int& cap){
@@ -75,5 +77,6 @@ class Order{
         Costumer costumer;
         Place BranchLoc;
         char address[sizeOfplace];
+        char comment[sizeOfComment];
 };
 #endif

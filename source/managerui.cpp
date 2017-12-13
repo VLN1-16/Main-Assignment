@@ -1,4 +1,5 @@
 #include "managerui.h"
+
 ManagerUI::ManagerUI() {
     pizzas = new PizzaRepo();
     toppings = new ToppingRepo();
@@ -72,7 +73,7 @@ void ManagerUI::ManagerMenu(){
 }
 
 void ManagerUI::EditSizes(){
-    /*
+        /*
         Here a manager can delete a size
         Add a size or modify a size. Let's start with add and delete
        */
@@ -137,7 +138,7 @@ void ManagerUI::EditProducts(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[sizeOfName];
+            char name[lengthOfName];
             int price;
             cout << "What is the name of the product : ";
             cin >> name;
@@ -180,7 +181,7 @@ void ManagerUI::EditToppings(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[sizeOfName];
+            char name[lengthOfName];
             int price;
             cout << "What is the name of the topping : ";
             cin >> name;
