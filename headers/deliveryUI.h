@@ -5,6 +5,7 @@
 #include "order.h"
 #include "orderrepo.h"
 #include "inactiveorderrepo.h"
+#include "badnumber.h"
 
 #include <cstdlib>
 
