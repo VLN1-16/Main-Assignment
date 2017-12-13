@@ -1,6 +1,6 @@
 #include "costumer.h"
 Costumer::Costumer(){
-   firstName[0] = '\0'; 
+   firstName[0] = '\0';
    lastName[0]  = '\0';
    number[0] = '\0';
 }
@@ -51,7 +51,7 @@ bool Costumer::operator ==(Costumer& cost){
     return true;
 }
 const char* Costumer::GetFirstName(){
-    return firstName; 
+    return firstName;
 }
 const char* Costumer::GetLastName(){
     return lastName;
@@ -60,10 +60,23 @@ const char* Costumer::GetNumber(){
     return number;
 }
 void Costumer::SetFirstName(const char newFirstName[lengthOfName]){
-    for(int i = 0; i < lengthOfName; i++){
-        firstName[i] = newFirstName[i];
+
+        for(int i = 0; i < lengthOfName; i++){
+            if(firstName[i] == '\0'){
+                break;
+            }
+            if(!(isalpha(firstName[i]))) {
+               throw isCostumerNameValid("Name can not include numbers!");
+
+               }
+            else{
+                firstName[i] = newFirstName[i];
+               }
+        }
+
+
     }
-}
+
 void Costumer::SetLastName(const char newLastName[lengthOfName]){
     for(int i = 0; i < lengthOfName; i++){
         lastName[i] = newLastName[i];

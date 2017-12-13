@@ -13,7 +13,7 @@ SalesUI::~SalesUI(){
     delete pizzas;
     delete toppings;
     delete products;
-    delete places; 
+    delete places;
     delete activeorders;
 }
 
@@ -165,19 +165,24 @@ void SalesUI::CreateOrder(){
     char last[lengthOfName];
     char phone[lengthOfName];
     cout << "Firstname of costumer" << endl;
-    cin >> first;
+    cin >> first >> '\n';
     cout << "Lastname of costumer" << endl;
     cin >> last;
     cout << "phone of costumer" << endl;
     cin >> phone;
-    Costumer costumer(first, last,phone);
-    Order order(costumer);
-    Place tobeadded = pickplace();
-    // DEBUG
-    std::cout << tobeadded << std::endl;
-    order.SetBranchLoc(tobeadded);
-    EditOrder(order);
 
+    try{
+        Costumer costumer(first, last, phone);
+        Order order(costumer);
+        Place tobeadded = pickplace();
+        // DEBUG
+        std::cout << tobeadded << std::endl;
+        order.SetBranchLoc(tobeadded);
+        EditOrder(order);
+    }
+    catch(isCostumerNameValid e){
+        cout << "Exception was thrown with error: " << e.getMessage() << endl;
+    }
 }
 Place SalesUI::pickplace(){
     // User has to pick his location
