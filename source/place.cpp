@@ -16,6 +16,19 @@ Place::Place(char n[sizeOfplace],char addr[sizeOfplace],char p[8],bool active){
     }
     isActive = active;
 }
+Place::Place(std::string name,std::string addr,char p[8], bool active){
+    for(int i = 0; i < sizeOfplace; i++){
+        this->name[i] = name[i];
+        if(name[i] == '\0') break;
+    }
+    for(int i = 0; i < sizeOfplace; i++){
+        this->address[i] = addr[i];
+        if(addr[i] == '\0') break;
+    }
+    for(int i = 0; i < 8; i++){
+        this->phone[i] = p[i];
+    }
+}
 Place::~Place(){}
 
 int Place::GetByteSize() {
@@ -23,9 +36,9 @@ int Place::GetByteSize() {
 }
 
 std::ostream& operator<<(std::ostream &os, Place& place){
-    os << place.name << " ";
-    os << place.address << " ";
-    os << place.phone << std::endl;
+    os << place.name << ", ";
+    os << place.address << ", ";
+    os << "S:" << place.phone << std::endl;
     return os;
 }
 std::istream& operator>>(std::istream &is, Place &place){
@@ -59,4 +72,7 @@ bool Place::operator ==(const Place& cmp){
     }
     if(cmp.isActive != isActive) return false;
     return true;
+}
+char* Place::GetNumber(){
+    return phone;
 }

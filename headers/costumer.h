@@ -4,8 +4,8 @@
 #include <iostream>
 
 #include "iscostumernamevalid.h"
+#include "badnumber.h"
 
-class badnumber{};
 class Costumer{
     public:
         Costumer();
