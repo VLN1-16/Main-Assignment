@@ -84,6 +84,7 @@ std::ostream& operator<<(std::ostream &os,Pizza& pizza){
     for (int i = 0; i < pizza.GetNumberOfToppings(); i++){
         os << "\t" << pizza.toppings[i];
     }
+    os << std::endl;
     os << pizza.GetPrice() << std::endl;
     return os;
 }

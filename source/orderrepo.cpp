@@ -9,7 +9,7 @@ OrderRepo::~OrderRepo(){
 void OrderRepo::GetActiveOrders(std::ostream &os){
     for(int i = 0; i < orderList->GetSize(); i++){
         os << std::endl;
-        os << "Order : " << i + 1 << std::endl;
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
         Order ord = orderList->at(i);
         os << ord;
     }
@@ -18,7 +18,7 @@ void OrderRepo::GetActiveOrders(std::ostream &os, const Place& myplace){
     for(int i = 0; i < orderList->GetSize(); i++){
         Order ord = orderList->at(i);
         if(ord.GetBranchLoc() == myplace){
-            os << "Order : " << i+1 << std::endl;
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
             os << ord;
         }
     }
@@ -27,7 +27,7 @@ void OrderRepo::GetOrdersByCostumer(std::ostream &os, const Place& myplace, char
     for(int i = 0; i < orderList->GetSize(); i++){
         Order ord = orderList->at(i);
         if(ord.GetBranchLoc() == myplace && ord.GetCostumer().CompareNumber(phone)){
-            os << "Order : " << i+1 << std::endl;
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
             os << ord;
         }
     }

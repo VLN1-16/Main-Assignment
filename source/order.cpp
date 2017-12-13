@@ -138,6 +138,7 @@ std::ostream& operator <<(std::ostream& out, Order& order){
     for(int i = 0; i < order.numberOfProducts; i++){
         out << "\t" << order.products[i];
     }
+    out << endl;
     if(order.numberOfPizzas > 0)
         out << "Pizzas(" << order.numberOfPizzas << ") : " << std::endl;
     for(int i = 0; i < order.numberOfPizzas; i++){
