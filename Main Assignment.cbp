@@ -39,6 +39,7 @@
 		<Unit filename="headers/costumer.h" />
 		<Unit filename="headers/deliveryUI.h" />
 		<Unit filename="headers/exceptions.h" />
+		<Unit filename="headers/exceptions/badnumber.h" />
 		<Unit filename="headers/exceptions/invalidpizzasize.h" />
 		<Unit filename="headers/exceptions/iscostumernamevalid.h" />
 		<Unit filename="headers/filehandler.h" />
@@ -61,6 +62,9 @@
 		<Unit filename="source/commandline.cpp" />
 		<Unit filename="source/costumer.cpp" />
 		<Unit filename="source/deliveryUI.cpp" />
+		<Unit filename="source/exceptions/badnumber.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="source/exceptions/invalidpizzasize.cpp" />
 		<Unit filename="source/exceptions/iscostumernamevalid.cpp" />
 		<Unit filename="source/inactiveorderrepo.cpp" />
