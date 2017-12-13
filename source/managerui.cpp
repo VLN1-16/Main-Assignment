@@ -1,4 +1,5 @@
 #include "managerui.h"
+
 ManagerUI::ManagerUI() {
     pizzas = new PizzaRepo();
     toppings = new ToppingRepo();
@@ -72,7 +73,7 @@ void ManagerUI::ManagerMenu(){
 }
 
 void ManagerUI::EditSizes(){
-    /*
+        /*
         Here a manager can delete a size
         Add a size or modify a size. Let's start with add and delete
        */
