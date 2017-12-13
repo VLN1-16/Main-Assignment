@@ -8,6 +8,7 @@
 #include "deliveryUI.h"
 #include "place.h"
 #include "placerepo.h"
+#include "iscostumernamevalid.h"
 using namespace std;
 
 /*
@@ -46,6 +47,7 @@ class CommandLine{
         Place pickplace();
     private:
         PlaceRepo* places;
+
 
 };
 #endif

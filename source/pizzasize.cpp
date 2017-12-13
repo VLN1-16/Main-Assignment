@@ -37,3 +37,7 @@ void Pizzasize::ReadBin (std::istream& binaryIn){
     binaryIn.read((char*)(&price), sizeof(int));
     binaryIn.read((char*)(&offset), sizeof(double));
 }
+
+void Pizzasize::IsSizeValid(int size){
+
+}

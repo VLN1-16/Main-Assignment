@@ -11,6 +11,7 @@ class Pizzasize {
         int GetPrice();
         double GetOffset();
         int GetSize();
+        void IsSizeValid(int size);
         friend std::ostream& operator<<(std::ostream &os, Pizzasize& ps);
 
         virtual void WriteBin(std::ostream& binaryOut);
