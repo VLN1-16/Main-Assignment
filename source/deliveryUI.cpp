@@ -16,9 +16,10 @@ DeliveryUI::~DeliveryUI(){
 void DeliveryUI::DeliveryMenu(){
 
     while(true){
-        cout << "a: Get list of all active orders" << endl;
-        cout << "r: Get list of ready orders" << endl;
+        cout << "a: Get list of all orders for this place" << endl;
+        cout << "r: Get list of ready orders for this place" << endl;
         cout << "i: Get a specific order by index" << endl;
+        cout << "c: Geta orders for a specific customer" << endl;
         cout << "b: Back" << endl;
         cout << "q: quit" << endl;
         char userin;
@@ -37,10 +38,16 @@ void DeliveryUI::DeliveryMenu(){
             case 'i':
                 int id;
                 cout << "Select An order: " << endl;
-                orders->GetActiveOrders(cout,myplace);
+                //orders->GetActiveOrders(cout,myplace);
                 cin >> id;
                 orders->ReadOrderAt(cout,id-1);
                 EditDelivery(id-1);
+                break;
+            case 'c':
+                char p[8];
+                cout << "What is the customers phonenumber " << endl;
+                cin >> p;
+                orders->GetOrdersByCostumer(cout,myplace,p);
                 break;
             case 'b':
                 return;
@@ -61,7 +68,7 @@ void DeliveryUI::EditDelivery(int index){
     cin >> userin;
     switch(tolower(userin)){
         case 'a':{
-            orders->MarkPaid(index);
+            orders->MarkPaid(index,myplace);
             break;
         }
         case 'd':{
@@ -69,7 +76,7 @@ void DeliveryUI::EditDelivery(int index){
             break;
         }
         case 'r':{
-            orders->MarkPaid(index);
+            orders->MarkPaid(index,myplace);
             MakeDelivered(index);
             break;
         }
@@ -85,7 +92,7 @@ void DeliveryUI::MakeDelivered(int index){
     Order order = orders->GetOrderAt(index);
     if(order.IsPaid()){
         inorders->AddOrder(order);
-        orders->RemoveOrder(index);
+        orders->RemoveOrder(index,myplace);
     }
     else{
         // ORDER NOT PAID EXCEPTION

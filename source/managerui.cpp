@@ -213,7 +213,7 @@ void ManagerUI::EditToppings(){
 void ManagerUI::EditLocations(){
     cout << "Editing Locations : " << endl;
     cout << "a: Add a Location" << endl;
-    // cout << "d: Deactivate a place" << endl;
+    cout << "d: Delete a place" << endl;
     cout << "l: List all locations" << endl;
     cout << "b: Back" << endl;
     cout << "q: Quit" << endl;
@@ -223,23 +223,29 @@ void ManagerUI::EditLocations(){
 
     switch(tolower(userAns)){
         case 'a':{
-            char name[sizeOfplace];
-            char addr[sizeOfplace];
+            string name;
+            string address;
             char phone[sizeOfplace];
             cout << "What is the name of this place : ";
-            cin >> name;
+            getline(cin, name);
+            getline(cin, name);
             cout << "What is the address of this place : ";
-            cin >> addr;
+            getline(cin, address);
             cout << "What is the phone number : ";
             cin >> phone;
-            Place p(name, addr, phone);
-            places->AddPlace(p);
+            Place p(name, address, phone);
+            try{
+                places->AddPlace(p);
+            }
+            catch(badnumber e){
+                cout << "The phone number was invalid!" << endl;
+            }
             break;
         }
         case 'd':
             places->GetPlaces(cout);
             int index;
-            cout << "Which place would you like to Deactivate";
+            cout << "Which place would you like to Delete";
             cin >> index;
             places->RemovePlace(index - 1);
             break;

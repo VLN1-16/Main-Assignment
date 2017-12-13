@@ -7,7 +7,8 @@ PlaceRepo::~PlaceRepo(){
         delete placelist;
 }
 void PlaceRepo::AddPlace(Place p){
-    placelist->AddProduct(p);
+    if(NumberIsOk(p.GetNumber()))
+        placelist->AddProduct(p);
 }
 void PlaceRepo::GetPlaces(std::ostream& os){
     if(placelist == nullptr)
@@ -22,8 +23,14 @@ Place PlaceRepo::GetPlace(int index){
     return placelist->at(index);
 }
 void PlaceRepo::RemovePlace(int index){
-    // this should set the active flag of a single place
-    // this has to be implemented cleanly in filehandler 
-
-    // That actually is not neccasery, since the information is written with the order
+    // This function does not deal with the possible exception
+    placelist->RemoveProduct(index);
+}
+bool PlaceRepo::NumberIsOk(const char numberToCheck[8]){
+    for(int i = 0; i < 7; i++){
+        if(numberToCheck[i] == '\0') throw badnumber();
+        if((int)(numberToCheck[i]) < 48 || (int)(numberToCheck[i]) > 48 + 10) throw badnumber();
+    }
+    if(numberToCheck[7] != '\0') throw badnumber();
+    return true;
 }

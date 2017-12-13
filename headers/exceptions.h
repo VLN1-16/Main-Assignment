@@ -3,4 +3,6 @@
 
 class IndexOutOfRangeException{};
 
+class InvalidPaymentLocation{};
+
 #endif

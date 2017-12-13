@@ -49,7 +49,6 @@ template <typename T> class FileHandler {
         void EditProduct(const T& editeditem,const int index){
             if(index < 0 || index >= numberOfProds)
                 throw IndexOutOfRangeException();
-            std::cout << "this ran" << std::endl;
             prodList[index] = editeditem;
             WriteEntireList();
         }

@@ -50,6 +50,11 @@ bool Costumer::operator ==(Costumer& cost){
         if(cost.number[i] != number[i]) return false;
     return true;
 }
+const bool Costumer::CompareNumber(const char n[8]){
+    for(int i = 0; i < 8; i++)
+        if(n[i] != number[i]) return false;
+    return true;
+}
 const char* Costumer::GetFirstName(){
     return firstName;
 }

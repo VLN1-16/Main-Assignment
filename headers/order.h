@@ -34,11 +34,11 @@ class Order{
 
         void SetBranchLoc(Place& newplace);
         Place GetBranchLoc();
+        Costumer GetCostumer();
 
         Pizza GetPizzaat(int index);
 
         int GetNumberOfPizzas();
-        bool AllPizzasReady();
         void UpdatePizzaStatus(int index, int status);
     private:
         template <typename T>
