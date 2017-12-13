@@ -66,39 +66,27 @@ const char* Costumer::GetNumber(){
     return number;
 }
 void Costumer::SetFirstName(const char newFirstName[lengthOfName]){
-        if(newFirstName[0] == '\0'){
-                        throw invalidCostumerName("First name is empty! ");
-                    }
-        for(int i = 0; i < lengthOfName; i++){
-                if(!(newFirstName[i] == '\0')){
-                        if(!(isalpha(newFirstName[i]))){
-                            throw invalidCostumerName("Name can only consist of letter! ");
-                        }
-                        else{
-                            firstName[i] = newFirstName[i];
-                        }
-                }
-                else
-                        break;
-        }
+    if(newFirstName[0] == '\0')
+        throw invalidCostumerName("First name is empty! ");
+
+    for(int i = 0; i < lengthOfName; i++){
+        firstName[i] = newFirstName[i];
+        if(isdigit(newFirstName[i]))
+            throw invalidCostumerName("Name can only consist of letter! ");
+            if(newFirstName[i] == '\0') break;
     }
+}
 
 void Costumer::SetLastName(const char newLastName[lengthOfName]){
-    if(newLastName[0] == '\0'){
-                        throw invalidCostumerName("Last name is empty! ");
-                    }
-        for(int i = 0; i < lengthOfName; i++){
-                if(!(newLastName[i] == '\0')){
-                        if(!(isalpha(newLastName[i]))){
-                            throw invalidCostumerName("Name can only consist of letter! ");
-                        }
-                        else{
-                            lastName[i] = newLastName[i];
-                        }
-                }
-                else
-                        break;
-        }
+    if(newLastName[0] == '\0')
+           throw invalidCostumerName("Last name is empty! ");
+
+    for(int i = 0; i < lengthOfName; i++){
+        lastName[i] = newLastName[i];
+        if(isdigit(newLastName[i]))
+            throw invalidCostumerName("Name can only consist of letter! ");
+        if(newLastName[i] == '\0') break;
+    }
 }
 void Costumer::SetNumber(const char newNumber[8]){
     if(!NumberIsOk(newNumber)) throw BadNumber("Number not OK");

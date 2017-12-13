@@ -79,8 +79,8 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
         cout << "d: Add a pizza" << endl;
         cout << "s: Show the order in current state" << endl;
         cout << "m: Mark the order as paid" << endl;
-        // cout << "c: Comment" << endl;
-        cout << "h: Toggle pickup" << endl;
+        cout << "c: Comment" << endl;
+        cout << "h: Home Delivered" << endl;
         // cout << "l: change preperation location" << endl;
         cout << "b: Go back" << endl;
         cout << "q: Quit (does not save)" << endl;
@@ -144,13 +144,20 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 break;
             case 'm':
                 cout << "Marking pizza as paid for" << endl;
+                order.SetPaid();
+
                 break;
             case 'c':
                 cout << "Adding a comment to order!" << endl;
                 break;
-            case 'h':
-                cout << "Toggle pickup..." << endl;
+            case 'h':{
+                string delivered;
+                cout << "Where would you like to have the order delivered? " << endl;
+                getline(cin, delivered);
+                getline(cin, delivered);
+                order.HomeDelivery(delivered);
                 break;
+            }
             case 'b':
                 return;
             case 'q':
@@ -185,17 +192,13 @@ void SalesUI::CreateOrder(){
         Costumer costumer(first, last, phone);
         Order order(costumer);
         Place tobeadded = pickplace();
-        // DEBUG
-        std::cout << tobeadded << std::endl;
         order.SetBranchLoc(tobeadded);
         EditOrder(order);
     }
     catch(BadNumber e){
         cout << "Exception was thrown with error: " << e.getMessage() << endl;
     }
-    catch(BadNumber e){
-        cout << "Exception was thrown with error: " << e.getMessage() << endl;
-    }
+
 }
 Place SalesUI::pickplace(){
     // User has to pick his location
