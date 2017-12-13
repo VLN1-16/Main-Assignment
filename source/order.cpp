@@ -139,10 +139,21 @@ void Order::ReadBin(std::istream& is){
     BranchLoc.ReadBin(is);
 }
 std::ostream& operator <<(std::ostream& out, Order& order){
-    out << "Order : " << (!order.ready ? "IN PROGRESS" : "Ready") << std::endl;
+    out << "Order : " << (!order.ready ? "IN PROGRESS" : "READY") << std::endl;
     out << "Delivery : " << (!order.pickup ? "HOME DELIVERY" : "PICKUP") << std::endl;
     out << "Delivery address: " << order.address << std::endl;
-    out << "Created stamp : " << order.timestamp << std::endl;
+    // char buf[80];
+    //struct tm* now = localtime( order.timestamp);
+    long now = time(0);
+    out << "Status: ";
+    if((now - order.timestamp) > 1200)
+        out << "LATE" << std::endl;
+    else if((now - order.timestamp) > 2400)
+        out << "RUINED" << std::endl;
+    else
+        out << "OK" << std::endl;
+    std::time_t create_time = order.timestamp;
+    out << "Created : " << std::ctime(&create_time) << std::endl;
     out << "Costumer : " << order.costumer;
     out << "BranchLoc : " << order.BranchLoc << std::endl;
     if(order.numberOfProducts > 0)
