@@ -99,6 +99,6 @@ Place CommandLine::pickplace(){
     places.GetPlaces(cout);
     cout << "Which place are you working at : ";
     cin >> index;
-    cout << "Placeid : " << endl;
+    cout << "Placeid : " << index << endl;
     return places.GetPlace(index - 1);
 }

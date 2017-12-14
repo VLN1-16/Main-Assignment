@@ -81,15 +81,14 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
     while(true){
         cout << "a: Add pizza from menu" << endl;
         cout << "k: Add a product" << endl;
-        cout << "r: Register order" << endl;
         cout << "d: Add a pizza" << endl;
         cout << "s: Show the order in current state" << endl;
         cout << "m: Mark the order as paid" << endl;
         cout << "c: Add a comment to the order" << endl;
         cout << "h: Home Delivered" << endl;
-        // cout << "l: change preperation location" << endl;
         cout << "z: Add a discount to the order" << endl;
-        cout << "b: Go back" << endl;
+        cout << "r: Save the order" << endl;
+        cout << "b: Go back(does not save)" << endl;
         cout << "q: Quit (does not save)" << endl;
 
         cin >> userAns;
@@ -100,7 +99,7 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 cout << "Select a pizza: " << endl;
                 try{
                     pizzas->GetPizzas(cout);
-                    cout << "PizzaId : "; 
+                    cout << "PizzaId : ";
                     cin >> pizzaid;
                     order.AddPizza(pizzas->GetPizza(pizzaid-1));
                 }catch(IndexOutOfRangeException e){

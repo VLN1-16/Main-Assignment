@@ -25,6 +25,8 @@ class Order{
         bool IsPaid();
         void SetPaid();
         void SetDiscount(int d);
+        void AddComment(std::string comment);
+        std::string GetComment();
         void AddProduct(Product& newproduct);
         void AddPizza(const Pizza& newpizza);
 
@@ -45,7 +47,6 @@ class Order{
         int GetNumberOfPizzas();
         void UpdatePizzaStatus(int index, int status);
         void HomeDelivery(std::string address);
-        void AddComment(std::string comment);
     private:
         template <typename T>
         T* resize(T* oldarray, int& cap){
