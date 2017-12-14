@@ -31,16 +31,30 @@ void CommandLine::printMainMenu(){
                 break;
             case 'p':{
                 cout << "~Preparation~" << endl;
-                Place myplace;
-                myplace = pickplace();
-                preperationView(myplace);
+                try{
+                    Place myplace;
+                    myplace = pickplace();
+                    preperationView(myplace);
+                }
+                catch(IndexOutOfRangeException e){
+                    cout << "Please select a place from the list" << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
                 break;
             }
             case 'd':{
                 cout << "~Delivery~" << endl;
-                Place myplace;
-                myplace = pickplace();
-                deliveryView(myplace);
+                try{
+                    Place myplace;
+                    myplace = pickplace();
+                    deliveryView(myplace);
+                }
+                catch(IndexOutOfRangeException e){
+                    cout << "Please select a place from the list" << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
                 break;
             }
             case 'q':
