@@ -42,14 +42,13 @@ void DeliveryUI::DeliveryMenu(){
                 cin >> id;
                 try{
                     orders->ReadOrderAt(cout,id-1);
+                    EditDelivery(id-1);
                 }
                 catch(IndexOutOfRangeException e){
                     cout << "Please select an order that exists " << endl;
                     cin.clear();
                     cin.ignore(80, '\n');
                 }
-
-                EditDelivery(id-1);
                 break;
             case 'c':
                 char p[8];

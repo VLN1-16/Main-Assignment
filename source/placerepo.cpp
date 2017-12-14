@@ -20,6 +20,8 @@ void PlaceRepo::GetPlaces(std::ostream& os){
     }
 }
 Place PlaceRepo::GetPlace(int index){
+    if(index >= placelist->GetSize() || index < 0) // if the pizza vector is empty, throw an exception
+        throw IndexOutOfRangeException();
     return placelist->at(index);
 }
 void PlaceRepo::RemovePlace(int index){

@@ -34,9 +34,16 @@ void CommandLine::printMainMenu(){
                 break;
             case 'p':{
                 cout << "~Preparation~" << endl;
-                Place myplace;
-                myplace = pickplace();
-                preperationView(myplace);
+                try{
+                    Place myplace;
+                    myplace = pickplace();
+                    preperationView(myplace);
+                }
+                catch(IndexOutOfRangeException e){
+                    cout << "Please select a place from the list" << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
                 break;
             }
             case 'd':{
@@ -88,6 +95,5 @@ Place CommandLine::pickplace(){
     cout << "Which place are you working at : ";
     cin >> index;
     cout << "Placeid : " << endl;
-    
     return places->GetPlace(index - 1);
 }
