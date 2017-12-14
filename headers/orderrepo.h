@@ -36,6 +36,7 @@ class OrderRepo{
         const int GetNumberOfOrders(const Place& myplace);
         const int GetNumberOfReadyOrders(const Place& myplace);
         void EditOrder(int index, const Order& order);
+        void PreperationList(std::ostream &os,const Place& myplace,int ind);
     private:
         FileHandler<Order>* orderList;
         void FillPizzaVector(const Place& myplace);

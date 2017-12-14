@@ -151,3 +151,19 @@ const int OrderRepo::GetNumberOfReadyOrders(const Place& myplace){
 void OrderRepo::EditOrder(int index, const Order& order){
     orderList->EditProduct(order,index);
 }
+void OrderRepo::PreperationList(std::ostream &os,const Place& myplace, int ind){
+    int count = 0;
+    for(int i = 0; i < orderList->GetSize(); i++){
+        Order ord = orderList->at(i);
+        if(ord.GetBranchLoc() == myplace){
+            for (int j = 0; j<ord.GetNumberOfPizzas(); j++){
+                if(count == ind){os << "-->";}
+                else {os <<"   ";}
+                count++;
+                os << "Pizzaname: "<< ord.GetPizzaat(j).GetName() << " ," ;
+                os << "Status: "<< (ord.GetPizzaat(j).GetStatus() == 0 ?  "Not started" : ( ord.GetPizzaat(j).GetStatus() == 1 ? "In Progress" : "Pizza is ready" ))<< " ,";
+                os << "Phone with order: "<< ord.GetCostumer().GetNumber()<< endl;
+            }
+        }
+    }
+}
