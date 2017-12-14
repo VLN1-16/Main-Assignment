@@ -80,6 +80,7 @@ void SalesUI::OrderEditor(){
     }
 }
 void SalesUI::EditOrder(Order order, bool edit, int index){
+    char userAns;
     while(true){
         cout << "a: Add pizza from menu" << endl;
         cout << "k: Add a product" << endl;
@@ -94,19 +95,22 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
         cout << "b: Go back" << endl;
         cout << "q: Quit (does not save)" << endl;
 
-        char userAns = 0;
         cin >> userAns;
         cout << endl;
         switch(tolower(userAns)){
             case 'a':
-            int pizzaid;
+                int pizzaid;
                 cout << "Select a pizza: " << endl;
-                pizzas->GetPizzas(cout);
-                cout << "PizzaId : " << endl;
-                cin >> pizzaid;
-                // Some sane index validation
-                order.AddPizza(pizzas->GetPizza(pizzaid-1));
-                // Same
+                try{
+                    pizzas->GetPizzas(cout);
+                    cout << "PizzaId : "; 
+                    cin >> pizzaid;
+                    order.AddPizza(pizzas->GetPizza(pizzaid-1));
+                }catch(IndexOutOfRangeException e){
+                    cout << "Invalid input!" << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
                 break;
             case 'k':{
                 int productId;
@@ -114,14 +118,20 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 cout << "ProductId : ";
                 cin >> productId;
                 Product tobeadded;
-                tobeadded = products->GetProduct(productId -1);
-                order.AddProduct(tobeadded);
+                try{
+                    Product tobeadded = products->GetProduct(productId -1);
+                    order.AddProduct(tobeadded);
+                    break;
+                }catch(IndexOutOfRangeException e){
+                    cout << "Invalid input!" << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
                 break;
             }
             case 'r':
                 cout << "Registering Order" << endl;
                 if(edit){
-                    // Edit active order
                     activeorders->EditOrder(index, order);
                 }
                 else{
@@ -129,25 +139,33 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 }
                 return;
             case 'd':{
+
                 cout << "Creating your own pizza" << endl;
                 pizzaSizes->GetPizzaSizes(cout);
                 cout << "What size would you like : ";
+
                 int index;
                 cin >> index;
-                Pizzasize size = pizzaSizes->GetPizzaSize(index - 1);
-                Pizza pizza("User created", size);
-                while(true){
-                    cout << "Add a topping (y/n)" << endl;
-                    char userans;
-                    cin >> userans;
-                    if(tolower(userans) != 'y') break;
-                    toppings->GetToppings(cout);
-                    cout << "Which topping would you like : ";
-                    cin >> index;
-                    Topping top = toppings->GetTopping(index - 1);
-                    pizza.AddTopping(top);
+                try{
+                    Pizzasize size = pizzaSizes->GetPizzaSize(index - 1);
+                    Pizza pizza("User created", size);
+                    while(true){
+                        cout << "Add a topping (y/n)" << endl;
+                        char userans;
+                        cin >> userans;
+                        if(tolower(userans) != 'y') break;
+                        toppings->GetToppings(cout);
+                        cout << "Which topping would you like : ";
+                        cin >> index;
+                        Topping top = toppings->GetTopping(index - 1);
+                        pizza.AddTopping(top);
+                    }
+                    order.AddPizza(pizza);
+                }catch(IndexOutOfRangeException e){
+                    cout << "Invalid input!" << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
                 }
-                order.AddPizza(pizza);
                 break;
             }
             case 's':
@@ -157,12 +175,12 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
             case 'm':
                 cout << "Marking pizza as paid for" << endl;
                 order.SetPaid();
-
                 break;
             case 'c':{
                 string comment;
                 cout << "What do you want to add to the order? " << endl;
-                getline(cin, comment);
+                cin.clear();
+                cin.ignore(80, '\n');
                 getline(cin, comment);
                 order.AddComment(comment);
                 break;
@@ -170,7 +188,8 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
             case 'h':{
                 string delivered;
                 cout << "Where would you like to have the order delivered? " << endl;
-                getline(cin, delivered);
+                cin.clear();
+                cin.ignore(80, '\n');
                 getline(cin, delivered);
                 order.HomeDelivery(delivered);
                 break;
@@ -179,19 +198,22 @@ void SalesUI::EditOrder(Order order, bool edit, int index){
                 int d;
                 cout << "How much discount (0-100):" << endl;
                 cin >> d;
+                // Þetta ætti ekki að ske hérna, bara grípa exception
                 if(d >= 0 && d < 101){
                     order.SetDiscount(d);
                 }
                 else{
                     cout << "Not a valid discount" << endl;
                 }
+                // end of block
                 break;
             }
             case 'b':
                 return;
             case 'q':
                 cout << "Are you sure you want to quit?" << endl;
-                cout << "y: yes" << endl << "n: no" << endl;
+                cout << "y: yes" << endl;
+                cout << "n: no" << endl;
                 cin >> userAns;
                 if(tolower(userAns) == 'y')
                     exit(EXIT_SUCCESS);
@@ -212,7 +234,7 @@ void SalesUI::CreateOrder(){
         cin >> first;
         cout << "Lastname : ";
         cin >> last;
-        cout << "Phonenumber :";
+        cout << "Phonenumber : ";
         cin >> phone;
         cout << std::endl;
         try{
