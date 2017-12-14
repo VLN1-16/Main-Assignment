@@ -39,7 +39,7 @@ class OrderRepo{
     private:
         FileHandler<Order>* orderList;
         void FillPizzaVector(const Place& myplace);
-        std::vector<Pizza> pizzas;
+        std::vector<pair<Pizza,std::string>> pizzas;
         void printasingleorder(ostream& os, Order ord, const int numberof);
 };
 #endif

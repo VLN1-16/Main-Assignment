@@ -265,3 +265,7 @@ void Order::AddComment(std::string com){
         if(com[i] == '\0') break;
     }
 }
+std::string Order::GetComment(){
+    std::string str(comment);
+    return str;
+}

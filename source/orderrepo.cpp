@@ -62,7 +62,8 @@ void OrderRepo::GetPizzaByPlace(std::ostream&os, const unsigned int index, const
         FillPizzaVector(myplace);
     if(index >= pizzas.size()) // if the pizza vector is empty, throw an exception
         throw IndexOutOfRangeException();
-    os << pizzas[index] << std::endl;
+    os << pizzas[index].first;
+    os << pizzas[index].second << std::endl;
 }
 
 void OrderRepo::UpdatePizzaStatus(const unsigned int index, const int status, const Place& myplace){
@@ -117,7 +118,7 @@ void OrderRepo::FillPizzaVector(const Place& myplace){
         if(order.GetBranchLoc() == myplace){
             // loop through all the pizzas in this order and add it to the list
             for(int j = 0; j < order.GetNumberOfPizzas(); j++){
-                pizzas.push_back(order.GetPizzaat(j));
+                pizzas.push_back(std::make_pair(order.GetPizzaat(j),order.GetComment()));
             }
         }
     }
