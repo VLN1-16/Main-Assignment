@@ -2,11 +2,8 @@
 
 
 CommandLine::CommandLine(){
-    places = new PlaceRepo();
 }
 CommandLine::~CommandLine(){
-    if(places != nullptr)
-        delete places;
 }
 
 void CommandLine::printMainMenu(){
@@ -83,11 +80,11 @@ void CommandLine::deliveryView(Place place){
     delivery.DeliveryMenu();
 }
 Place CommandLine::pickplace(){
+    PlaceRepo places;
     int index;
-    places->GetPlaces(cout);
+    places.GetPlaces(cout);
     cout << "Which place are you working at : ";
     cin >> index;
     cout << "Placeid : " << endl;
-    
-    return places->GetPlace(index - 1);
+    return places.GetPlace(index - 1);
 }

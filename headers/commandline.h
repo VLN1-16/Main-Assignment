@@ -49,7 +49,6 @@ class CommandLine{
         void deliveryView(Place place);
         Place pickplace();
     private:
-        PlaceRepo* places;
 
 
 };
