@@ -26,3 +26,6 @@ Topping ToppingRepo::GetToppingat(int index){
 Topping ToppingRepo::GetTopping(int index){
     return GetToppingat(index);
 }
+int ToppingRepo::GetNumberOfToppings() const{
+    return toppinglist->GetSize();
+}

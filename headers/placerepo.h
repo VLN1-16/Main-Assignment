@@ -15,6 +15,7 @@ class PlaceRepo{
         Place GetPlace(int index);
         void RemovePlace(int index); // NOT IMPLEMENTED
         bool NumberIsOk(const char numberToCheck[8]);
+        int GetNumberOfPlaces() const;
     private:
         FileHandler<Place>* placelist;
 };

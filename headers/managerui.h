@@ -27,7 +27,6 @@ class ManagerUI{
         void EditProducts();
         void EditToppings();
         void EditLocations();
-
         void EditPizzas();
     private:
         // Management* manager;

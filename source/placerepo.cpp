@@ -33,3 +33,6 @@ bool PlaceRepo::NumberIsOk(const char numberToCheck[8]){
     if(numberToCheck[7] != '\0') throw BadNumber("Number can only be 7 digits");
     return true;
 }
+int PlaceRepo::GetNumberOfPlaces() const{
+    return placelist->GetSize();
+}

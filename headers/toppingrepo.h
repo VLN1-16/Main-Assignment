@@ -14,6 +14,7 @@ class ToppingRepo{
         void RemoveTopping(int index);
         Topping GetToppingat(int index);
         Topping GetTopping(int index);
+        int GetNumberOfToppings() const;
     private:
         FileHandler<Topping>* toppinglist;
 
