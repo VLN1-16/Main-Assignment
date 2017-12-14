@@ -12,30 +12,24 @@ void OrderRepo::printasingleorder(ostream& os, Order ord, const int numberof){
         os << ord;
 }
 void OrderRepo::GetActiveOrders(std::ostream &os){
-    for(int i = 0; i < orderList->GetSize(); i++){
+    for(int i = 0; i < orderList->GetSize(); i++)
         printasingleorder(os, orderList->at(i), i + 1);
-    }
 }
 void OrderRepo::GetActiveOrders(std::ostream &os, const Place& myplace){
-    for(int i = 0; i < orderList->GetSize(); i++){
-        // Order ord = orderList->at(i);
-        if(orderList->at(i).GetBranchLoc() == myplace){
+    for(int i = 0; i < orderList->GetSize(); i++)
+        if(orderList->at(i).GetBranchLoc() == myplace)
             printasingleorder(os, orderList->at(i), i + 1);
-        }
-    }
 }
 void OrderRepo::GetOrdersByCostumer(std::ostream &os, const Place& myplace, char phone[8]){
-    for(int i = 0; i < orderList->GetSize(); i++){
-        if(orderList->at(i).GetBranchLoc() == myplace && orderList->at(i).GetCostumer().CompareNumber(phone)){
+    for(int i = 0; i < orderList->GetSize(); i++)
+        if(orderList->at(i).GetBranchLoc() == myplace && orderList->at(i).GetCostumer().CompareNumber(phone))
             printasingleorder(os, orderList->at(i), i + 1);
-        }
-    }
 }
 void OrderRepo::GetReadyOrders(std::ostream &os,const Place& myplace){
     for(int i = 0; i < orderList->GetSize(); i++){
         Order ord = orderList->at(i);
         if(ord.GetBranchLoc() == myplace && ord.IsReady()){
-            os << "Order : " << i+1 << std::endl;
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
             os << ord;
         }
     }

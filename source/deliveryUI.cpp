@@ -40,14 +40,29 @@ void DeliveryUI::DeliveryMenu(){
                 cout << "Select An order: " << endl;
                 //orders->GetActiveOrders(cout,myplace);
                 cin >> id;
-                orders->ReadOrderAt(cout,id-1);
+                try{
+                    orders->ReadOrderAt(cout,id-1);
+                }
+                catch(IndexOutOfRangeException e){
+                    cout << "Please select an order that exists " << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
+
                 EditDelivery(id-1);
                 break;
             case 'c':
                 char p[8];
                 cout << "What is the customers phonenumber " << endl;
                 cin >> p;
-                orders->GetOrdersByCostumer(cout,myplace,p);
+                try{
+                    orders->GetOrdersByCostumer(cout,myplace,p);
+                }
+                catch(BadNumber e){
+                    cout << "Exception was thrown with error: " << e.getMessage() << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
                 break;
             case 'b':
                 return;
@@ -95,7 +110,7 @@ void DeliveryUI::MakeDelivered(int index){
         orders->RemoveOrder(index,myplace);
     }
     else{
-        // ORDER NOT PAID EXCEPTION
+        cout << "This order has not been paid for" << endl;
     }
 
 }
