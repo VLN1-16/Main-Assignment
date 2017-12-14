@@ -16,7 +16,8 @@ class PizzaRepo {
         void AddPizza(Pizza& pizza);
         void GetPizzas(std::ostream &os);
         Pizza GetPizza(int index);
-
+        int GetNumberOfPizzas() const;
+        void RemovePizza(int index);
     private:
         FileHandler<Pizza>* pizzamenu;
 };

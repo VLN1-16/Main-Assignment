@@ -24,3 +24,6 @@ void ProductRepo::RemoveProduct(int index){
 Product ProductRepo::GetProduct(int index){
     return productlist->at(index); 
 }
+int ProductRepo::GetNumberOfProducts() const{
+    return productlist->GetSize();
+}

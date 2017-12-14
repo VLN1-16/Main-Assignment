@@ -21,3 +21,9 @@ void PizzaRepo::GetPizzas(std::ostream &os){
 Pizza PizzaRepo::GetPizza(int index){
     return pizzamenu->at(index);
 }
+int PizzaRepo::GetNumberOfPizzas() const{
+    return pizzamenu->GetSize();
+}
+void PizzaRepo::RemovePizza(int index){
+    pizzamenu->RemoveProduct(index);
+}
