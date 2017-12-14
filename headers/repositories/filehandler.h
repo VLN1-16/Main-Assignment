@@ -13,7 +13,6 @@
 template <typename T> class FileHandler {
     public:
         FileHandler(std::string DataFile){
-            std::cout << "DOES THIS PRINT" << std::endl;
             dataFile = DataFile;
             std::ifstream fin(dataFile, std::ios::binary);
             size = arraySize;

@@ -13,7 +13,7 @@ void ProductRepo::AddProduct(Product product){
 }
 void ProductRepo::GetProducts(std::ostream &os){
     for(int i = 0; i < productlist->GetSize(); i++){
-        os << "Product : " << i + 1 << std::endl;
+        os << "===== Product : " << i + 1 << " =====" << std::endl;
         Product prod = productlist->at(i);
         os << prod << std::endl;
     }

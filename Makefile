@@ -1,47 +1,27 @@
-buildingproduct:
-	g++ -Wall -c -Iheaders -std=c++17 source/testingProduct.cpp source/product.cpp source/pizza.cpp source/topping.cpp
-	g++ testingProduct.o product.o pizza.o topping.o -o testingProduct.out -o bin/buildingproduct.out
-	rm *.o
-
-toppingDatabase:
-	g++ -Wall -c -Iheaders -std=c++17 topping.cpp product.cpp testToppings.cpp
-	g++ topping.o product.o testToppings.o -o bin/toppingDatabase.out
-	rm *.o
-
-pizza:
-	g++ -Wall -c -Iheaders -std=c++17 pizza.cpp topping.cpp main2.cpp product.cpp
-	g++ pizza.o topping.o main2.o product.o -o bin/pizza.out
-	rm *.o
-
-places:
-	g++ -Wall -c -Iheaders -std=c++17 place.cpp testToppings.cpp
-	g++ place.o testToppings.o -o bin/places.out
-	rm *.o
-
 commandline:
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/main.cpp -o obj/main.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/costumer.cpp  -o obj/costumer.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/order.cpp -o obj/order.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/salesUI.cpp -o obj/salesUI.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/commandline.cpp -o obj/commandline.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/topping.cpp -o obj/topping.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/product.cpp -o obj/product.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/pizzasize.cpp -o obj/pizzasize.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/pizza.cpp -o obj/pizza.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/managerui.cpp -o obj/managerui.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/place.cpp -o obj/place.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/preperationUI.cpp -o obj/preperationUI.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/deliveryUI.cpp -o obj/deliveryUI.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/pizzasizerepo.cpp -o obj/pizzasizerepo.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/pizzarepo.cpp -o obj/pizzarepo.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/placerepo.cpp -o obj/placerepo.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/productrepo.cpp -o obj/productrepo.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/toppingrepo.cpp -o obj/toppingrepo.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/orderrepo.cpp -o obj/orderrepo.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/inactiveorderrepo.cpp -o obj/inactiveorderrepo.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/exceptions/iscostumernamevalid.cpp -o obj/iscostumernamevalid.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/exceptions/invalidpizzasize.cpp -o obj/invalidpizzasize.o
-	g++ -Wall -c -Iheaders -Iheaders/exceptions -std=c++11 source/exceptions/badnumber.cpp -o obj/badnumber.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/main.cpp -o obj/main.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/costumer.cpp  -o obj/costumer.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/order.cpp -o obj/order.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/topping.cpp -o obj/topping.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/product.cpp -o obj/product.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/pizzasize.cpp -o obj/pizzasize.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/pizza.cpp -o obj/pizza.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/place.cpp -o obj/place.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/ui/salesUI.cpp -o obj/salesUI.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/ui/commandline.cpp -o obj/commandline.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/ui/managerui.cpp -o obj/managerui.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/ui/preperationUI.cpp -o obj/preperationUI.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/ui/deliveryUI.cpp -o obj/deliveryUI.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/repositories/pizzasizerepo.cpp -o obj/pizzasizerepo.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/repositories/pizzarepo.cpp -o obj/pizzarepo.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/repositories/placerepo.cpp -o obj/placerepo.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/repositories/productrepo.cpp -o obj/productrepo.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/repositories/toppingrepo.cpp -o obj/toppingrepo.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/repositories/orderrepo.cpp -o obj/orderrepo.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/repositories/inactiveorderrepo.cpp -o obj/inactiveorderrepo.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/exceptions/iscostumernamevalid.cpp -o obj/iscostumernamevalid.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/exceptions/invalidpizzasize.cpp -o obj/invalidpizzasize.o
+	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/exceptions/badnumber.cpp -o obj/badnumber.o
 	g++ obj/main.o obj/salesUI.o obj/iscostumernamevalid.o obj/invalidpizzasize.o obj/order.o obj/costumer.o obj/commandline.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/deliveryUI.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o obj/inactiveorderrepo.o obj/badnumber.o -o bin/commandline.out
 
 
