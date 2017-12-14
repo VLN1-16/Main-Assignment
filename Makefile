@@ -1,4 +1,5 @@
 commandline:
+	mkdir -p obj bin
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/main.cpp -o obj/main.o
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/costumer.cpp  -o obj/costumer.o
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/model/order.cpp -o obj/order.o
@@ -23,8 +24,8 @@ commandline:
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/exceptions/invalidpizzasize.cpp -o obj/invalidpizzasize.o
 	g++ -Wall -c -Iheaders -Iheaders/exceptions -Iheaders/ui -Iheaders/model -Iheaders/repositories -std=c++11 source/exceptions/badnumber.cpp -o obj/badnumber.o
 	g++ obj/main.o obj/salesUI.o obj/iscostumernamevalid.o obj/invalidpizzasize.o obj/order.o obj/costumer.o obj/commandline.o obj/topping.o obj/product.o obj/pizzasize.o obj/pizza.o obj/managerui.o obj/place.o obj/preperationUI.o obj/deliveryUI.o obj/pizzasizerepo.o obj/pizzarepo.o obj/placerepo.o obj/productrepo.o obj/toppingrepo.o obj/orderrepo.o obj/inactiveorderrepo.o obj/badnumber.o -o bin/commandline.out
-
-
+runcommandline:
+	./bin/commandline.out
 testall:
 	make testproduct
 	make testcostumer

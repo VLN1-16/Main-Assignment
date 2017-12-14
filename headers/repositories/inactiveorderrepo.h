@@ -12,7 +12,7 @@ class InActiveOrderRepo{
         ~InActiveOrderRepo();
         void GetOrders(std::ostream &os);
         void AddOrder(Order &order);
-
+        int GetNumberOfOrders() const;
     private:
         FileHandler<Order>* orderList;
 };

@@ -29,6 +29,10 @@ void SalesUI::PrintSalesMenu(){
         cin >> userAns;
         switch(tolower(userAns)){
             case 'a':
+                if(activeorders->GetNumberOfOrders() == 0){
+                    cout << "There are no active orders, Good job!" << endl;
+                    break;
+                }
                 activeorders->GetActiveOrders(cout);
                 break;
             case 'e':
@@ -236,9 +240,15 @@ void SalesUI::CreateOrder(){
         try{
             Costumer costumer(first, last, phone);
             Order order(costumer);
-            Place tobeadded = pickplace();
-            order.SetBranchLoc(tobeadded);
-            EditOrder(order);
+            try{
+                Place tobeadded = pickplace();
+                order.SetBranchLoc(tobeadded);
+                EditOrder(order);
+            }catch(PlaceDoesNotExist e){
+                cout << "Sorry, no place exists. Please create one" << endl;
+                cin.clear();
+                cin.ignore(80, '\n');
+            }
             return;
         }
         catch(BadNumber e){
@@ -251,6 +261,9 @@ void SalesUI::CreateOrder(){
 Place SalesUI::pickplace(){
     while(true){
         int index;
+        if(places->GetNumberOfPlaces() == 0){
+            throw PlaceDoesNotExist();
+        }
         places->GetPlaces(cout);
         cout << "Where is the order suppose to be made : ";
         cin >> index;

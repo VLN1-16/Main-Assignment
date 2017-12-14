@@ -55,6 +55,9 @@ void ManagerUI::ManagerMenu(){
             case 'b':
                 return;
             case 'w':
+                if(inorders->GetNumberOfOrders() == 0){
+                    cout << "No inactive orders" << endl;
+                }
                 inorders->GetOrders(cout);
                 break;
             case 'q':
@@ -113,6 +116,9 @@ void ManagerUI::EditSizes(){
                 break;
             }
             case 'l':{
+                if(pizzaSizes->GetNumberOfPizzaSizes() == 0){
+                    cout << "No Pizza bottoms" << endl;
+                }
                 pizzaSizes->GetPizzaSizes(cout);
                 break;
             }
@@ -275,6 +281,10 @@ void ManagerUI::EditLocations(){
                 break;
             }
             case 'd':
+                if(places->GetNumberOfPlaces() == 0){
+                    cout << "There are no places to delete" << endl;
+                    break;
+                }
                 places->GetPlaces(cout);
                 int index;
                 cout << "Branch location Id : ";

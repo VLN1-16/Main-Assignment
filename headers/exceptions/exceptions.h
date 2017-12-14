@@ -5,4 +5,6 @@ class IndexOutOfRangeException{};
 
 class InvalidPaymentLocation{};
 
+class PlaceDoesNotExist{};
+
 #endif

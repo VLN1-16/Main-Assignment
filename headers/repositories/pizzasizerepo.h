@@ -15,6 +15,7 @@ class PizzaSizeRepo{
         void DeletePizzaSizeat(int index);
         Pizzasize GetPizzaSizeat(int index);
         Pizzasize GetPizzaSize(int index);
+        int GetNumberOfPizzaSizes() const;
     private:
         FileHandler<Pizzasize>* pizzasizelist;
 };

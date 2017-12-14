@@ -33,8 +33,14 @@ void CommandLine::printMainMenu(){
                 cout << "~Preparation~" << endl;
                 try{
                     Place myplace;
-                    myplace = pickplace();
-                    preperationView(myplace);
+                    try{
+                        myplace = pickplace();
+                        preperationView(myplace);
+                    }catch(PlaceDoesNotExist e){
+                        cout << "Sorry, no places exist, please create one" << endl;
+                        cin.clear();
+                        cin.ignore(80, '\n');
+                    }
                 }
                 catch(IndexOutOfRangeException e){
                     cout << "Please select a place from the list" << endl;
@@ -47,8 +53,14 @@ void CommandLine::printMainMenu(){
                 cout << "~Delivery~" << endl;
                 try{
                     Place myplace;
-                    myplace = pickplace();
-                    deliveryView(myplace);
+                    try{
+                        myplace = pickplace();
+                        deliveryView(myplace);
+                    }catch(PlaceDoesNotExist e){
+                        cout << "Sorry, no places exist, please create one" << endl;
+                        cin.clear();
+                        cin.ignore(80, '\n');
+                    }
                 }
                 catch(IndexOutOfRangeException e){
                     cout << "Please select a place from the list" << endl;
@@ -95,10 +107,21 @@ void CommandLine::deliveryView(Place place){
 }
 Place CommandLine::pickplace(){
     PlaceRepo places;
-    int index;
-    places.GetPlaces(cout);
-    cout << "Which place are you working at : ";
-    cin >> index;
-    cout << "Placeid : " << index << endl;
-    return places.GetPlace(index - 1);
+    while(true){
+        int index;
+        if(places.GetNumberOfPlaces() == 0){
+            throw PlaceDoesNotExist();
+        }
+        places.GetPlaces(cout);
+        cout << "Which place are you working at : ";
+        cin >> index;
+        try{
+            return places.GetPlace(index - 1);
+        }
+        catch(IndexOutOfRangeException e){
+            cout << "Please select a place that exists ";
+            cin.clear();
+            cin.ignore(80, '\n');
+        }
+    }
 }

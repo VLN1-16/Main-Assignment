@@ -27,3 +27,6 @@ Pizzasize PizzaSizeRepo::GetPizzaSizeat(int index){
 Pizzasize PizzaSizeRepo::GetPizzaSize(int index){
     return pizzasizelist->at(index);
 }
+int PizzaSizeRepo::GetNumberOfPizzaSizes() const{
+    return pizzasizelist->GetSize();
+}

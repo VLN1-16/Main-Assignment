@@ -18,3 +18,6 @@ void InActiveOrderRepo::GetOrders(std::ostream &os){
 void InActiveOrderRepo::AddOrder(Order &order){
     orderList->AddProduct(order);
 }
+int InActiveOrderRepo::GetNumberOfOrders() const{
+    orderList->GetSize();
+}
