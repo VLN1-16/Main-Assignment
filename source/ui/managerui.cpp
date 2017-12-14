@@ -146,10 +146,12 @@ void ManagerUI::EditProducts(){
 
         switch(tolower(userAns)){
             case 'a':{
-                char name[lengthOfName];
+                cin.clear();
+                cin.ignore(80, '\n');
+                string name;
                 int price;
                 cout << "What is the name of the product : ";
-                cin >> name;
+                getline(cin, name);
                 cout << "What is the price : ";
                 cin >> price;
                 Product prod(name, price);

@@ -19,5 +19,5 @@ void InActiveOrderRepo::AddOrder(Order &order){
     orderList->AddProduct(order);
 }
 int InActiveOrderRepo::GetNumberOfOrders() const{
-    orderList->GetSize();
+    return orderList->GetSize();
 }

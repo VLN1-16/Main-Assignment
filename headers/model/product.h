@@ -4,13 +4,14 @@
 #include "config.h"
 
 #include <iostream>
-#include <cstring>
+#include <string>
 
 class Product{
     public:
         Product();
         Product(int p, char n[lengthOfName]);
         Product(char n[lengthOfName], int p);
+        Product(std::string name, int p);
         virtual ~Product();
         virtual int GetPrice() const;
         virtual char* GetName();

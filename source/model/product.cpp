@@ -10,6 +10,10 @@ Product::Product(int p, char n[lengthOfName]){
 }
 Product::Product(char n[lengthOfName], int p) : Product(p, n) {
 }
+Product::Product(std::string name, int Price){
+    price = Price;
+    SetName(name);
+}
 Product::~Product(){
 
 }
