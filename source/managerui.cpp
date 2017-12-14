@@ -21,8 +21,10 @@ void ManagerUI::ManagerMenu(){
     cout << "m: Edit/add pizza on menu" << endl; // NOT DONE
     cout << "p: Edit/add product on menu" << endl; // DONE
     cout << "l: Edit/add branch locations" << endl; // ALMOST DONE
+
     cout << "a: Edit active order" << endl; // NOT DONE
     cout << "w: Print closed orders" << endl; // NOT DONE
+
     cout << "b: Go back" << endl;
     cout << "q: Quit" << endl;
 
@@ -53,7 +55,6 @@ void ManagerUI::ManagerMenu(){
             return;
         case 'w':
             inorders->GetOrders(cout);
-            // Print old orders // some sort of filters, by costumer or time period
             break;
         case 'q':
             cout << "Are you sure you want to quit?" << endl;

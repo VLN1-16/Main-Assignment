@@ -16,10 +16,10 @@ class Place{
         void ReadBin(std::istream& BinaryIn);
         static int GetByteSize();
         char* GetNumber();
-        friend std::ostream& operator<<(std::ostream &os, Place &place);
+        friend std::ostream& operator<<(std::ostream &os, const Place &place);
         friend std::istream& operator>>(std::istream &is, Place &place);
 
-        bool operator ==(const Place& cmp);
+        bool operator ==(const Place& cmp) const;
 
     private:
         char name[sizeOfplace];

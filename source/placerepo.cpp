@@ -11,19 +11,16 @@ void PlaceRepo::AddPlace(Place p){
         placelist->AddProduct(p);
 }
 void PlaceRepo::GetPlaces(std::ostream& os){
-    if(placelist == nullptr)
-        placelist = new FileHandler<Place>(placefile);
     for(int i = 0; i < placelist->GetSize(); i++){
-        os << "Place : " << i + 1 << std::endl;
+        os << "===== Place : " << i + 1 << " =====" << std::endl;
         Place place = placelist->at(i);
-        os << place;
+        os << place << std::endl;
     }
 }
 Place PlaceRepo::GetPlace(int index){
     return placelist->at(index);
 }
 void PlaceRepo::RemovePlace(int index){
-    // This function does not deal with the possible exception
     placelist->RemoveProduct(index);
 }
 bool PlaceRepo::NumberIsOk(const char numberToCheck[8]){
