@@ -18,7 +18,7 @@ void DeliveryUI::DeliveryMenu(){
     while(true){
         cout << "a: Get list of all orders for this place" << endl;
         cout << "r: Get list of ready orders for this place" << endl;
-        cout << "i: Get a specific order by index" << endl;
+        cout << "i: Select a specific order  to edit by index" << endl;
         cout << "c: Geta orders for a specific customers phonenumber" << endl;
         cout << "b: Back" << endl;
         cout << "q: quit" << endl;
@@ -84,8 +84,8 @@ void DeliveryUI::DeliveryMenu(){
 }
 void DeliveryUI::EditDelivery(int index){
     cout << "a: Mark order as paid" << endl;
-    cout << "d: Mark order as delivered" << endl;
-    cout << "r: Mark order as paid and delivered" << endl;
+    cout << "d: Deliver the order" << endl;
+    cout << "r: Mark order as paid and deliver" << endl;
     cout << "b: Back" << endl;
     cout << "q: quit" << endl;
     char userin;
