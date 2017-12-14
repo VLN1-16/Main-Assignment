@@ -17,6 +17,7 @@ void PreperationUI::WorkingMode(){
 
     while(true){
         //  Print a single pizza, offer next pizza or previous pizza
+        cout << "----------Overview--------------" << endl;
         orders->PreperationList(cout,myplace,index);
         try{
             orders->GetPizzaByPlace(cout, index, myplace);
