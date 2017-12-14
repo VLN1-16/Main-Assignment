@@ -8,7 +8,7 @@ OrderRepo::~OrderRepo(){
 }
 void OrderRepo::printasingleorder(ostream& os, Order ord, const int numberof){
         os << std::endl;
-        os << "============================================================== Order : " << numberof << " ==============================================================" << std::endl; 
+        os << "============================================================== Order : " << numberof << " ==============================================================" << std::endl;
         os << ord;
 }
 void OrderRepo::GetActiveOrders(std::ostream &os){
@@ -21,22 +21,33 @@ void OrderRepo::GetActiveOrders(std::ostream &os, const Place& myplace){
             printasingleorder(os, orderList->at(i), i + 1);
 }
 void OrderRepo::GetOrdersByCostumer(std::ostream &os, const Place& myplace, char phone[8]){
-    for(int i = 0; i < orderList->GetSize(); i++)
-        if(orderList->at(i).GetBranchLoc() == myplace && orderList->at(i).GetCostumer().CompareNumber(phone))
-            printasingleorder(os, orderList->at(i), i + 1);
+    int count = 0;
+    for(int i = 0; i < orderList->GetSize(); i++){
+        Order ord = orderList->at(i);
+        if(ord.GetBranchLoc() == myplace && ord.GetCostumer().CompareNumber(phone)){
+            printasingleorder(os, ord, i + 1);
+            count++;
+        }
+    }
+    if (count == 0) throw IndexOutOfRangeException();
 }
 void OrderRepo::GetReadyOrders(std::ostream &os,const Place& myplace){
     for(int i = 0; i < orderList->GetSize(); i++){
         Order ord = orderList->at(i);
         if(ord.GetBranchLoc() == myplace && ord.IsReady()){
-            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
+            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl;
             os << ord;
         }
     }
 }
-void OrderRepo::ReadOrderAt(std::ostream &os, int index){
+void OrderRepo::ReadOrderAt(std::ostream &os, int index,const Place& myplace){
+    if(index >= orderList->GetSize() || index < 0) // if the pizza vector is empty, throw an exception
+        throw IndexOutOfRangeException();
     Order ord = orderList->at(index);
-    os << ord;
+    if(ord.GetBranchLoc() == myplace)
+        os << ord;
+    else
+        throw IndexOutOfRangeException();
 }
 void OrderRepo::AddOrder(Order &order){
     // Here some order validation has to occur.
@@ -117,6 +128,24 @@ const int OrderRepo::GetNumberOfPizzas(){
 }
 const int OrderRepo::GetNumberOfOrders(){
     return orderList->GetSize();
+}
+const int OrderRepo::GetNumberOfOrders(const Place& myplace){
+    int count = 0;
+    for(int i = 0; i < orderList->GetSize(); i++){
+        Order ord = orderList->at(i);
+        if(ord.GetBranchLoc() == myplace)
+            count++;
+    }
+    return count;
+}
+const int OrderRepo::GetNumberOfReadyOrders(const Place& myplace){
+    int count = 0;
+    for(int i = 0; i < orderList->GetSize(); i++){
+        Order ord = orderList->at(i);
+        if(ord.GetBranchLoc() == myplace && ord.IsReady())
+            count++;
+    }
+    return count;
 }
 void OrderRepo::EditOrder(int index, const Order& order){
     orderList->EditProduct(order,index);

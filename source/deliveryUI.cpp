@@ -19,7 +19,7 @@ void DeliveryUI::DeliveryMenu(){
         cout << "a: Get list of all orders for this place" << endl;
         cout << "r: Get list of ready orders for this place" << endl;
         cout << "i: Get a specific order by index" << endl;
-        cout << "c: Geta orders for a specific customer" << endl;
+        cout << "c: Geta orders for a specific customers phonenumber" << endl;
         cout << "b: Back" << endl;
         cout << "q: quit" << endl;
         char userin;
@@ -27,25 +27,30 @@ void DeliveryUI::DeliveryMenu(){
         switch(tolower(userin)){
             case 'a':
                 cout << "All active orders at this place:" << endl;
+                if(orders->GetNumberOfOrders(myplace) == 0){
+                    cout << "There are no active orders for this place" << endl;
+                    break;
+                }
                 orders->GetActiveOrders(cout,myplace);
-                cout << endl;
                 break;
             case 'r':
-                cout << "All ready orders" << endl;
+                cout << "All ready orders for this place: " << endl;
+                if(orders->GetNumberOfReadyOrders(myplace) == 0){
+                    cout << "There are no ready orders for this place" << endl;
+                    break;
+                }
                 orders->GetReadyOrders(cout,myplace);
-                cout << endl;
                 break;
             case 'i':
                 int id;
                 cout << "Select An order: " << endl;
-                //orders->GetActiveOrders(cout,myplace);
                 cin >> id;
                 try{
-                    orders->ReadOrderAt(cout,id-1);
+                    orders->ReadOrderAt(cout,id-1,myplace);
                     EditDelivery(id-1);
                 }
                 catch(IndexOutOfRangeException e){
-                    cout << "Please select an order that exists " << endl;
+                    cout << "Please select an valid order for this place" << endl;
                     cin.clear();
                     cin.ignore(80, '\n');
                 }
@@ -59,6 +64,11 @@ void DeliveryUI::DeliveryMenu(){
                 }
                 catch(BadNumber e){
                     cout << "Exception was thrown with error: " << e.getMessage() << endl;
+                    cin.clear();
+                    cin.ignore(80, '\n');
+                }
+                catch(IndexOutOfRangeException e){
+                    cout << "There are no orders for this phonenumber"<< endl;
                     cin.clear();
                     cin.ignore(80, '\n');
                 }
