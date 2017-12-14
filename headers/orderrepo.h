@@ -38,5 +38,6 @@ class OrderRepo{
         FileHandler<Order>* orderList;
         void FillPizzaVector(const Place& myplace);
         std::vector<Pizza> pizzas;
+        void printasingleorder(ostream& os, Order ord, const int numberof);
 };
 #endif

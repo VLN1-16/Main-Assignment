@@ -6,29 +6,28 @@ OrderRepo::~OrderRepo(){
     if(orderList != nullptr)
         delete orderList;
 }
+void OrderRepo::printasingleorder(ostream& os, Order ord, const int numberof){
+        os << std::endl;
+        os << "============================================================== Order : " << numberof << " ==============================================================" << std::endl; 
+        os << ord;
+}
 void OrderRepo::GetActiveOrders(std::ostream &os){
     for(int i = 0; i < orderList->GetSize(); i++){
-        os << std::endl;
-            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
-        Order ord = orderList->at(i);
-        os << ord;
+        printasingleorder(os, orderList->at(i), i + 1);
     }
 }
 void OrderRepo::GetActiveOrders(std::ostream &os, const Place& myplace){
     for(int i = 0; i < orderList->GetSize(); i++){
-        Order ord = orderList->at(i);
-        if(ord.GetBranchLoc() == myplace){
-            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
-            os << ord;
+        // Order ord = orderList->at(i);
+        if(orderList->at(i).GetBranchLoc() == myplace){
+            printasingleorder(os, orderList->at(i), i + 1);
         }
     }
 }
 void OrderRepo::GetOrdersByCostumer(std::ostream &os, const Place& myplace, char phone[8]){
     for(int i = 0; i < orderList->GetSize(); i++){
-        Order ord = orderList->at(i);
-        if(ord.GetBranchLoc() == myplace && ord.GetCostumer().CompareNumber(phone)){
-            os << "============================================================== Order : " << i + 1 << " ==============================================================" << std::endl; 
-            os << ord;
+        if(orderList->at(i).GetBranchLoc() == myplace && orderList->at(i).GetCostumer().CompareNumber(phone)){
+            printasingleorder(os, orderList->at(i), i + 1);
         }
     }
 }

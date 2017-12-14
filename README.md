@@ -38,3 +38,4 @@ and should .
 - Láta allar færibreytur sem taka index vera unsigned, það meikar ekki sens að það sé negatíft ( þetta skiptir engu )
 - Allt sem getur verið const verði const.
 - Skoða leiðir til þess að gera lestur á hlutum hraðari. Ef við bætum pizzu t.d. aðeins þá bætum við heildina svakalega vegna þess hvað það gerist oft. skoða það að lesa öll topping í einu frekar en að láta topping lesa sig sjálft osf.
+- set discout í sales ui, ekki checka þar heldur kasta exception sem er gripinn í ui 

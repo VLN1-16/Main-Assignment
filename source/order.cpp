@@ -224,7 +224,7 @@ Order& Order::operator=(const Order& order){
 void Order::SetBranchLoc(Place& newplace){
     BranchLoc = newplace;
 }
-Place Order::GetBranchLoc(){
+Place Order::GetBranchLoc() const{
     return BranchLoc;
 }
 Pizza Order::GetPizzaat(int index){
@@ -249,7 +249,7 @@ void Order::UpdatePizzaStatus(int index, int status){
     }
     ready = temp;
 }
-Costumer Order::GetCostumer(){
+Costumer Order::GetCostumer() const {
     return costumer;
 }
 void Order::HomeDelivery(std::string addr){

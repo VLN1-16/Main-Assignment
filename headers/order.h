@@ -37,8 +37,8 @@ class Order{
         void ReadBin(std::istream& is);
 
         void SetBranchLoc(Place& newplace);
-        Place GetBranchLoc();
-        Costumer GetCostumer();
+        Place GetBranchLoc() const;
+        Costumer GetCostumer() const;
 
         Pizza GetPizzaat(int index);
 

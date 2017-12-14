@@ -35,7 +35,7 @@ int Place::GetByteSize() {
     return sizeof(char)*sizeOfplace*2 + 8*sizeof(char) + sizeof(bool);
 }
 
-std::ostream& operator<<(std::ostream &os, Place& place){
+std::ostream& operator<<(std::ostream &os, const Place& place){
     os << place.name << ", ";
     os << place.address << ", ";
     os << "S:" << place.phone << std::endl;
@@ -58,7 +58,7 @@ void Place::ReadBin (std::istream& binaryIn){
     binaryIn.read((char*)(phone), sizeof(char)*8);
     binaryIn.read((char*)(&isActive), sizeof(bool));
 }
-bool Place::operator ==(const Place& cmp){
+bool Place::operator ==(const Place& cmp) const{
     for(int i = 0; i < sizeOfplace; i++){
         if(cmp.name[i] != name[i]) return false;
         if(cmp.name[i] == '\0') break;
