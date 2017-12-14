@@ -1,5 +1,6 @@
 #include "orderrepo.h"
 OrderRepo::OrderRepo(){
+    std::cout << "does this print" << std::endl;
     orderList = new FileHandler<Order>(orderfile);
 }
 OrderRepo::~OrderRepo(){

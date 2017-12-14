@@ -94,7 +94,6 @@ void ManagerUI::EditSizes(){
                 cin >> price;
                 cout << "What precentage offset should there be ageins topping base price (1 for same, 1.2 for 20% more): ";
                 cin >> offset;
-                // Here we need more input validation
                 Pizzasize newbase(s, offset, price);
                 pizzaSizes->AddPizzaSize(newbase);
                 break;

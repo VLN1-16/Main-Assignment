@@ -45,12 +45,9 @@ void SalesUI::PrintSalesMenu(){
                 cin >> userAns;
                 if(tolower(userAns) == 'y')
                     exit(EXIT_SUCCESS);
-                    else
-                    PrintSalesMenu();
-                    break;
+                break;
             default:
                 cout << "Please enter a valid input!" << endl;
-                PrintSalesMenu();
                 break;
         }
     }
